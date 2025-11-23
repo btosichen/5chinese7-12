@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>五上成語闖關王（第7～12課）</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50; /* Green */
+            --secondary-color: #FF9800; /* Orange */
+            --accent-color: #2196F3; /* Blue */
+            --bg-color: #FFF9C4; /* Light Yellow */
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --wrong-color: #f44336;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FFFde7 0%, #E0F7FA 100%);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Card Style */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        /* Form Elements */
+        input[type="text"] {
+            width: 80%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: var(--accent-color);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.1s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-weight: bold;
+            user-select: none;
+        }
+
+        button:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        button.choice-btn {
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: white;
+            color: var(--text-color);
+            border: 2px solid var(--accent-color);
+            text-align: left;
+        }
+
+        button.choice-btn:hover {
+            background-color: #E3F2FD;
+        }
+
+        .lesson-btn {
+            background-color: var(--primary-color);
+        }
+
+        .mix-btn {
+            background-color: var(--secondary-color);
+            grid-column: 1 / -1; /* Full width */
+        }
+
+        .email-btn {
+            background-color: #db4437; /* Gmail Red */
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+
+        /* Stats Table */
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        .stats-table th, .stats-table td {
+            border: 1px solid #eee;
+            padding: 8px;
+            text-align: center;
+        }
+        .stats-table th {
+            background-color: #f9f9f9;
+            color: #666;
+        }
+
+        /* Question Section */
+        #question-area {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .highlight {
+            color: var(--secondary-color);
+        }
+
+        /* Results & Lists */
+        .result-item {
+            background: #fafafa;
+            border-left: 5px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .result-item.correct { border-left-color: var(--primary-color); }
+        .result-item.wrong { border-left-color: var(--wrong-color); }
+
+        .correct-text { color: var(--primary-color); font-weight: bold; }
+        .wrong-text { color: var(--wrong-color); text-decoration: line-through; }
+        .answer-text { color: var(--text-color); font-weight: bold;}
+
+        /* Hidden Sections */
+        .hidden { display: none; }
+
+        /* History */
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        .history-item {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="card">
+        <h1>🦁 五上成語闖關王 🐰</h1>
+        <h2>(第7～12課)</h2>
+        <div id="student-info-display" style="display:none; font-weight:bold; color: #555;"></div>
+    </div>
+
+    <div id="login-section" class="card">
+        <h3>👋 嗨！請先輸入名字</h3>
+        <input type="text" id="username" placeholder="例如：王小明" />
+        <button onclick="login()">開始闖關 🚀</button>
+    </div>
+
+    <div id="menu-section" class="card hidden">
+        <h3>📊 你的成語戰績</h3>
+        <table class="stats-table">
+            <thead>
+                <tr>
+                    <th>範圍</th>
+                    <th>次數</th>
+                    <th>最近</th>
+                    <th>最高</th>
+                </tr>
+            </thead>
+            <tbody id="stats-tbody">
+                </tbody>
+        </table>
+
+        <hr style="border:0; border-top:2px dashed #eee; margin: 20px 0;">
+
+        <h3>🎯 選擇練習單元</h3>
+        <div style="margin-bottom: 15px;">
+            <label for="question-count">題目數量：</label>
+            <select id="question-count">
+                <option value="10">10 題</option>
+                <option value="20">20 題</option>
+                <option value="999">全部題目</option>
+            </select>
+        </div>
+
+        <div class="btn-grid">
+            <button class="lesson-btn" onclick="startQuiz(7)">第 7 課</button>
+            <button class="lesson-btn" onclick="startQuiz(8)">第 8 課</button>
+            <button class="lesson-btn" onclick="startQuiz(9)">第 9 課</button>
+            <button class="lesson-btn" onclick="startQuiz(10)">第 10 課</button>
+            <button class="lesson-btn" onclick="startQuiz(11)">第 11 課</button>
+            <button class="lesson-btn" onclick="startQuiz(12)">第 12 課</button>
+            <button class="mix-btn" onclick="startQuiz('mix')">🔥 綜合練習（7～12課）</button>
+        </div>
+        
+        <div style="margin-top:20px;">
+            <button style="background:#999;" onclick="logout()">登出</button>
+        </div>
+    </div>
+
+    <div id="quiz-section" class="card hidden">
+        <div style="display:flex; justify-content:space-between; color:#888; margin-bottom:10px;">
+            <span id="progress-text">第 1 / 10 題</span>
+            <span id="score-display">得分: 0</span>
+        </div>
+        <div id="question-area">題目載入中...</div>
+        <div id="options-area"></div>
+    </div>
+
+    <div id="result-section" class="card hidden">
+        <h2 id="result-title">測驗結束！</h2>
+        <h1 id="final-score" style="font-size: 3rem; color: var(--primary-color); margin: 10px 0;"></h1>
+        <div id="mail-container"></div>
+        
+        <h3>📝 錯題檢討</h3>
+        <div id="review-list"></div>
+
+        <button onclick="goHome()" style="margin-top:20px; width:100%;">回首頁 🏠</button>
+    </div>
+
+    <div id="history-section" class="card hidden">
+        <h3>📜 歷史紀錄</h3>
+        <div id="history-list" class="history-list"></div>
+    </div>
+
+</div>
+
+<script>
+    // --- Data Source ---
+    const rawData = [
+        // Lesson 7
+        { l: 7, i: "設身處地", d: "假想自己處在與他人相同的情況中。", e: "如果大家都能＿＿為他人著想，這樣或許就會減少許多紛爭。" },
+        { l: 7, i: "汗牛充棟", d: "形容書籍極多。", e: "透過網路搜尋系統，可以讓讀者在＿＿的書籍中，找到需要的資料。" },
+        { l: 7, i: "鱗次櫛比", d: "形容建築物排列的密集。", e: "繁華的城市中，高高低低的建築物＿＿。" },
+        { l: 7, i: "雪上加霜", d: "比喻禍患接踵而至，使傷害加重。", e: "這個地區，氣候炎熱又經歷長期乾旱，真是＿＿。" },
+        { l: 7, i: "超凡入聖", d: "指修養達到極致的境界。", e: "這本書介紹許多＿＿的歷史先賢。" },
+        { l: 7, i: "不著邊際", d: "說話、做事不切實際或離題太遠。", e: "與其想著＿＿的事，不如腳踏實地做好眼前的工作。" },
+        { l: 7, i: "繪聲繪影", d: "形容講述或描摹事物十分細緻入微、生動逼真。", e: "阿東＿＿的描述他在露營時遇到的趣事。" },
+        { l: 7, i: "不遺餘力", d: "不保留一點力氣。形容竭盡全力，毫無保留。", e: "李老師不僅教學認真，也經常＿＿幫助學生。" },
+        { l: 7, i: "以卵投石", d: "比喻自不量力或以弱攻強，結果必然失敗。", e: "一位新人拳擊手主動挑戰拳王，簡直是＿＿，毫無勝算。" },
+        { l: 7, i: "堅定不移", d: "專一固定，毫不動搖。", e: "這位運動好手就算遇到挫折，還是＿＿的練習，最終在國際賽事上奪得金牌。" },
+        
+        // Lesson 8
+        { l: 8, i: "衣錦還鄉", d: "形容人功成名就後榮歸故鄉。", e: "表姐到海外求學多年，終於取得學位＿＿。" },
+        { l: 8, i: "撲朔迷離", d: "形容事物錯綜複雜，難以辨明真相。", e: "這部推理小說的劇情＿＿，要讀到最後才會知道凶手是誰。" },
+        { l: 8, i: "地廣人稠", d: "地域廣大，人口稠密。", e: "這個地區＿＿，要尋找一個人，無異大海撈針。" },
+        { l: 8, i: "天旋地轉", d: "天地轉動。形容頭暈眼花。", e: "怕高的妹妹走在吊橋上感覺一陣＿＿，站都站不穩。" },
+        { l: 8, i: "千篇一律", d: "形容事物的形式呆板而毫無變化。", e: "想要在＿＿的作品中勝出，必須創作與眾不同的題材。" },
+        { l: 8, i: "不辨菽麥", d: "形容人愚昧無知、缺乏常識。", e: "他剛到農村時還是個＿＿的小伙子，如今已是個精通農藝的專家了。" },
+        { l: 8, i: "噓寒問暖", d: "形容對人的關懷與愛護十分周到。", e: "每次拜訪奶奶家，慈祥的奶奶總是對我＿＿，關懷備至。" },
+        { l: 8, i: "分庭抗禮", d: "比喻能力或地位相當。", e: "小勇有料理的天分，經過嚴格訓練後，已經可以與餐廳主廚＿＿。" },
+        { l: 8, i: "筋疲力竭", d: "形容非常疲倦。", e: "為了籌備這次活動，阿倫忙得＿＿。" },
+        { l: 8, i: "雞毛蒜皮", d: "比喻沒價值的東西或不重要的小事。", e: "他們這對兄弟雖然常因為＿＿的小事吵架，但其實感情很好。" },
+        { l: 8, i: "楚河漢界", d: "比喻敵對的兩方。", e: "兩國大軍正隔著＿＿對峙著，緊張的情勢一觸即發。" },
+        { l: 8, i: "欲蓋彌彰", d: "形容想要掩飾過失，反而使過失更加明顯。", e: "小明不小心打破花瓶，卻不斷找理由掩飾，結果＿＿，反而露出馬腳。" },
+
+        // Lesson 9
+        { l: 9, i: "懸梁刺股", d: "比喻人發憤努力學習。", e: "哥哥無論學習什麼，都以＿＿的精神來面對。" },
+        { l: 9, i: "明查暗訪", d: "公開調查，暗中了解。", e: "警方＿＿，經過一系列搜查，終於抓到凶手。" },
+        { l: 9, i: "銷售一空", d: "賣得精光。形容貨品的售出情況良好。", e: "這臺新手機一上市，立刻就＿＿。" },
+        { l: 9, i: "同心協力", d: "團結一致，共同努力。", e: "這次比賽，在全班同學的＿＿下，終於獲得冠軍。" },
+        { l: 9, i: "顧全大局", d: "顧慮整體的利益，使不受損害。", e: "我們的一切言論和行動都要＿＿，絕不可只為個人打算。" },
+        { l: 9, i: "歧路亡羊", d: "事理繁雜多變，求道者誤入迷途，而終無所成。", e: "為了避免＿＿，我決定去詢問老師如何解開這道數學難題。" },
+        { l: 9, i: "款款動人", d: "形容舉止輕緩柔美令人心動。", e: "這位明星在晚宴上舉手投足＿＿，吸引眾人的目光。" },
+        { l: 9, i: "挖肉補瘡", d: "比喻用有害的方法濟急，而不顧後果。", e: "如果以＿＿方法解決問題，將得不償失。" },
+        { l: 9, i: "以鄰為壑", d: "比喻將困難和災禍推到別人身上。", e: "某些工廠排放廢水汙染附近河川，這種＿＿的行為令人不齒。" },
+        { l: 9, i: "反求諸己", d: "從自己本身找出原因，自我反省。", e: "這位演講者向大家分享成功的方法，就是時常＿＿，修正錯誤。" },
+
+        // Lesson 10
+        { l: 10, i: "氣定神閒", d: "形容人的神態安詳閒適。", e: "就算面對如此緊張的局勢，場上的選手依舊＿＿。" },
+        { l: 10, i: "指桑罵槐", d: "比喻拐彎抹角的罵人。", e: "有什麼意見請明說，不用＿＿。" },
+        { l: 10, i: "一探究竟", d: "看清楚、弄明白。", e: "到底是什麼東西在草叢裡，就讓我去＿＿。" },
+        { l: 10, i: "步步為營", d: "比喻行動謹慎，防備周全。", e: "這場考試對我太重要了，必須＿＿，小心謹慎。" },
+        { l: 10, i: "扭轉乾坤", d: "將局面整個轉變過來。通常是指由逆勢轉為順勢。", e: "雖然比分落後，但小豪憑藉著不服輸的精神，成功＿＿。" },
+        { l: 10, i: "循規蹈矩", d: "遵守禮法，不踰越法度。", e: "弟弟在學校一向＿＿，成績優異，深受師長們的讚賞。" },
+        { l: 10, i: "好言相勸", d: "用和善的語氣和言辭勸誡。", e: "黃老師＿＿，並不是在責怪你，你就別難過了。" },
+        { l: 10, i: "同仇敵愾", d: "指共同抱著憤恨的心情，齊心同力抵抗敵人。", e: "面對不公不義的事，我們應該＿＿，共同對抗。" },
+        { l: 10, i: "東征西討", d: "四處出戰征伐。", e: "這個國家的國王十分好戰，到處＿＿，讓百姓苦不堪言。" },
+        { l: 10, i: "鍋碗瓢盆", d: "廚房用具的通稱。", e: "這些造型奇特的＿＿，都是媽媽烹飪時的好幫手。" },
+        { l: 10, i: "瑕瑜互見", d: "比喻缺點與優點同時並存。", e: "大眾對這部電影的評論，雖然＿＿，但它仍是年度最賣座的作品。" },
+        { l: 10, i: "地主之誼", d: "本地主人應盡的招待情誼。", e: "住在臺北的表姐難得到臺南，我一定要盡＿＿，帶她好好的逛逛。" },
+        { l: 10, i: "畢恭畢敬", d: "極為恭敬。", e: "阿仁在路上巧遇了功夫大師，他立刻＿＿的向大師求教。" },
+
+        // Lesson 11
+        { l: 11, i: "垂頭喪氣", d: "形容意志消沉、失意沮喪的樣子。", e: "本來總是＿＿的小洋，經過同學的鼓勵，終於鼓起勇氣面對挑戰。" },
+        { l: 11, i: "財大氣粗", d: "指富者倚仗財勢蠻橫囂張。", e: "那位先生仗著有錢，對服務人員大小聲，＿＿的樣子真令人不齒。" },
+        { l: 11, i: "精衛填海", d: "比喻意志堅定，不懼艱苦。", e: "表哥原本成績不理想，卻靠著＿＿的毅力，考上理想學校。" },
+        { l: 11, i: "惡貫滿盈", d: "比喻所犯罪行已經滿溢，罪大惡極。", e: "透過警民合作，才將＿＿的壞人繩之以法。" },
+        { l: 11, i: "稍縱即逝", d: "形容時間或機會容易錯失。", e: "人生有很多機遇一不小心就會＿＿，所以要把握每個時機。" },
+        { l: 11, i: "奇貨可居", d: "比喻利用某種專長或有價值的東西以謀利。", e: "這位畫家成名後，他的所有畫作一夕之間變得＿＿。" },
+        { l: 11, i: "恍如隔世", d: "形容人事、景物變遷很大而有所感慨。", e: "這邊原本是荒涼的田地，如今大樓林立，讓人感覺＿＿。" },
+        { l: 11, i: "幡然悔悟", d: "澈底的悔改、醒悟。", e: "他對於自己犯下的錯事＿＿，決定痛改前非。" },
+        { l: 11, i: "氣宇軒昂", d: "形容神采飛揚，氣度不凡。", e: "這部歌仔戲的小生，樣貌＿＿，完全看不出是由女生所扮演。" },
+
+        // Lesson 12
+        { l: 12, i: "孤掌難鳴", d: "比喻人孤立無助，不能成事。", e: "你就算再能幹，若旁邊沒人協助，也是＿＿。" },
+        { l: 12, i: "米珠薪桂", d: "比喻物價昂貴。", e: "這裡是個＿＿的地方，生活費很高，謀生必須要有本事。" },
+        { l: 12, i: "尋幽訪勝", d: "尋找探求景色清雅的地方。", e: "只要一到假期，父母就會帶我去＿＿，領略各處風景。" },
+        { l: 12, i: "詩情畫意", d: "形容如詩畫般美好浪漫。", e: "這一片湖景配合遠方翠綠的山，真是＿＿。" },
+        { l: 12, i: "心煩意亂", d: "指心情煩躁，思緒凌亂。", e: "姐姐不管在任何環境下，都能專心念書，絲毫不會＿＿。" },
+        { l: 12, i: "才思敏捷", d: "為文構思迅速。", e: "阿芝＿＿，往往可以寫出一篇精妙絕倫的文章。" },
+        { l: 12, i: "銳不可當", d: "形容氣勢威猛，所向無敵。", e: "這次比賽獲勝，靠的就是我們這股＿＿的氣勢。" },
+        { l: 12, i: "眾志成城", d: "比喻團結一致，同心協力。", e: "團體競賽需要＿＿的力量，才有機會獲得勝利。" },
+        { l: 12, i: "義不容辭", d: "道義上不容許推卻。", e: "陳老師對於學生事務，一向＿＿，時常積極解決所有問題。" },
+        { l: 12, i: "心猿意馬", d: "比喻心意反覆不定。", e: "小安對於要就讀哪個科系，仍然＿＿，遲遲無法做決定。" },
+        { l: 12, i: "啼笑皆非", d: "形容情緒複雜，不知是該難過還是該發笑。", e: "弟弟淘氣極了，經常幹一些讓人＿＿的事情。" },
+        { l: 12, i: "同舟共濟", d: "同乘一條船渡河，比喻同心協力，戰勝困難。", e: "這場比賽，讓觀眾看到了球員們＿＿的精神，實在令人難忘。" },
+        { l: 12, i: "十惡不赦", d: "形容罪大惡極，不可饒恕。", e: "在被警方逮捕之前，鄰居都不知道他原來是個＿＿的通輯犯。" },
+        { l: 12, i: "葉落歸根", d: "比喻久居異地之人返回家鄉。", e: "林先生在外地打拚了大半輩子，現在回到故鄉，總算是＿＿。" },
+        { l: 12, i: "暗箭傷人", d: "比喻暗中用陰險的手段傷害人。", e: "小青向來行事光明正大，從不＿＿。" }
+    ];
+
+    // --- Audio Context ---
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playSound(type) {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        if (type === 'click') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.1);
+        } else if (type === 'correct') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.5);
+        } else if (type === 'wrong') {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+            osc.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 0.3);
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.5);
+        } else if (type === 'win') {
+            // Arpeggio
+            const now = audioCtx.currentTime;
+            [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+                const o = audioCtx.createOscillator();
+                const g = audioCtx.createGain();
+                o.connect(g);
+                g.connect(audioCtx.destination);
+                o.type = 'square';
+                o.frequency.value = freq;
+                g.gain.setValueAtTime(0.05, now + i*0.1);
+                g.gain.exponentialRampToValueAtTime(0.001, now + i*0.1 + 0.4);
+                o.start(now + i*0.1);
+                o.stop(now + i*0.1 + 0.4);
+            });
+        }
+    }
+
+    // --- State Variables ---
+    let currentUser = "";
+    let currentQuestions = [];
+    let currentQuestionIndex = 0;
+    let currentScore = 0;
+    let wrongAnswers = [];
+    let selectedLessonRange = "";
+    let totalQuestionCount = 0;
+
+    // --- Initialization ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedUser = localStorage.getItem('idiom_user');
+        if (savedUser) {
+            currentUser = savedUser;
+            showMenu();
+        }
+        updateStatsTable();
+    });
+
+    function login() {
+        const nameInput = document.getElementById('username');
+        if (nameInput.value.trim() === "") {
+            alert("請輸入名字喔！");
+            return;
+        }
+        currentUser = nameInput.value.trim();
+        localStorage.setItem('idiom_user', currentUser);
+        playSound('click');
+        showMenu();
+    }
+
+    function logout() {
+        localStorage.removeItem('idiom_user');
+        location.reload();
+    }
+
+    function showMenu() {
+        document.getElementById('login-section').classList.add('hidden');
+        document.getElementById('menu-section').classList.remove('hidden');
+        document.getElementById('student-info-display').textContent = `學生：${currentUser}`;
+        document.getElementById('student-info-display').style.display = 'block';
+        document.getElementById('history-section').classList.remove('hidden');
+        updateHistoryList();
+        updateStatsTable();
+    }
+
+    function goHome() {
+        playSound('click');
+        document.getElementById('result-section').classList.add('hidden');
+        document.getElementById('quiz-section').classList.add('hidden');
+        document.getElementById('menu-section').classList.remove('hidden');
+        document.getElementById('history-section').classList.remove('hidden');
+        updateStatsTable();
+        updateHistoryList();
+    }
+
+    // --- Logic: Quiz Setup ---
+    function startQuiz(lesson) {
+        playSound('click');
+        selectedLessonRange = lesson;
+        
+        // Filter Questions
+        let pool = [];
+        if (lesson === 'mix') {
+            pool = rawData;
+        } else {
+            pool = rawData.filter(item => item.l === parseInt(lesson));
+        }
+
+        if (pool.length === 0) {
+            alert("題目資料載入錯誤，請重整頁面。");
+            return;
+        }
+
+        // Select Quantity
+        const countSelect = document.getElementById('question-count').value;
+        const count = Math.min(pool.length, parseInt(countSelect));
+        totalQuestionCount = count;
+
+        // Shuffle and Slice
+        pool = shuffleArray([...pool]).slice(0, count);
+        
+        // Generate Question Objects
+        currentQuestions = pool.map(item => {
+            const type = Math.floor(Math.random() * 3); // 0: Def->Idiom, 1: Idiom->Def, 2: Ex->Idiom
+            let questionText = "";
+            let answer = "";
+            let options = [];
+            let typeName = "";
+
+            // Distractors
+            const distractors = shuffleArray(rawData.filter(x => x.i !== item.i)).slice(0, 3);
+
+            if (type === 0) {
+                // Def -> Idiom
+                typeName = "看解釋選成語";
+                questionText = `請選出符合解釋的成語：<br><span class="highlight">「${item.d}」</span>`;
+                answer = item.i;
+                options = [item.i, ...distractors.map(d => d.i)];
+            } else if (type === 1) {
+                // Idiom -> Def
+                typeName = "看成語選解釋";
+                questionText = `成語 <span class="highlight">【${item.i}】</span> 的意思是？`;
+                answer = item.d;
+                options = [item.d, ...distractors.map(d => d.d)];
+            } else {
+                // Ex -> Idiom
+                typeName = "填空題";
+                questionText = `請填入適合的成語：<br>${item.e}`; // item.e already has ＿＿
+                answer = item.i;
+                options = [item.i, ...distractors.map(d => d.i)];
+            }
+
+            return {
+                qText: questionText,
+                correct: answer,
+                options: shuffleArray(options),
+                origItem: item,
+                type: typeName,
+                userAns: null
+            };
+        });
+
+        // Reset Vars
+        currentQuestionIndex = 0;
+        currentScore = 0;
+        wrongAnswers = [];
+
+        // UI Switch
+        document.getElementById('menu-section').classList.add('hidden');
+        document.getElementById('history-section').classList.add('hidden');
+        document.getElementById('quiz-section').classList.remove('hidden');
+
+        renderQuestion();
+    }
+
+    // --- Logic: Rendering ---
+    function renderQuestion() {
+        const q = currentQuestions[currentQuestionIndex];
+        
+        document.getElementById('progress-text').textContent = `第 ${currentQuestionIndex + 1} / ${totalQuestionCount} 題`;
+        document.getElementById('score-display').textContent = `得分: ${currentScore}`;
+        document.getElementById('question-area').innerHTML = `<div style="font-size:0.9rem; color:#888; margin-bottom:5px;">[${q.type}]</div>${q.qText}`;
+
+        const optsArea = document.getElementById('options-area');
+        optsArea.innerHTML = "";
+
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = "choice-btn";
+            btn.textContent = opt;
+            btn.onclick = () => handleAnswer(opt, btn);
+            optsArea.appendChild(btn);
+        });
+    }
+
+    function handleAnswer(selected, btnElement) {
+        // Disable all buttons
+        const allBtns = document.querySelectorAll('.choice-btn');
+        allBtns.forEach(b => b.disabled = true);
+
+        const q = currentQuestions[currentQuestionIndex];
+        q.userAns = selected;
+
+        if (selected === q.correct) {
+            playSound('correct');
+            btnElement.style.backgroundColor = "#C8E6C9"; // Light Green
+            btnElement.style.borderColor = "#4CAF50";
+            currentScore++;
+        } else {
+            playSound('wrong');
+            btnElement.style.backgroundColor = "#FFCDD2"; // Light Red
+            btnElement.style.borderColor = "#F44336";
+            
+            // Highlight correct one
+            allBtns.forEach(b => {
+                if (b.textContent === q.correct) {
+                    b.style.backgroundColor = "#C8E6C9";
+                    b.style.borderColor = "#4CAF50";
+                    b.textContent += " (正確)";
+                }
+            });
+
+            wrongAnswers.push({
+                id: currentQuestionIndex + 1,
+                question: q.qText.replace(/<[^>]*>?/gm, ''), // strip html
+                yourAns: selected,
+                correctAns: q.correct
+            });
+        }
+
+        // Auto next after delay
+        setTimeout(() => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < totalQuestionCount) {
+                renderQuestion();
+            } else {
+                finishQuiz();
+            }
+        }, 1200); // 1.2s delay to see result
+    }
+
+    function finishQuiz() {
+        document.getElementById('quiz-section').classList.add('hidden');
+        document.getElementById('result-section').classList.remove('hidden');
+
+        const percentage = Math.round((currentScore / totalQuestionCount) * 100);
+        document.getElementById('final-score').textContent = `${currentScore} / ${totalQuestionCount}`;
+        
+        if (percentage >= 60) {
+            playSound('win');
+            document.getElementById('result-title').textContent = "🎉 恭喜闖關成功！";
+        } else {
+            document.getElementById('result-title').textContent = "💪 再接再厲！";
+        }
+
+        // Render Wrong Answers
+        const list = document.getElementById('review-list');
+        list.innerHTML = "";
+        if (wrongAnswers.length === 0) {
+            list.innerHTML = "<p style='color:green;'>太厲害了！全對！✨</p>";
+        } else {
+            wrongAnswers.forEach(w => {
+                const item = document.createElement('div');
+                item.className = "result-item wrong";
+                item.innerHTML = `
+                    <div><b>題目：</b>${w.question}</div>
+                    <div><span class="wrong-text">你的答案：${w.yourAns}</span></div>
+                    <div><span class="correct-text">正確答案：${w.correctAns}</span></div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        // Update LocalStorage
+        saveRecord();
+        updateStatsData();
+        generateMailBtn();
+    }
+
+    // --- Stats & History ---
+    function saveRecord() {
+        const record = {
+            name: currentUser,
+            range: selectedLessonRange === 'mix' ? '綜合練習 (7-12)' : `第 ${selectedLessonRange} 課`,
+            score: currentScore,
+            total: totalQuestionCount,
+            date: new Date().toLocaleString()
+        };
+
+        let history = JSON.parse(localStorage.getItem('idiom_history') || "[]");
+        history.unshift(record); // Add to top
+        if (history.length > 20) history.pop(); // Keep last 20
+        localStorage.setItem('idiom_history', JSON.stringify(history));
+    }
+
+    function updateStatsData() {
+        let stats = JSON.parse(localStorage.getItem('idiom_stats') || "{}");
+        // Structure: { 7: {best:0, last:0, attempts:0}, 'mix': {...} }
+        
+        const key = selectedLessonRange;
+        if (!stats[key]) stats[key] = { best: 0, last: 0, attempts: 0 };
+
+        stats[key].attempts += 1;
+        stats[key].last = currentScore; // Note: this is raw score, strictly logic would track % but raw is fine for now
+        if (currentScore > stats[key].best) {
+            stats[key].best = currentScore;
+        }
+
+        localStorage.setItem('idiom_stats', JSON.stringify(stats));
+    }
+
+    function updateStatsTable() {
+        const stats = JSON.parse(localStorage.getItem('idiom_stats') || "{}");
+        const tbody = document.getElementById('stats-tbody');
+        tbody.innerHTML = "";
+
+        const ranges = [7, 8, 9, 10, 11, 12, 'mix'];
+        
+        ranges.forEach(r => {
+            const key = r;
+            const label = r === 'mix' ? '綜合' : `第 ${r} 課`;
+            const data = stats[key] || { attempts: 0, last: '-', best: '-' };
+            
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${label}</td>
+                <td>${data.attempts}</td>
+                <td>${data.last}</td>
+                <td>${data.best}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function updateHistoryList() {
+        const history = JSON.parse(localStorage.getItem('idiom_history') || "[]");
+        const container = document.getElementById('history-list');
+        container.innerHTML = "";
+
+        if (history.length === 0) {
+            container.innerHTML = "<p style='color:#999; text-align:center;'>還沒有練習紀錄喔！</p>";
+            return;
+        }
+
+        history.forEach(h => {
+            const div = document.createElement('div');
+            div.className = "history-item";
+            div.innerHTML = `
+                <div style="display:flex; justify-content:space-between;">
+                    <b>${h.range}</b>
+                    <span style="color:var(--primary-color); font-weight:bold;">${h.score} / ${h.total}</span>
+                </div>
+                <div style="font-size:0.8rem; color:#888;">${h.date}</div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    // --- Email Generation ---
+    function generateMailBtn() {
+        const container = document.getElementById('mail-container');
+        container.innerHTML = "";
+
+        const stats = JSON.parse(localStorage.getItem('idiom_stats') || "{}");
+        const rangeKey = selectedLessonRange;
+        const rangeStats = stats[rangeKey] || { attempts: 0, best: 0 };
+        
+        let wrongText = "";
+        wrongAnswers.forEach((w, idx) => {
+            wrongText += `${idx + 1}. 題目：${w.question}%0D%0A   你的答案：${w.yourAns}%0D%0A   正確答案：${w.correctAns}%0D%0A%0D%0A`;
+        });
+
+        const rangeName = selectedLessonRange === 'mix' ? '綜合練習（7～12課）' : `第 ${selectedLessonRange} 課單元成語練習`;
+
+        const subject = encodeURIComponent(`【五上成語成績】${currentUser} - ${rangeName}`);
+        const body = encodeURIComponent(
+`【五上成語線上測驗成績】
+
+學生姓名：${currentUser}
+練習模式：${rangeName}
+測驗題數：${totalQuestionCount} 題
+成績：${currentScore} / ${totalQuestionCount}
+
+---
+累積練習統計：
+本單元共練習 ${rangeStats.attempts} 次，最高分 ${rangeStats.best}。
+---
+
+錯題一覽：
+${wrongText ? wrongText : "（全對！太棒了！）"}
+`
+        );
+
+        const btn = document.createElement('a');
+        btn.href = `mailto:btosichen@gmail.com?subject=${subject}&body=${body}`;
+        btn.className = "email-btn";
+        btn.textContent = "📧 寄成績給老師";
+        container.appendChild(btn);
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+</script>
+</body>
+</html>
