@@ -1,0 +1,2249 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎪 第9課 紅鼻子醫生 ✨ 超強記憶學習網</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; }
+  body {
+    background: linear-gradient(135deg, #FFE5EC 0%, #FFF6BD 25%, #CDFAD5 50%, #C6E7FF 75%, #FFCFB6 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+  }
+  /* ===== 標題區 ===== */
+  .hero {
+    background: linear-gradient(135deg, #FF6B9D 0%, #FFC75F 50%, #4ECDC4 100%);
+    border-radius: 30px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(255,107,157,0.3);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero h1 {
+    color: white;
+    font-size: 2.8em;
+    text-shadow: 3px 3px 0 #FF1654, 6px 6px 0 rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  .hero p {
+    color: white;
+    font-size: 1.3em;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-weight: bold;
+  }
+  .nose {
+    display: inline-block;
+    width: 50px; height: 50px;
+    background: radial-gradient(circle at 30% 30%, #FF6B6B, #C0392B);
+    border-radius: 50%;
+    margin: 0 10px;
+    box-shadow: inset -3px -3px 8px rgba(0,0,0,0.3), 0 4px 10px rgba(192,57,43,0.5);
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  /* ===== 導覽列 ===== */
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+    position: sticky;
+    top: 10px;
+    background: rgba(255,255,255,0.85);
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+  }
+  .nav button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+  }
+  .nav button:hover { transform: translateY(-3px); box-shadow: 0 7px 0 rgba(0,0,0,0.15); }
+  .nav button:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.15); }
+  .btn1 { background: linear-gradient(135deg, #FF6B9D, #FFC75F); }
+  .btn2 { background: linear-gradient(135deg, #4ECDC4, #44A3AA); }
+  .btn3 { background: linear-gradient(135deg, #845EC2, #B39CD0); }
+  .btn4 { background: linear-gradient(135deg, #FF9671, #FFC75F); }
+  .btn5 { background: linear-gradient(135deg, #008F7A, #00C9A7); }
+  .btn6 { background: linear-gradient(135deg, #F9F871, #FFC75F); color: #333 !important; text-shadow: none; }
+  .btn7 { background: linear-gradient(135deg, #C34A36, #FF6F61); }
+
+  /* ===== 區塊樣式 ===== */
+  section {
+    background: rgba(255,255,255,0.92);
+    border-radius: 25px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  }
+  section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    color: white;
+    display: inline-block;
+  }
+  .h2-1 { background: linear-gradient(135deg, #FF6B9D, #C34A6C); }
+  .h2-2 { background: linear-gradient(135deg, #4ECDC4, #2A8B85); }
+  .h2-3 { background: linear-gradient(135deg, #845EC2, #5E3FA8); }
+  .h2-4 { background: linear-gradient(135deg, #FF9671, #C46B47); }
+  .h2-5 { background: linear-gradient(135deg, #008F7A, #00604E); }
+  .h2-6 { background: linear-gradient(135deg, #FFD93D, #FF8E3C); color: #333 !important; }
+  .h2-7 { background: linear-gradient(135deg, #C34A36, #841F0F); }
+
+  /* ===== 心智圖 ===== */
+  .mindmap {
+    background: linear-gradient(135deg, #FFF6BD, #FFE5EC);
+    border-radius: 20px;
+    padding: 25px;
+    position: relative;
+  }
+  .center-node {
+    background: radial-gradient(circle, #FF6B6B, #C0392B);
+    color: white;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(192,57,43,0.4);
+    animation: pulse 3s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .branches {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .branch {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    border-top: 6px solid;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+  }
+  .branch:hover { transform: translateY(-5px) rotate(-1deg); }
+  .branch h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .branch p { line-height: 1.7; color: #555; }
+  .b1 { border-color: #FF6B9D; } .b1 h3 { color: #FF6B9D; }
+  .b2 { border-color: #FFC75F; } .b2 h3 { color: #D4951A; }
+  .b3 { border-color: #4ECDC4; } .b3 h3 { color: #2A8B85; }
+  .b4 { border-color: #845EC2; } .b4 h3 { color: #5E3FA8; }
+  .b5 { border-color: #FF9671; } .b5 h3 { color: #C46B47; }
+  .b6 { border-color: #008F7A; } .b6 h3 { color: #008F7A; }
+  .b7 { border-color: #C34A36; } .b7 h3 { color: #C34A36; }
+
+  /* ===== 字卡 ===== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .flip-card {
+    perspective: 1000px;
+    height: 280px;
+    cursor: pointer;
+  }
+  .flip-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back {
+    position: absolute;
+    width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  .flip-front {
+    background: linear-gradient(135deg, #FFE5EC, #FFC75F);
+    border: 5px solid #FF6B9D;
+  }
+  .flip-front .big-char {
+    font-size: 6em;
+    color: #C34A6C;
+    text-shadow: 3px 3px 0 #FFC75F;
+    font-weight: bold;
+  }
+  .flip-front .zhuyin {
+    font-size: 1.5em;
+    color: #FF6B9D;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  .flip-front .hint { color: #888; margin-top: 10px; }
+  .flip-back {
+    background: linear-gradient(135deg, #4ECDC4, #C6E7FF);
+    color: #333;
+    transform: rotateY(180deg);
+    text-align: left;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+  .flip-back h4 {
+    color: #2A8B85;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+  }
+  .flip-back p { font-size: 0.95em; line-height: 1.6; margin-bottom: 5px; }
+  .memo {
+    background: #FFE5EC;
+    border-left: 4px solid #FF6B9D;
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 8px;
+    font-size: 0.9em;
+  }
+
+  /* ===== 易混淆字辨析 ===== */
+  .compare-box {
+    background: linear-gradient(135deg, #FFF6BD, #FFE5EC);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 15px 0;
+    border: 3px dashed #FF6B9D;
+  }
+  .compare-box h3 {
+    color: #C34A6C;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+  }
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+  }
+  .compare-item {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s;
+  }
+  .compare-item:hover { transform: scale(1.05); }
+  .compare-char {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .c-color1 { color: #FF6B9D; }
+  .c-color2 { color: #4ECDC4; }
+  .c-color3 { color: #845EC2; }
+  .c-color4 { color: #FF9671; }
+  .compare-zy { color: #888; font-size: 0.9em; margin-bottom: 5px; }
+  .compare-example {
+    background: #FFE5EC;
+    border-radius: 8px;
+    padding: 5px 8px;
+    font-size: 0.95em;
+    color: #555;
+  }
+  .memory-trick {
+    background: linear-gradient(135deg, #FFC75F, #FFD93D);
+    color: #333;
+    border-radius: 15px;
+    padding: 12px 18px;
+    margin-top: 12px;
+    font-weight: bold;
+    border-left: 6px solid #FF6B6B;
+  }
+
+  /* ===== 句型 ===== */
+  .sentence-pattern {
+    background: linear-gradient(135deg, #C6E7FF, #CDFAD5);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-left: 8px solid #4ECDC4;
+  }
+  .sentence-pattern h3 {
+    color: #2A8B85;
+    font-size: 1.5em;
+    margin-bottom: 12px;
+  }
+  .formula {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    color: #C34A6C;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  }
+  .example-sentence {
+    background: rgba(255,255,255,0.7);
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin: 8px 0;
+    border-left: 4px solid #FFC75F;
+  }
+  .highlight-key {
+    background: #FFD93D;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  /* ===== 修辭 ===== */
+  .rhet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .rhet-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    border-top: 8px solid;
+    transition: all 0.3s;
+  }
+  .rhet-card:hover { transform: translateY(-5px); }
+  .rhet-r1 { border-color: #FF6B9D; }
+  .rhet-r2 { border-color: #FFC75F; }
+  .rhet-r3 { border-color: #4ECDC4; }
+  .rhet-r4 { border-color: #845EC2; }
+  .rhet-r5 { border-color: #FF9671; }
+  .rhet-r6 { border-color: #008F7A; }
+  .rhet-title { font-size: 1.4em; font-weight: bold; margin-bottom: 10px; }
+  .rhet-r1 .rhet-title { color: #FF6B9D; }
+  .rhet-r2 .rhet-title { color: #D4951A; }
+  .rhet-r3 .rhet-title { color: #2A8B85; }
+  .rhet-r4 .rhet-title { color: #5E3FA8; }
+  .rhet-r5 .rhet-title { color: #C46B47; }
+  .rhet-r6 .rhet-title { color: #008F7A; }
+  .rhet-def {
+    background: #FFF6BD;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 10px 0;
+    font-size: 0.95em;
+  }
+
+  /* ===== 練習題 ===== */
+  .quiz-section { background: linear-gradient(135deg, #FFE5EC, #C6E7FF); }
+  .quiz-item {
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border-left: 8px solid #4ECDC4;
+  }
+  .quiz-item.important { border-left-color: #FF6B6B; background: linear-gradient(135deg, #fff, #FFE5EC); }
+  .quiz-item.hard { border-left-color: #845EC2; background: linear-gradient(135deg, #fff, #F0E5F8); }
+  .q-num {
+    display: inline-block;
+    background: #4ECDC4;
+    color: white;
+    border-radius: 50%;
+    width: 35px; height: 35px;
+    text-align: center;
+    line-height: 35px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  .quiz-item.important .q-num { background: #FF6B6B; }
+  .quiz-item.hard .q-num { background: #845EC2; }
+  .q-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    margin-left: 5px;
+    font-weight: bold;
+  }
+  .tag-important { background: #FF6B6B; color: white; }
+  .tag-hard { background: #845EC2; color: white; }
+  .tag-keypoint { background: #FFD93D; color: #333; }
+  .q-question {
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin: 10px 0;
+    color: #333;
+  }
+  .options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .option {
+    background: #F8F9FA;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .option:hover { background: #E0F7FA; border-color: #4ECDC4; }
+  .option.correct { background: #C8E6C9; border-color: #4CAF50; color: #2E7D32; font-weight: bold; }
+  .option.wrong { background: #FFCDD2; border-color: #F44336; color: #C62828; }
+  .show-answer {
+    background: linear-gradient(135deg, #FFC75F, #FF9671);
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+  .answer-box {
+    background: linear-gradient(135deg, #CDFAD5, #C6E7FF);
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin-top: 10px;
+    display: none;
+    border-left: 5px solid #008F7A;
+  }
+  .answer-box.show { display: block; animation: slideDown 0.4s; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .answer-box strong { color: #C34A6C; }
+
+  /* ===== 分數統計 ===== */
+  .score-board {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #FF6B9D, #FFC75F);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    box-shadow: 0 8px 20px rgba(255,107,157,0.4);
+    z-index: 200;
+    display: none;
+  }
+  .score-board.show { display: block; animation: fadeIn 0.5s; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== 成語區 ===== */
+  .idiom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .idiom-card {
+    background: linear-gradient(135deg, #FFF6BD, #FFCFB6);
+    border-radius: 20px;
+    padding: 22px;
+    border: 3px solid #FF9671;
+    transition: all 0.3s;
+  }
+  .idiom-card:hover { transform: scale(1.03) rotate(1deg); }
+  .idiom-title {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #C34A36;
+    margin-bottom: 10px;
+    text-align: center;
+    text-shadow: 2px 2px 0 #FFD93D;
+  }
+  .idiom-icon {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .idiom-meaning {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 8px 0;
+  }
+  .idiom-example {
+    background: rgba(255,255,255,0.6);
+    padding: 10px;
+    border-radius: 10px;
+    border-left: 4px solid #C34A36;
+    font-size: 0.95em;
+    color: #555;
+  }
+
+  /* ===== Gemini 區 ===== */
+  .gemini-box {
+    background: linear-gradient(135deg, #845EC2, #FF6F61);
+    border-radius: 25px;
+    padding: 30px;
+    color: white;
+  }
+  .gemini-box h2 { background: rgba(255,255,255,0.3); }
+  .code-block {
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    padding: 20px;
+    font-family: monospace;
+    line-height: 1.8;
+    margin: 15px 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #FFE5EC;
+    border-left: 5px solid #FFD93D;
+  }
+  .copy-btn {
+    background: #FFD93D;
+    color: #333;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { transform: scale(1.05); }
+  .copy-btn:active { transform: scale(0.95); }
+
+  /* ===== 重點標記 ===== */
+  .star-key {
+    display: inline-block;
+    background: linear-gradient(135deg, #FFD93D, #FF8E3C);
+    color: white;
+    padding: 3px 12px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 0.85em;
+    box-shadow: 0 2px 5px rgba(255,142,60,0.4);
+  }
+  .legend {
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.95em; }
+  .legend-dot {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.8em; }
+    .big-char { font-size: 4em !important; }
+    section { padding: 20px 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== 標題 ==================== -->
+<div class="hero">
+  <h1>🎪 第9課 紅鼻子醫生 <span class="nose"></span></h1>
+  <p>✨ 超強記憶 × 互動學習 × 55題大魔王挑戰 ✨</p>
+</div>
+
+<!-- ==================== 導覽 ==================== -->
+<div class="nav">
+  <button class="btn1" onclick="scrollTo('s1')">🗺️ 課文心智圖</button>
+  <button class="btn2" onclick="scrollTo('s2')">🔤 生字卡</button>
+  <button class="btn3" onclick="scrollTo('s3')">🔍 易混淆字</button>
+  <button class="btn4" onclick="scrollTo('s4')">🎯 成語</button>
+  <button class="btn5" onclick="scrollTo('s5')">📝 句型修辭</button>
+  <button class="btn6" onclick="scrollTo('s6')">🎮 練習題</button>
+  <button class="btn7" onclick="scrollTo('s7')">🤖 Gemini</button>
+</div>
+
+<!-- ==================== 1. 心智圖 ==================== -->
+<section id="s1">
+  <h2 class="h2-1">🗺️ 一、課文心智圖（超強記憶法）</h2>
+  <p style="margin-bottom:15px;color:#666;">用一張圖看懂整課！每個分支就是一個訪問問題的答案。</p>
+
+  <div class="mindmap">
+    <div class="center-node">
+      🤡<br>紅鼻子<br>醫生
+    </div>
+    <div class="branches">
+      <div class="branch b1">
+        <h3>1️⃣ 訪問動機</h3>
+        <p>作者對小丑醫生<b>感到好奇</b>：<br>「為什麼小丑會出現在醫院裡？」<br>所以計畫訪問馬照琪阿姨。</p>
+      </div>
+      <div class="branch b2">
+        <h3>2️⃣ 成立目的</h3>
+        <p>透過<b>專業的小丑表演</b>，<br>為病童<b>帶來歡笑</b>。</p>
+      </div>
+      <div class="branch b3">
+        <h3>3️⃣ 成立背景</h3>
+        <p>馬阿姨在<b>法國</b>時認識小丑醫生理念，<br>引進國內並成立協會。</p>
+      </div>
+      <div class="branch b4">
+        <h3>4️⃣ 醫生資格</h3>
+        <p>要熟練<b>魔術、歌唱、小丑表演</b>，<br>了解小朋友心理，<br>還要通過<b>實習與考核</b>。</p>
+      </div>
+      <div class="branch b5">
+        <h3>5️⃣ 堅持動力</h3>
+        <p><b>每個病童的笑容</b><br>就是堅持下去的能量來源！</p>
+      </div>
+      <div class="branch b6">
+        <h3>6️⃣ 治療方式</h3>
+        <p>針對每個病童<b>客製化表演</b>，<br>到病床旁演出（對症下藥）。</p>
+      </div>
+      <div class="branch b7">
+        <h3>7️⃣ 感動故事</h3>
+        <p>「紅鼻小孩」原本沮喪的病童，<br>後來愛上表演、<b>化身小紅鼻</b>把快樂傳給其他人。</p>
+      </div>
+    </div>
+
+    <div style="background:#FFD93D; color:#333; padding:20px; border-radius:15px; margin-top:25px; border-left:8px solid #FF6B6B;">
+      <h3 style="color:#C34A36; margin-bottom:8px;">🎯 訪問心得（主旨）</h3>
+      <p style="font-size:1.1em; line-height:1.8;">
+        小丑醫生臉上<b>「醒目的紅鼻子」</b>彷彿成了<b>「一顆顆愛心」</b>，<br>
+        掛在他們燦爛的笑臉上。<br>
+        🌟 <b>紅色＝鼻子的紅 ＝ 愛心的紅 ＝ 對病童的愛！</b>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 2. 生字卡 ==================== -->
+<section id="s2">
+  <h2 class="h2-2">🔤 二、生字記憶卡（點一下翻面）</h2>
+  <p style="margin-bottom:15px; color:#666;">12 個本課生字，每張卡有「字音 + 字義 + 記憶口訣」💡</p>
+
+  <div class="cards-grid">
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">謐</div>
+          <div class="zhuyin">ㄇㄧˋ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：安靜</h4>
+          <p>例：靜<b>謐</b>的走廊、寧<b>謐</b></p>
+          <div class="memo">💡 口訣：左邊「言」、右邊「必」靜下來，連說話都「必須」很安靜！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">乍</div>
+          <div class="zhuyin">ㄓㄚˋ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：突然</h4>
+          <p>例：<b>乍</b>然響起、<b>乍</b>現</p>
+          <div class="memo">💡 口訣：「乍」沒有火，跟「炸」（爆炸）不一樣！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">惑</div>
+          <div class="zhuyin">ㄏㄨㄛˋ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：疑惑、不明白</h4>
+          <p>例：困<b>惑</b>、誘<b>惑</b>、疑<b>惑</b></p>
+          <div class="memo">💡 口訣：「或」字下面有顆「心」，心裡「或許」是這樣或那樣 → 困惑！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">搜</div>
+          <div class="zhuyin">ㄙㄡ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：搜求、尋覓</h4>
+          <p>例：<b>搜</b>尋、<b>搜</b>捕、<b>搜</b>索</p>
+          <div class="memo">💡 口訣：用「手」（扌）拿東西去找 → 搜！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">瀏</div>
+          <div class="zhuyin">ㄌㄧㄡˊ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：隨意看看</h4>
+          <p>例：<b>瀏</b>覽、<b>瀏</b>海</p>
+          <div class="memo">💡 口訣：「瀏」字有水（氵），像水一樣輕輕「流」過資料 → 瀏覽！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">覽</div>
+          <div class="zhuyin">ㄌㄢˇ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：看</h4>
+          <p>例：展<b>覽</b>、遊<b>覽</b>、博<b>覽</b>會</p>
+          <div class="memo">💡 口訣：下方是「見」，看見的「見」！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">拜</div>
+          <div class="zhuyin">ㄅㄞˋ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：探望、拜候</h4>
+          <p>例：<b>拜</b>訪、<b>拜</b>年、<b>拜</b>託</p>
+          <div class="memo">💡 口訣：兩隻「手」（兩個三）合起來敬禮 → 拜！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">磨</div>
+          <div class="zhuyin">ㄇㄛˊ / ㄇㄛˋ</div>
+          <div class="hint">👆兩種讀音！</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義（破音字）</h4>
+          <p><b>ㄇㄛˊ</b>：折磨、研磨、磨難（動作、波折）</p>
+          <p><b>ㄇㄛˋ</b>：石磨、磨坊（器具）</p>
+          <div class="memo">💡 口訣：當「動作」念ㄇㄛˊ，當「器具」念ㄇㄛˋ！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">療</div>
+          <div class="zhuyin">ㄌㄧㄠˊ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：治療</h4>
+          <p>例：<b>療</b>養、<b>療</b>傷、治<b>療</b></p>
+          <div class="memo">💡 口訣：左邊「疒」是病字旁，與生病有關！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">癒</div>
+          <div class="zhuyin">ㄩˋ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：治好傷痛</h4>
+          <p>例：<b>癒</b>合、痊<b>癒</b>、療<b>癒</b></p>
+          <div class="memo">💡 口訣：病字旁加「愈」，病情「愈來愈好」 → 癒！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">職</div>
+          <div class="zhuyin">ㄓˊ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：所從事的工作</h4>
+          <p>例：<b>職</b>業、就<b>職</b>、<b>職</b>務</p>
+          <div class="memo">💡 口訣：「耳」+「戠」，要用「耳朵」聽老闆交代「職務」！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">證</div>
+          <div class="zhuyin">ㄓㄥˋ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：作為證明的文件</h4>
+          <p>例：<b>證</b>件、<b>證</b>據、<b>證</b>明</p>
+          <div class="memo">💡 口訣：左邊「言」字旁，需要「說出來」才能證明！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">詢</div>
+          <div class="zhuyin">ㄒㄩㄣˊ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：查問</h4>
+          <p>例：<b>詢</b>問、查<b>詢</b>、諮<b>詢</b></p>
+          <div class="memo">💡 口訣：「言」+「旬」，用「言語」問十天（旬）的事 → 詢問！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">核</div>
+          <div class="zhuyin">ㄏㄜˊ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：考查審核</h4>
+          <p>例：<b>核</b>心、考<b>核</b>、<b>核</b>准</p>
+          <div class="memo">💡 口訣：果實的「核」最中心 → 核心！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">症</div>
+          <div class="zhuyin">ㄓㄥˋ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：疾病的表現</h4>
+          <p>例：<b>症</b>狀、急<b>症</b>、對<b>症</b>下藥</p>
+          <div class="memo">💡 口訣：病字旁（疒）+「正」，要對「正確」的病「症」下藥！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">況</div>
+          <div class="zhuyin">ㄎㄨㄤˋ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：情形</h4>
+          <p>例：情<b>況</b>、近<b>況</b>、狀<b>況</b></p>
+          <div class="memo">💡 口訣：「氵（水）」+「兄」，水流的「情況」隨時在變！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">裁</div>
+          <div class="zhuyin">ㄘㄞˊ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：剪布、決斷</h4>
+          <p>例：<b>裁</b>縫、<b>裁</b>判、別出心<b>裁</b></p>
+          <div class="memo">💡 口訣：「衣」字底，與剪「衣服」有關！</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="big-char">誇</div>
+          <div class="zhuyin">ㄎㄨㄚ</div>
+          <div class="hint">👆點擊翻面</div>
+        </div>
+        <div class="flip-back">
+          <h4>📖 字義：誇大</h4>
+          <p>例：<b>誇</b>張、<b>誇</b>耀、<b>誇</b>獎</p>
+          <div class="memo">💡 口訣：「言」+「夸」，用「言語」誇大（夸） → 誇張！</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3. 易混淆字辨析 ==================== -->
+<section id="s3">
+  <h2 class="h2-3">🔍 三、易混淆字辨析（最容易考！⭐⭐⭐）</h2>
+  <p style="margin-bottom:20px; color:#666; font-size:1.05em;">
+    <span class="star-key">⭐ 段考超愛考！</span> 這些字長得很像，但意思完全不同！用顏色 + 口訣記住它們！
+  </p>
+
+  <div class="compare-box">
+    <h3>🔸 組合 1：乍 vs 炸 vs 作 vs 昨</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-char c-color1">乍</div>
+        <div class="compare-zy">ㄓㄚˋ</div>
+        <div class="compare-example">乍現（突然）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color2">炸</div>
+        <div class="compare-zy">ㄓㄚˋ</div>
+        <div class="compare-example">爆炸（有火）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color3">作</div>
+        <div class="compare-zy">ㄗㄨㄛˋ</div>
+        <div class="compare-example">作文（有人）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color4">昨</div>
+        <div class="compare-zy">ㄗㄨㄛˊ</div>
+        <div class="compare-example">昨天（有日）</div>
+      </div>
+    </div>
+    <div class="memory-trick">🎯 超強記憶：「乍」沒火，「炸」有火；「作」是人在做，「昨」是日期！</div>
+  </div>
+
+  <div class="compare-box">
+    <h3>🔸 組合 2：磨 vs 麼</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-char c-color1">磨</div>
+        <div class="compare-zy">ㄇㄛˊ／ㄇㄛˋ</div>
+        <div class="compare-example">折磨、石磨</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color2">麼</div>
+        <div class="compare-zy">˙ㄇㄜ</div>
+        <div class="compare-example">為什麼</div>
+      </div>
+    </div>
+    <div class="memory-trick">🎯 超強記憶：「磨」下面是「石」（會磨損），「麼」是問句用的（沒石頭）！</div>
+  </div>
+
+  <div class="compare-box">
+    <h3>🔸 組合 3：療 vs 寮 vs 燎 vs 嘹</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-char c-color1">療</div>
+        <div class="compare-zy">ㄌㄧㄠˊ</div>
+        <div class="compare-example">療效（病字旁）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color2">寮</div>
+        <div class="compare-zy">ㄌㄧㄠˊ</div>
+        <div class="compare-example">菜寮（寶蓋頭）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color3">燎</div>
+        <div class="compare-zy">ㄌㄧㄠˊ</div>
+        <div class="compare-example">如火燎原（火字旁）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color4">嘹</div>
+        <div class="compare-zy">ㄌㄧㄠˊ</div>
+        <div class="compare-example">嘹亮（口字旁）</div>
+      </div>
+    </div>
+    <div class="memory-trick">🎯 超強記憶：看偏旁就知道！病字旁＝療傷、寶蓋頭＝房子、火字旁＝燃燒、口字旁＝聲音！</div>
+  </div>
+
+  <div class="compare-box">
+    <h3>🔸 組合 4：癒 vs 愈 vs 喻</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-char c-color1">癒</div>
+        <div class="compare-zy">ㄩˋ</div>
+        <div class="compare-example">癒合（病字旁）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color2">愈</div>
+        <div class="compare-zy">ㄩˋ</div>
+        <div class="compare-example">愈加（心字底）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color3">喻</div>
+        <div class="compare-zy">ㄩˋ</div>
+        <div class="compare-example">難以言喻（口字旁）</div>
+      </div>
+    </div>
+    <div class="memory-trick">🎯 超強記憶：病好了用「癒」，越來越用「愈」，說明白用「喻」！</div>
+  </div>
+
+  <div class="compare-box">
+    <h3>🔸 組合 5：職 vs 織</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-char c-color1">職</div>
+        <div class="compare-zy">ㄓˊ</div>
+        <div class="compare-example">就職（耳字旁）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color2">織</div>
+        <div class="compare-zy">ㄓ</div>
+        <div class="compare-example">織布（糸字旁）</div>
+      </div>
+    </div>
+    <div class="memory-trick">🎯 超強記憶：用「耳朵」聽工作 → 職；用「絲線」織布 → 織！</div>
+  </div>
+
+  <div class="compare-box">
+    <h3>🔸 組合 6：證 vs 燈 vs 澄</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-char c-color1">證</div>
+        <div class="compare-zy">ㄓㄥˋ</div>
+        <div class="compare-example">證據（言字旁）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color2">燈</div>
+        <div class="compare-zy">ㄉㄥ</div>
+        <div class="compare-example">燈泡（火字旁）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color3">澄</div>
+        <div class="compare-zy">ㄔㄥˊ</div>
+        <div class="compare-example">澄淨（水字旁）</div>
+      </div>
+    </div>
+    <div class="memory-trick">🎯 超強記憶：用「言語」舉證 → 證；「火」點亮 → 燈；「水」很清 → 澄！</div>
+  </div>
+
+  <div class="compare-box">
+    <h3>🔸 組合 7：核 vs 該 vs 孩 vs 咳</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-char c-color1">核</div>
+        <div class="compare-zy">ㄏㄜˊ</div>
+        <div class="compare-example">核桃（木字旁）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color2">該</div>
+        <div class="compare-zy">ㄍㄞ</div>
+        <div class="compare-example">應該（言字旁）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color3">孩</div>
+        <div class="compare-zy">ㄏㄞˊ</div>
+        <div class="compare-example">男孩（子字旁）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color4">咳</div>
+        <div class="compare-zy">ㄎㄜˊ</div>
+        <div class="compare-example">咳嗽（口字旁）</div>
+      </div>
+    </div>
+    <div class="memory-trick">🎯 超強記憶：「亥」字配什麼偏旁，意思就不同！樹（木）→核、說（言）→該、人（子）→孩、嘴（口）→咳！</div>
+  </div>
+
+  <div class="compare-box">
+    <h3>🔸 組合 8：詢 vs 絢</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-char c-color1">詢</div>
+        <div class="compare-zy">ㄒㄩㄣˊ</div>
+        <div class="compare-example">答詢（言字旁）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color2">絢</div>
+        <div class="compare-zy">ㄒㄩㄢˋ</div>
+        <div class="compare-example">光彩絢麗（糸字旁）</div>
+      </div>
+    </div>
+    <div class="memory-trick">🎯 超強記憶：用「言語」問 → 詢；用「絲線」織出來的色彩 → 絢麗！</div>
+  </div>
+
+  <div class="compare-box">
+    <h3>🔸 組合 9：裁 vs 載 vs 戴</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-char c-color1">裁</div>
+        <div class="compare-zy">ㄘㄞˊ</div>
+        <div class="compare-example">裁縫（有「衣」）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color2">載</div>
+        <div class="compare-zy">ㄗㄞˋ</div>
+        <div class="compare-example">載貨（有「車」）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color3">戴</div>
+        <div class="compare-zy">ㄉㄞˋ</div>
+        <div class="compare-example">戴上（特殊形）</div>
+      </div>
+    </div>
+    <div class="memory-trick">🎯 超強記憶：剪「衣服」用裁、「車」運貨用載、「戴」帽子要「異」於常人！</div>
+  </div>
+
+  <div class="compare-box">
+    <h3>🔸 組合 10：誇 vs 跨</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-char c-color1">誇</div>
+        <div class="compare-zy">ㄎㄨㄚ</div>
+        <div class="compare-example">自誇（言字旁）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color2">跨</div>
+        <div class="compare-zy">ㄎㄨㄚˋ</div>
+        <div class="compare-example">跨年（足字旁）</div>
+      </div>
+    </div>
+    <div class="memory-trick">🎯 超強記憶：用「言語」誇大 → 誇；用「腳」邁出去 → 跨！</div>
+  </div>
+
+  <div class="compare-box">
+    <h3>🔸 組合 11：惑 vs 或</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-char c-color1">惑</div>
+        <div class="compare-zy">ㄏㄨㄛˋ</div>
+        <div class="compare-example">迷惑（有心）</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-char c-color2">或</div>
+        <div class="compare-zy">ㄏㄨㄛˋ</div>
+        <div class="compare-example">或者（沒心）</div>
+      </div>
+    </div>
+    <div class="memory-trick">🎯 超強記憶：心裡有疑問才會「惑」（多了一個「心」）！</div>
+  </div>
+</section>
+
+<!-- ==================== 4. 成語 ==================== -->
+<section id="s4">
+  <h2 class="h2-4">🎯 四、成語超強記憶</h2>
+  <p style="margin-bottom:15px; color:#666;">6 個重點成語，記住「情境」比背意思更重要！</p>
+
+  <div class="idiom-grid">
+    <div class="idiom-card">
+      <div class="idiom-icon">🤔❓</div>
+      <div class="idiom-title">大惑不解</div>
+      <div class="idiom-meaning">
+        <b>意思：</b>對事物感到非常疑惑，無法了解。
+      </div>
+      <div class="idiom-example">
+        <b>情境：</b>這麼精明的人竟然發生這種簡單的失誤，真是令人大惑不解。
+      </div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-icon">🧠💭</div>
+      <div class="idiom-title">搜索枯腸</div>
+      <div class="idiom-meaning">
+        <b>意思：</b>比喻竭力思索（肚子裡已經空了還在找）。
+      </div>
+      <div class="idiom-example">
+        <b>情境：</b>創作故事缺乏靈感，搜索枯腸半天，仍找不到想要的題材。
+      </div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-icon">🙇🏆</div>
+      <div class="idiom-title">甘拜下風</div>
+      <div class="idiom-meaning">
+        <b>意思：</b>自認不如，心服口服。
+      </div>
+      <div class="idiom-example">
+        <b>情境：</b>他小小年紀居然已經攻頂玉山，我只能甘拜下風。
+      </div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-icon">📍🪡</div>
+      <div class="idiom-title">磨杵成針</div>
+      <div class="idiom-meaning">
+        <b>意思：</b>比喻只要有恆心，無論多麼困難都能成功。
+      </div>
+      <div class="idiom-example">
+        <b>情境：</b>求學要有磨杵成針的毅力，不要想著一步登天。
+      </div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-icon">💊🎯</div>
+      <div class="idiom-title">對症下藥</div>
+      <div class="idiom-meaning">
+        <b>意思：</b>針對問題做有效處理。
+      </div>
+      <div class="idiom-example">
+        <b>情境：</b>遇到困難只要找到關鍵，對症下藥，就能順利解決。
+      </div>
+    </div>
+
+    <div class="idiom-card">
+      <div class="idiom-icon">💡✨</div>
+      <div class="idiom-title">別出心裁</div>
+      <div class="idiom-meaning">
+        <b>意思：</b>獨出巧思，與眾不同。
+      </div>
+      <div class="idiom-example">
+        <b>情境：</b>這套洋裝的設計別出心裁，因此成為當季熱銷商品。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 5. 句型修辭 ==================== -->
+<section id="s5">
+  <h2 class="h2-5">📝 五、句型與修辭視覺圖解</h2>
+
+  <h3 style="color:#2A8B85; margin-bottom:15px; font-size:1.5em;">📌 A. 必考四大句型</h3>
+
+  <div class="sentence-pattern">
+    <h3>1️⃣ 目的句 <span class="star-key">⭐ 本課重點</span></h3>
+    <div class="formula">為了 ＿＿＿（目的），＿＿＿（行動）</div>
+    <p>👉 也可以用：<b>用以、為的是、以、以便</b></p>
+    <div class="example-sentence">
+      <b>例 1：</b><span class="highlight-key">為了</span>更認識小丑醫生，我便計畫訪問他們。
+    </div>
+    <div class="example-sentence">
+      <b>例 2：</b>強烈颱風過後，慈善機構正積極的向各界募款，<span class="highlight-key">以便</span>賑濟災民。
+    </div>
+    <div class="memory-trick">🎯 記憶口訣：「為了 + 想達到什麼 + 做了什麼動作」</div>
+  </div>
+
+  <div class="sentence-pattern">
+    <h3>2️⃣ 因果複句</h3>
+    <div class="formula">＿＿＿（原因），<span style="color:#FF6B6B;">因此</span> ＿＿＿（結果）</div>
+    <div class="example-sentence">
+      <b>例：</b>外面正下著大雨，<span class="highlight-key">因此</span>我們只好待在家裡。
+    </div>
+    <div class="memory-trick">🎯 「因此」前面是原因，後面是結果（一前一後不能反）</div>
+  </div>
+
+  <div class="sentence-pattern">
+    <h3>3️⃣ 遞進複句 <span class="star-key">⭐ 容易考</span></h3>
+    <div class="formula">除了 ＿＿＿，<span style="color:#FF6B6B;">還</span> ＿＿＿</div>
+    <div class="example-sentence">
+      <b>例：</b>志工<span class="highlight-key">除了</span>具備熱心與愛心，有時<span class="highlight-key">還</span>須經過專業訓練。
+    </div>
+    <div class="memory-trick">🎯 後面要比前面「更進一步」，所以叫「遞進」！</div>
+  </div>
+
+  <div class="sentence-pattern">
+    <h3>4️⃣ 連貫複句</h3>
+    <div class="formula">＿＿（先做的），<span style="color:#FF6B6B;">再</span> ＿＿（後做的）</div>
+    <div class="example-sentence">
+      <b>例：</b>寫作時，我會想好大綱，<span class="highlight-key">再</span>下筆，避免內容離題。
+    </div>
+    <div class="memory-trick">🎯 表示「動作有先後順序」</div>
+  </div>
+
+  <div class="sentence-pattern">
+    <h3>5️⃣ 遞進複句（強調版） <span class="star-key">⭐⭐ 較難</span></h3>
+    <div class="formula">不但 ＿＿＿，<span style="color:#FF6B6B;">甚至</span> ＿＿＿</div>
+    <div class="example-sentence">
+      <b>例：</b>他<span class="highlight-key">不但</span>經常參加課外活動，<span class="highlight-key">甚至</span>能在大型比賽中屢次奪得佳績。
+    </div>
+    <div class="memory-trick">🎯 「甚至」比「還」程度更強烈！</div>
+  </div>
+
+  <h3 style="color:#2A8B85; margin: 30px 0 15px; font-size:1.5em;">🎨 B. 本課六大修辭</h3>
+
+  <div class="rhet-grid">
+    <div class="rhet-card rhet-r1">
+      <div class="rhet-title">👁️ 摹寫</div>
+      <div class="rhet-def">把感覺（視、聽、嗅、味、觸）寫出來</div>
+      <p><b>例：</b>「靜謐的走廊上，輕快的樂聲乍然響起。」（視覺＋聽覺）</p>
+      <p><b>例：</b>「揮汗如雨的練習。」（視覺）</p>
+    </div>
+
+    <div class="rhet-card rhet-r2">
+      <div class="rhet-title">❓ 設問</div>
+      <div class="rhet-def">明知故問，引起讀者思考</div>
+      <p><b>例：</b>「為什麼小丑會出現在醫院裡？」</p>
+      <p><b>效果：</b>引發好奇，帶出整篇訪問</p>
+    </div>
+
+    <div class="rhet-card rhet-r3">
+      <div class="rhet-title">🪞 譬喻</div>
+      <div class="rhet-def">用「像」、「彷彿」、「成了」連結甲乙兩物</div>
+      <p><b>例：</b>「一個個醒目的紅鼻子，彷彿成了一顆顆愛心。」</p>
+      <p><b>本體：</b>紅鼻子｜<b>喻體：</b>愛心</p>
+    </div>
+
+    <div class="rhet-card rhet-r4">
+      <div class="rhet-title">🌟 誇飾</div>
+      <div class="rhet-def">故意誇大，加強情緒效果</div>
+      <p><b>例：</b>「揮汗如雨」（流汗多到像下雨）</p>
+      <p><b>例：</b>「誇張的肢體動作和表情真是有趣極了！」</p>
+    </div>
+
+    <div class="rhet-card rhet-r5">
+      <div class="rhet-title">🔄 轉化（擬人/形象化）</div>
+      <div class="rhet-def">把抽象的東西寫得很具體</div>
+      <p><b>例：</b>「揮汗如雨的練習。」（汗水像雨一樣）</p>
+    </div>
+
+    <div class="rhet-card rhet-r6">
+      <div class="rhet-title">❤️ 象徵 <span class="star-key">⭐⭐ 主旨題</span></div>
+      <div class="rhet-def">用具體事物代表抽象概念</div>
+      <p><b>「紅鼻子」象徵什麼？</b></p>
+      <p>👉 象徵「<b>愛心</b>」、「<b>對病童的關愛</b>」</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 6. 練習題 ==================== -->
+<section id="s6" class="quiz-section">
+  <h2 class="h2-6">🎮 六、互動練習 55 題 🏆</h2>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#4ECDC4;"></span>一般題</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#FF6B6B;"></span>⭐ 必考重點</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#845EC2;"></span>⭐⭐ 較難題型</div>
+  </div>
+
+  <p style="background:#FFD93D; padding:12px 18px; border-radius:12px; margin-bottom:20px; font-weight:bold;">
+    👉 點選答案會自動顯示對錯！點「查看解析」可以看詳細解說 💡
+  </p>
+
+  <!-- ===== 字音字形（12題） ===== -->
+  <h3 style="background:#FF6B9D; color:white; padding:10px 20px; border-radius:15px; display:inline-block; margin:15px 0;">📝 字音字形（12題）</h3>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">1</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">「靜<b>謐</b>」的「謐」字音為何？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) ㄅㄧˋ</div>
+      <div class="option" onclick="answer(this, true)">(B) ㄇㄧˋ</div>
+      <div class="option" onclick="answer(this, false)">(C) ㄎㄚˇ</div>
+      <div class="option" onclick="answer(this, false)">(D) ㄈㄧˋ</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B) ㄇㄧˋ</strong>｜「謐」意思是安靜，常見詞「靜謐」、「寧謐」。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">2</span></div>
+    <div class="q-question">下列「磨」字讀音<b>不同</b>於其他三者的是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 折磨</div>
+      <div class="option" onclick="answer(this, false)">(B) 研磨</div>
+      <div class="option" onclick="answer(this, true)">(C) 石磨</div>
+      <div class="option" onclick="answer(this, false)">(D) 磨難</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C) 石磨（ㄇㄛˋ）</strong>｜其他都讀 ㄇㄛˊ。當「器具」念ㄇㄛˋ，當「動作或波折」念ㄇㄛˊ。</div>
+  </div>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">3</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">「<b>乍</b>然」的「乍」與下列哪個字<b>同音</b>？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, true)">(A) 爆炸</div>
+      <div class="option" onclick="answer(this, false)">(B) 作文</div>
+      <div class="option" onclick="answer(this, false)">(C) 昨天</div>
+      <div class="option" onclick="answer(this, false)">(D) 工作</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(A) 爆炸</strong>｜「乍」和「炸」都念 ㄓㄚˋ；作、昨、工作都念 ㄗㄨㄛ。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">4</span></div>
+    <div class="q-question">「疑<b>惑</b>」的「惑」音為何？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) ㄏㄨㄚˋ</div>
+      <div class="option" onclick="answer(this, true)">(B) ㄏㄨㄛˋ</div>
+      <div class="option" onclick="answer(this, false)">(C) ㄏㄨㄣˋ</div>
+      <div class="option" onclick="answer(this, false)">(D) ㄏㄨㄟˋ</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B) ㄏㄨㄛˋ</strong>｜「惑」音同「或」，意思是疑惑、不明白。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">5</span></div>
+    <div class="q-question">「對<b>症</b>下藥」的「症」音為何？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) ㄓㄥ</div>
+      <div class="option" onclick="answer(this, true)">(B) ㄓㄥˋ</div>
+      <div class="option" onclick="answer(this, false)">(C) ㄓㄥˇ</div>
+      <div class="option" onclick="answer(this, false)">(D) ㄔㄥˊ</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B) ㄓㄥˋ</strong>｜「症」指疾病的表現，如「症狀」、「急症」。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">6</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">下列字音<b>完全正確</b>的是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 瀏（ㄌㄧㄡˇ）覽</div>
+      <div class="option" onclick="answer(this, false)">(B) 詢（ㄒㄩㄣˋ）問</div>
+      <div class="option" onclick="answer(this, true)">(C) 考核（ㄏㄜˊ）</div>
+      <div class="option" onclick="answer(this, false)">(D) 痊癒（ㄩˊ）</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C) 考核（ㄏㄜˊ）</strong>｜瀏（ㄌㄧㄡˊ）、詢（ㄒㄩㄣˊ）、癒（ㄩˋ）。</div>
+  </div>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">7</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">下列哪一組字形<b>完全正確</b>？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 遼愈、餿尋</div>
+      <div class="option" onclick="answer(this, false)">(B) 拝訪、劉攬</div>
+      <div class="option" onclick="answer(this, true)">(C) 療癒、瀏覽</div>
+      <div class="option" onclick="answer(this, false)">(D) 疑或、洵問</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜遼→療、餿→搜、拝→拜、劉→瀏、或→惑、洵→詢。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">8</span></div>
+    <div class="q-question">「<b>裁</b>判」與下列哪個字部首相同？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 載貨</div>
+      <div class="option" onclick="answer(this, false)">(B) 戴帽</div>
+      <div class="option" onclick="answer(this, true)">(C) 裙子</div>
+      <div class="option" onclick="answer(this, false)">(D) 哉問</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C) 裙子</strong>｜「裁」與「裙」都是「衣」部。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">9</span></div>
+    <div class="q-question">「磨杵成針」的「磨」意思是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, true)">(A) 將東西碾壓成細末狀</div>
+      <div class="option" onclick="answer(this, false)">(B) 用來碾碎穀物的器具</div>
+      <div class="option" onclick="answer(this, false)">(C) 波折、阻礙</div>
+      <div class="option" onclick="answer(this, false)">(D) 折磨人的事</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(A)</strong>｜「磨杵」是把鐵杵磨成針，是「磨」的動作。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">10</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">下列「磨」字字義為「波折、阻礙」的是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 石磨</div>
+      <div class="option" onclick="answer(this, false)">(B) 研磨</div>
+      <div class="option" onclick="answer(this, true)">(C) 飽受折磨</div>
+      <div class="option" onclick="answer(this, false)">(D) 磨墨</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C) 折磨</strong>｜這裡的「磨」是「波折、阻礙」的引申義。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">11</span></div>
+    <div class="q-question">下列哪一個詞的字形<b>有錯</b>？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 對症下藥</div>
+      <div class="option" onclick="answer(this, false)">(B) 別出心裁</div>
+      <div class="option" onclick="answer(this, true)">(C) 揮汗如語</div>
+      <div class="option" onclick="answer(this, false)">(D) 量身打造</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C) 揮汗如語</strong>｜應為「揮汗如<b>雨</b>」（流的汗像下雨一樣多）。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">12</span></div>
+    <div class="q-question">下列哪個字<b>不</b>是病字旁（疒）？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 療</div>
+      <div class="option" onclick="answer(this, false)">(B) 癒</div>
+      <div class="option" onclick="answer(this, false)">(C) 症</div>
+      <div class="option" onclick="answer(this, true)">(D) 拜</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(D) 拜</strong>｜「拜」是手部，其他都是病字旁。</div>
+  </div>
+
+  <!-- ===== 詞語成語（10題） ===== -->
+  <h3 style="background:#FF9671; color:white; padding:10px 20px; border-radius:15px; display:inline-block; margin:25px 0 15px;">🎯 詞語與成語情境（10題）</h3>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">13</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">情境：弟弟把家裡的鑰匙弄丟了，全家人翻箱倒櫃找了一整天還是找不到，真是<b>＿＿＿＿</b>。<br>請選最適合的成語：</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, true)">(A) 大惑不解</div>
+      <div class="option" onclick="answer(this, false)">(B) 對症下藥</div>
+      <div class="option" onclick="answer(this, false)">(C) 別出心裁</div>
+      <div class="option" onclick="answer(this, false)">(D) 揮汗如雨</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(A) 大惑不解</strong>｜表示對事物感到非常疑惑、無法了解。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">14</span></div>
+    <div class="q-question">「<b>搜索枯腸</b>」最適合用在下列哪個情境？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 警察在山裡搜捕逃犯</div>
+      <div class="option" onclick="answer(this, true)">(B) 我寫作文時，怎麼想也想不到好題材</div>
+      <div class="option" onclick="answer(this, false)">(C) 媽媽肚子餓得咕嚕叫</div>
+      <div class="option" onclick="answer(this, false)">(D) 老師在尋找遺失的眼鏡</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜「搜索枯腸」是比喻「竭力思索」，不是真的找東西。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">15</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">情境：阿明知道自己象棋技巧不如哥哥，輸了之後心服口服。下列哪個成語最合適？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 磨杵成針</div>
+      <div class="option" onclick="answer(this, true)">(B) 甘拜下風</div>
+      <div class="option" onclick="answer(this, false)">(C) 別出心裁</div>
+      <div class="option" onclick="answer(this, false)">(D) 大惑不解</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B) 甘拜下風</strong>｜表示自認不如，心悅誠服。</div>
+  </div>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">16</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">課文中說「對症下藥」加上引號（「」）的原因是什麼？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 因為這是重要的成語</div>
+      <div class="option" onclick="answer(this, true)">(B) 因為小丑醫生不是真的開藥，而是針對每個病童量身打造表演</div>
+      <div class="option" onclick="answer(this, false)">(C) 因為這是馬阿姨說的話</div>
+      <div class="option" onclick="answer(this, false)">(D) 為了讓文章好看</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜引號表示「特殊用法」，這裡是借「對症下藥」比喻「客製化表演」，並不是真的開藥。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">17</span></div>
+    <div class="q-question">「<b>磨杵成針</b>」這個成語的精神是什麼？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 聰明才智</div>
+      <div class="option" onclick="answer(this, true)">(B) 有恆心、有毅力</div>
+      <div class="option" onclick="answer(this, false)">(C) 動作迅速</div>
+      <div class="option" onclick="answer(this, false)">(D) 別出新意</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜把鐵棒磨成針，需要極大的恆心毅力。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">18</span></div>
+    <div class="q-question">下列哪個情境用「<b>別出心裁</b>」最恰當？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 媽媽煮的飯都很好吃</div>
+      <div class="option" onclick="answer(this, true)">(B) 弟弟把生日卡片做成立體機關，與眾不同</div>
+      <div class="option" onclick="answer(this, false)">(C) 哥哥每天都按時讀書</div>
+      <div class="option" onclick="answer(this, false)">(D) 老師告訴我們考試要認真</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜別出心裁＝獨出巧思、與眾不同。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">19</span></div>
+    <div class="q-question">「夜以繼日」這個短語的意思最接近？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 整夜失眠</div>
+      <div class="option" onclick="answer(this, true)">(B) 日夜不停的（工作或練習）</div>
+      <div class="option" onclick="answer(this, false)">(C) 只在白天努力</div>
+      <div class="option" onclick="answer(this, false)">(D) 早睡早起</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜「夜以繼日」表示晚上接著白天，形容不停歇地努力。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">20</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">下列哪一句的成語使用<b>不恰當</b>？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 經過醫生對症下藥，弟弟的高燒已經退了</div>
+      <div class="option" onclick="answer(this, false)">(B) 工程師揮汗如雨地搶修壞掉的線路</div>
+      <div class="option" onclick="answer(this, true)">(C) 媽媽煮的菜搜索枯腸，每盤都好吃極了</div>
+      <div class="option" onclick="answer(this, false)">(D) 他磨杵成針，終於考上理想學校</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜「搜索枯腸」是用來形容絞盡腦汁思考，不能用在煮菜好吃上。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">21</span></div>
+    <div class="q-question">「飽受折磨」中「折磨」的意思是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 反覆磨蹭</div>
+      <div class="option" onclick="answer(this, true)">(B) 使精神或肉體上承受痛苦</div>
+      <div class="option" onclick="answer(this, false)">(C) 用工具磨碎東西</div>
+      <div class="option" onclick="answer(this, false)">(D) 失去信心</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜「折磨」是讓人在身心上感到痛苦。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">22</span></div>
+    <div class="q-question">「學以致用」的意思最接近？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 學了很多但派不上用場</div>
+      <div class="option" onclick="answer(this, true)">(B) 將學到的知識運用到實際生活或工作中</div>
+      <div class="option" onclick="answer(this, false)">(C) 只學習有用的東西</div>
+      <div class="option" onclick="answer(this, false)">(D) 用功讀書才能成功</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜「致」是「達到」的意思，學以致用＝把所學用出來。</div>
+  </div>
+
+  <!-- ===== 句型（10題） ===== -->
+  <h3 style="background:#845EC2; color:white; padding:10px 20px; border-radius:15px; display:inline-block; margin:25px 0 15px;">📐 句型結構（10題）</h3>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">23</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">下列哪一句是「<b>目的句</b>」？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, true)">(A) 為了完成環遊世界的夢想，叔叔每天努力存錢</div>
+      <div class="option" onclick="answer(this, false)">(B) 外面下著大雨，因此我們待在家裡</div>
+      <div class="option" onclick="answer(this, false)">(C) 雖然他很累，但是還是堅持下去</div>
+      <div class="option" onclick="answer(this, false)">(D) 如果你努力，就會成功</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(A)</strong>｜「為了……」就是目的句的標準句型，表示「想達到某個目的而採取的行動」。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">24</span></div>
+    <div class="q-question">下列句子使用什麼句型？<br>「<b>因此</b>，紅鼻子關懷小丑協會的志工，為病童帶來歡笑。」</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 目的句</div>
+      <div class="option" onclick="answer(this, true)">(B) 因果複句</div>
+      <div class="option" onclick="answer(this, false)">(C) 轉折複句</div>
+      <div class="option" onclick="answer(this, false)">(D) 假設複句</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B) 因果複句</strong>｜「因此」是因果關係的連詞，前面是原因，後面是結果。</div>
+  </div>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">25</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">下列哪一句是「<b>遞進複句</b>」（除了……還……）？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 為了上學，我每天早起</div>
+      <div class="option" onclick="answer(this, false)">(B) 因為下雨，所以路濕了</div>
+      <div class="option" onclick="answer(this, true)">(C) 志工除了具備熱心，還要有耐心</div>
+      <div class="option" onclick="answer(this, false)">(D) 寫好大綱，再下筆</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜「除了……還……」是遞進複句，後面比前面更進一層。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">26</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">下列「為了……」的句子，目的句使用<b>正確</b>的是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 為了下雨，我帶了雨傘</div>
+      <div class="option" onclick="answer(this, true)">(B) 為了解決塑膠污染，政府大力推行減塑運動</div>
+      <div class="option" onclick="answer(this, false)">(C) 為了昨天的颱風，今天放假</div>
+      <div class="option" onclick="answer(this, false)">(D) 為了花開了，蜜蜂飛來</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜目的句後面必須是「行動」（要做什麼），不能是「結果」或「狀態」。(A)(C)(D) 都是把「原因」當「目的」用，是錯的。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">27</span></div>
+    <div class="q-question">「我們除了要熟練魔術、歌唱以及小丑表演，<b>還</b>要學了解小朋友的心理。」這句屬於什麼句型？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 因果複句</div>
+      <div class="option" onclick="answer(this, true)">(B) 遞進複句</div>
+      <div class="option" onclick="answer(this, false)">(C) 連貫複句</div>
+      <div class="option" onclick="answer(this, false)">(D) 並列複句</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B) 遞進複句</strong>｜「除了……還……」表示後面更進一層。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">28</span></div>
+    <div class="q-question">「最後，我們必須通過實習和考核，<b>才能</b>成為合格的小丑醫生。」屬於什麼複句？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 因果複句</div>
+      <div class="option" onclick="answer(this, false)">(B) 轉折複句</div>
+      <div class="option" onclick="answer(this, true)">(C) 條件複句</div>
+      <div class="option" onclick="answer(this, false)">(D) 並列複句</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C) 條件複句</strong>｜「只有……才……」表示「必要條件」。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">29</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">「他<b>不但</b>愛上了我們的表演，<b>甚至</b>換上別出心裁的裝扮。」這句使用什麼複句？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 條件複句</div>
+      <div class="option" onclick="answer(this, true)">(B) 遞進複句（強調版）</div>
+      <div class="option" onclick="answer(this, false)">(C) 因果複句</div>
+      <div class="option" onclick="answer(this, false)">(D) 假設複句</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜「不但……甚至……」的「甚至」比「還」更進一步、更強烈。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">30</span></div>
+    <div class="q-question">仿寫題：「寫作時，我會想好大綱，<b>再</b>下筆。」這句是「連貫複句」（先……再……）。下列哪句結構相同？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 為了健康，我每天運動</div>
+      <div class="option" onclick="answer(this, false)">(B) 因為下雨，所以路濕了</div>
+      <div class="option" onclick="answer(this, true)">(C) 我先洗手，再吃飯</div>
+      <div class="option" onclick="answer(this, false)">(D) 雖然他很累，但仍堅持</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜「先洗手，再吃飯」表示「動作有先後順序」，是連貫複句。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">31</span></div>
+    <div class="q-question">下列「為了……」的句子，哪一句使用<b>不正確</b>？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 為了完成作業，我整晚都沒睡</div>
+      <div class="option" onclick="answer(this, false)">(B) 為了讓家人安心，他每天打電話回家</div>
+      <div class="option" onclick="answer(this, true)">(C) 為了下大雨，路上的人都跑了</div>
+      <div class="option" onclick="answer(this, false)">(D) 為了表演順利，我們認真排練</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜「下大雨」是原因不是目的，應改為「因為下大雨，路上的人都跑了」。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">32</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">下列句子<b>沒有語病</b>的是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 透過這次活動，讓我們學到很多。</div>
+      <div class="option" onclick="answer(this, false)">(B) 為了避免不要遲到，我提早出門。</div>
+      <div class="option" onclick="answer(this, true)">(C) 紅鼻子醫生用歡笑療癒病童的心靈。</div>
+      <div class="option" onclick="answer(this, false)">(D) 他不但努力，而且也很勤奮。</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜(A) 主詞殘缺；(B) 「避免」「不要」意思重複；(D) 「努力」「勤奮」意思重複。</div>
+  </div>
+
+  <!-- ===== 修辭（8題） ===== -->
+  <h3 style="background:#008F7A; color:white; padding:10px 20px; border-radius:15px; display:inline-block; margin:25px 0 15px;">🎨 修辭分析（8題）</h3>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">33</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">「靜謐的走廊上，輕快的樂聲<b>乍然</b>響起。」這句使用了哪些修辭？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 譬喻、轉化</div>
+      <div class="option" onclick="answer(this, true)">(B) 摹寫（視覺、聽覺）、對比</div>
+      <div class="option" onclick="answer(this, false)">(C) 設問、排比</div>
+      <div class="option" onclick="answer(this, false)">(D) 誇飾、象徵</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜「靜謐」（聽覺）、「走廊」（視覺）→摹寫；「靜謐」與「輕快」是對比修辭。</div>
+  </div>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">34</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">「為什麼小丑會出現在醫院裡？」這句使用了什麼修辭？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 譬喻</div>
+      <div class="option" onclick="answer(this, true)">(B) 設問</div>
+      <div class="option" onclick="answer(this, false)">(C) 排比</div>
+      <div class="option" onclick="answer(this, false)">(D) 誇飾</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B) 設問</strong>｜作者「明知故問」，引起讀者好奇，帶出整篇訪問的主題。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">35</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">「一個個醒目的紅鼻子，彷彿成了<b>一顆顆愛心</b>。」這句的「紅鼻子」象徵什麼？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 小丑的職業特徵</div>
+      <div class="option" onclick="answer(this, false)">(B) 醫院的標誌</div>
+      <div class="option" onclick="answer(this, true)">(C) 小丑醫生對病童的愛</div>
+      <div class="option" onclick="answer(this, false)">(D) 病童的快樂</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜紅鼻子是紅的，愛心也是紅的，象徵小丑醫生對病童的關愛。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">36</span></div>
+    <div class="q-question">「<b>揮汗如雨</b>的練習」是什麼修辭？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 設問</div>
+      <div class="option" onclick="answer(this, false)">(B) 排比</div>
+      <div class="option" onclick="answer(this, true)">(C) 誇飾、譬喻</div>
+      <div class="option" onclick="answer(this, false)">(D) 引用</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜「揮汗如雨」誇大流汗量，並把汗水比喻成雨水。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">37</span></div>
+    <div class="q-question">「<b>誇張</b>的肢體動作和表情真是有趣極了！」這句修辭分析正確的是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, true)">(A) 用「誇張」一詞同時形容兩個事物（動作、表情）</div>
+      <div class="option" onclick="answer(this, false)">(B) 是擬人修辭</div>
+      <div class="option" onclick="answer(this, false)">(C) 使用了排比修辭</div>
+      <div class="option" onclick="answer(this, false)">(D) 是反問句</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(A)</strong>｜本句的修辭練習是「用一個形容詞同時形容兩個事物」。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">38</span></div>
+    <div class="q-question">下列哪一句使用了「<b>譬喻</b>」修辭？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 我的心裡不禁疑惑</div>
+      <div class="option" onclick="answer(this, true)">(B) 一條條蜿蜒的小河，彷彿成了一段段彩帶</div>
+      <div class="option" onclick="answer(this, false)">(C) 為什麼小丑會在醫院裡</div>
+      <div class="option" onclick="answer(this, false)">(D) 我們每週都會去合作的兒童醫院</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜「彷彿成了」是譬喻的標誌詞，把小河比喻成彩帶。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">39</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">仿寫：「一個個醒目的紅鼻子，彷彿成了一顆顆愛心。」最符合此句結構的仿寫是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, true)">(A) 一棵棵挺拔的大樹，彷彿成了一把把雨傘</div>
+      <div class="option" onclick="answer(this, false)">(B) 大樹真高大</div>
+      <div class="option" onclick="answer(this, false)">(C) 雨像下個不停</div>
+      <div class="option" onclick="answer(this, false)">(D) 鳥兒在天空飛</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(A)</strong>｜要保留「一X X 的 + 名詞，彷彿成了 一X X + 名詞」的結構，且是譬喻。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">40</span></div>
+    <div class="q-question">「我們走進醫院，想透過專業表演，為他們帶來歡笑。」這句是什麼句型？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, true)">(A) 目的句</div>
+      <div class="option" onclick="answer(this, false)">(B) 因果句</div>
+      <div class="option" onclick="answer(this, false)">(C) 轉折句</div>
+      <div class="option" onclick="answer(this, false)">(D) 條件句</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(A)</strong>｜「想透過……，為他們帶來歡笑」前面是行動，後面是目的，屬目的句變化形。</div>
+  </div>
+
+  <!-- ===== 閱讀理解（15題） ===== -->
+  <h3 style="background:#C34A36; color:white; padding:10px 20px; border-radius:15px; display:inline-block; margin:25px 0 15px;">📖 閱讀理解（15題）</h3>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">41</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">作者為什麼想訪問馬照琪阿姨？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 因為她是有名的演員</div>
+      <div class="option" onclick="answer(this, true)">(B) 對小丑醫生感到好奇，想進一步了解這個團隊</div>
+      <div class="option" onclick="answer(this, false)">(C) 想當小丑醫生</div>
+      <div class="option" onclick="answer(this, false)">(D) 想學魔術</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜課文一開始就說「我的心裡不禁疑惑：為什麼小丑會出現在醫院裡？」</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">42</span></div>
+    <div class="q-question">本課是用什麼形式呈現？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 日記</div>
+      <div class="option" onclick="answer(this, false)">(B) 讀書報告</div>
+      <div class="option" onclick="answer(this, true)">(C) 訪問稿</div>
+      <div class="option" onclick="answer(this, false)">(D) 書信</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C) 訪問稿</strong>｜本課是應用文中的「訪問稿」格式。</div>
+  </div>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">43</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">紅鼻子關懷小丑協會在醫院表演的<b>原因</b>是什麼？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 為了賺錢</div>
+      <div class="option" onclick="answer(this, false)">(B) 為了表演給醫生看</div>
+      <div class="option" onclick="answer(this, true)">(C) 透過專業的小丑表演，為病童帶來歡笑</div>
+      <div class="option" onclick="answer(this, false)">(D) 想成為有名的小丑團體</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜協會的成立目的就是用專業表演為病童帶來歡笑。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">44</span></div>
+    <div class="q-question">想成為專業的小丑醫生，<b>不需要</b>通過哪一項？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 通過實習和考核</div>
+      <div class="option" onclick="answer(this, true)">(B) 擁有可以合法行醫的醫師執照</div>
+      <div class="option" onclick="answer(this, false)">(C) 熟練魔術、歌唱以及小丑表演</div>
+      <div class="option" onclick="answer(this, false)">(D) 學習了解小朋友的心理</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜小丑醫生雖然叫醫生，但不是真的醫生，不需要醫師執照。</div>
+  </div>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">45</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">什麼力量讓馬阿姨堅持當小丑醫生？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 收入穩定</div>
+      <div class="option" onclick="answer(this, true)">(B) 每個病童的笑容</div>
+      <div class="option" onclick="answer(this, false)">(C) 想成為明星</div>
+      <div class="option" onclick="answer(this, false)">(D) 家人的支持</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜課文中馬阿姨明確說「他們的笑容就是我能量的來源」。</div>
+  </div>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">46</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">小丑醫生的治療方式是什麼？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 給病童藥物</div>
+      <div class="option" onclick="answer(this, false)">(B) 安排手術</div>
+      <div class="option" onclick="answer(this, true)">(C) 針對每個病童量身打造合適的表演，到病床旁演出逗他們開心</div>
+      <div class="option" onclick="answer(this, false)">(D) 帶他們去戶外散步</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜小丑醫生是用「對症下藥」的客製化表演來治療。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">47</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">課文裡「紅鼻小孩」最讓馬阿姨難忘的<b>主要原因</b>是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 他病好得很快</div>
+      <div class="option" onclick="answer(this, false)">(B) 他原本沮喪</div>
+      <div class="option" onclick="answer(this, true)">(C) 他從「被治療者」變成「化身傳遞歡笑的小紅鼻」</div>
+      <div class="option" onclick="answer(this, false)">(D) 他會表演魔術</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜紅鼻小孩的故事最大價值在於「角色轉變」：從被幫助者變成幫助別人的人。</div>
+  </div>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">48</span><span class="q-tag tag-important">⭐ 必考</span></div>
+    <div class="q-question">為什麼作者覺得小丑醫生臉上的紅鼻子像「<b>愛心</b>」？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 因為紅鼻子很大顆</div>
+      <div class="option" onclick="answer(this, true)">(B) 鼻子是紅的，愛心也是紅的；背後是小丑醫生對病童的愛</div>
+      <div class="option" onclick="answer(this, false)">(C) 因為愛心是醫院的標誌</div>
+      <div class="option" onclick="answer(this, false)">(D) 因為馬阿姨喜歡愛心</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜紅色＝愛心顏色，看到紅鼻子→聯想到對病童的關愛。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">49</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">為什麼小丑「不是真正的醫生」，卻被稱為「小丑<b>醫生</b>」？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 因為他們穿白袍</div>
+      <div class="option" onclick="answer(this, true)">(B) 雖然無法治好身體，但能療癒病童心理，讓他們暫時忘記病痛</div>
+      <div class="option" onclick="answer(this, false)">(C) 因為他們在醫院上班</div>
+      <div class="option" onclick="answer(this, false)">(D) 因為他們會看病</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(B)</strong>｜「醫生」一詞是因為他們治療的是「心靈」，與真正的醫生功能類似（療癒）。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">50</span></div>
+    <div class="q-question">下列哪一個名言佳句<b>不</b>適合放進這篇文章？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 有一分熱，發一分光</div>
+      <div class="option" onclick="answer(this, false)">(B) 給予比接受更快樂</div>
+      <div class="option" onclick="answer(this, false)">(C) 以真誠的心服務奉獻，更要將愛擴及他人</div>
+      <div class="option" onclick="answer(this, true)">(D) 永不言敗，是成功者的最佳品格</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(D)</strong>｜本課主題是「愛、奉獻、關懷」，與「永不言敗」的競爭精神方向不同。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">51</span></div>
+    <div class="q-question">訪問前要做什麼準備？下列敘述<b>不正確</b>的是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 確定訪談目的</div>
+      <div class="option" onclick="answer(this, false)">(B) 邀請受訪者，瀏覽相關資料</div>
+      <div class="option" onclick="answer(this, false)">(C) 擬定訪問題目</div>
+      <div class="option" onclick="answer(this, true)">(D) 訪問前不需要準備，現場想到什麼就問什麼</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(D)</strong>｜訪問前一定要做足準備，才能讓採訪過程順利。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">52</span><span class="q-tag tag-hard">⭐⭐ 較難</span></div>
+    <div class="q-question">下列關於本課採訪團隊「記者」與「記錄者」分工<b>正確</b>的是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, true)">(A) 記者負責提問，記錄者專心記錄受訪者的回答</div>
+      <div class="option" onclick="answer(this, false)">(B) 記者錄音，記錄者拍照</div>
+      <div class="option" onclick="answer(this, false)">(C) 兩者都要負責問問題</div>
+      <div class="option" onclick="answer(this, false)">(D) 一個人也可以完成，不必分工</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(A)</strong>｜分工才能各自專注，提升訪問效率。</div>
+  </div>
+
+  <div class="quiz-item">
+    <div><span class="q-num">53</span></div>
+    <div class="q-question">「對症下藥」這個成語在課文中加引號的原因是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 因為這是新的詞</div>
+      <div class="option" onclick="answer(this, false)">(B) 因為是馬阿姨講的</div>
+      <div class="option" onclick="answer(this, true)">(C) 是借喻：小丑醫生不是真的開藥，而是針對病童的需求設計表演</div>
+      <div class="option" onclick="answer(this, false)">(D) 強調語氣</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜引號用來表示「特殊用法」，這裡是借喻。</div>
+  </div>
+
+  <div class="quiz-item hard">
+    <div><span class="q-num">54</span><span class="q-tag tag-hard">⭐⭐ 主旨題</span></div>
+    <div class="q-question">這篇課文最想傳達的<b>主旨</b>是？</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, false)">(A) 小丑表演很有趣</div>
+      <div class="option" onclick="answer(this, false)">(B) 醫院很安靜</div>
+      <div class="option" onclick="answer(this, true)">(C) 體會對他人的同理心，並實踐關懷服務的精神</div>
+      <div class="option" onclick="answer(this, false)">(D) 介紹馬照琪阿姨的生平</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(C)</strong>｜本課透過紅鼻子關懷小丑協會，學習同理他人感受、實踐關懷行動。</div>
+  </div>
+
+  <div class="quiz-item important">
+    <div><span class="q-num">55</span><span class="q-tag tag-important">⭐ 統整題</span></div>
+    <div class="q-question">身為小學生的你，如果想關懷生病的同學，下列哪些方式可行？（綜合應用）</div>
+    <div class="options">
+      <div class="option" onclick="answer(this, true)">(A) 寫卡片給他們、錄加油影片、唱好聽的歌曲、用視訊聊天</div>
+      <div class="option" onclick="answer(this, false)">(B) 把自己的零食通通送過去</div>
+      <div class="option" onclick="answer(this, false)">(C) 偷偷溜進病房探望</div>
+      <div class="option" onclick="answer(this, false)">(D) 等他病好再說，不必特別做什麼</div>
+    </div>
+    <button class="show-answer" onclick="toggleAns(this)">查看解析</button>
+    <div class="answer-box"><strong>答案：(A)</strong>｜小學生可以用安全、溫暖的方式表達關心，這也是本課希望我們學到的「實踐關懷」。</div>
+  </div>
+
+  <div style="background:linear-gradient(135deg, #FFD93D, #FF6B9D); color:white; padding:30px; border-radius:20px; text-align:center; margin-top:30px;">
+    <h3 style="font-size:2em; margin-bottom:10px;">🎉 完成 55 題！太棒了！</h3>
+    <p style="font-size:1.2em;">你已經把第9課的重點都掌握了！記得多複習易混淆字和句型喔！</p>
+  </div>
+</section>
+
+<!-- ==================== 7. Gemini ==================== -->
+<section id="s7">
+  <div class="gemini-box">
+    <h2 class="h2-7" style="color:white;">🤖 七、Gemini 學習提示詞（可複製到 Gemini 使用）</h2>
+    <p style="margin-bottom:20px; color:#FFD93D; font-size:1.1em;">
+      ✨ 把下方提示詞貼到 Gemini，就能讓 AI 幫你出更多題目、解釋難點、進行對話式複習！
+    </p>
+
+    <h3 style="color:#FFD93D; margin-bottom:10px;">📌 用法 1：請 Gemini 出更多練習題</h3>
+    <div class="code-block" id="prompt1">你是一位專業的國小五年級國語老師。請依照下列要求出題：
+
+【課文】南一版五年級下學期 第9課《紅鼻子醫生》（訪問稿）
+【課文主角】紅鼻子關懷小丑協會 創辦人 馬照琪阿姨
+【課文重點】訪問稿格式、目的句、因果複句、遞進複句、譬喻、設問、摹寫、象徵
+【本課生字】謐、乍、惑、搜、瀏、覽、拜、磨（破音字）、療、癒、職、證、詢、核、症、況、裁、誇
+【易混淆字】磨/麼、療/寮/燎/嘹、癒/愈/喻、職/織、證/澄、核/該/孩/咳、詢/絢、裁/載/戴、誇/跨
+
+請出 10 題段考難度的選擇題，要求：
+1. 每題標明屬於「字音字形 / 詞語成語 / 句型結構 / 修辭 / 閱讀理解」哪一類
+2. 標註難度：⭐普通 / ⭐⭐較難
+3. 附詳細解析（為什麼答對 + 為什麼別的錯）
+4. 至少要有 2 題是「易混淆字辨析」題型
+5. 至少要有 1 題是「目的句」的辨識或仿寫
+6. 至少要有 1 題是修辭分析題
+7. 用語要符合國小五年級學生程度</div>
+    <button class="copy-btn" onclick="copyText('prompt1')">📋 複製這段提示詞</button>
+
+    <h3 style="color:#FFD93D; margin: 25px 0 10px;">📌 用法 2：請 Gemini 用「故事方式」解釋難懂的概念</h3>
+    <div class="code-block" id="prompt2">你是一位很會說故事的國小老師。我是五年級學生，正在學第9課《紅鼻子醫生》。
+
+請用一個有趣的小故事（200字內），幫我記住以下「容易混淆的字」，並在故事最後說明每個字的差別：
+
+【需要記住的字】
+1. 「療」（治療）和「寮」（房子，例：菜寮）
+2. 「癒」（病好了）和「愈」（越來越）和「喻」（說明，例：難以言喻）
+3. 「裁」（剪布、裁判）和「載」（運貨）和「戴」（戴帽子）
+4. 「誇」（誇張）和「跨」（跨年、跨過）
+
+故事要可愛、好記、有畫面感，請用小朋友能懂的詞語！</div>
+    <button class="copy-btn" onclick="copyText('prompt2')">📋 複製這段提示詞</button>
+
+    <h3 style="color:#FFD93D; margin: 25px 0 10px;">📌 用法 3：請 Gemini 當你的「練習夥伴」一問一答</h3>
+    <div class="code-block" id="prompt3">我正在複習第9課《紅鼻子醫生》，請你當我的「複習小老師」。
+
+請依照以下方式跟我互動：
+1. 你每次問我一題（任何形式：字音、字義、句型、修辭、閱讀理解都可以）
+2. 我回答後，你給我立即回饋（答對給鼓勵，答錯講解錯在哪）
+3. 答完一題立即出下一題
+4. 連續答對 3 題就升一級難度，連續答錯 2 題就降低難度
+5. 你出的題目要包含這些重點：
+   - 訪問稿的格式
+   - 目的句（為了……）
+   - 遞進複句（除了……還……）
+   - 因果複句（因此……）
+   - 譬喻修辭（紅鼻子彷彿成了愛心）
+   - 設問修辭（為什麼小丑會出現在醫院裡？）
+   - 易混淆字（磨/麼、療/寮、癒/愈、職/織等）
+   - 成語（大惑不解、磨杵成針、別出心裁、對症下藥）
+   - 課文內容（馬阿姨、紅鼻小孩、堅持動力）
+
+我準備好了，請出第一題！</div>
+    <button class="copy-btn" onclick="copyText('prompt3')">📋 複製這段提示詞</button>
+
+    <h3 style="color:#FFD93D; margin: 25px 0 10px;">📌 用法 4：請 Gemini 幫你寫作練習</h3>
+    <div class="code-block" id="prompt4">我是五年級學生，正在學第9課《紅鼻子醫生》，老師要我寫一篇短文。
+
+請幫我做這幾件事：
+1. 幫我擬一個跟「關懷他人 / 把快樂分享給人」相關的作文題目（適合五年級）
+2. 給我「起承轉合」的結構建議（每段重點）
+3. 提供 5 個本課可以用上的「修辭句」，例如譬喻句、設問句、摹寫句
+4. 提供 3 個可以套用的「成語」
+5. 等我寫完寄給你，請幫我批改：
+   - 找出語病
+   - 圈出寫得好的句子
+   - 給我具體的修改建議
+   - 給我打分數（內容、結構、語言、書寫各3分）
+
+請先幫我準備好題目和結構，我等等開始寫！</div>
+    <button class="copy-btn" onclick="copyText('prompt4')">📋 複製這段提示詞</button>
+  </div>
+</section>
+
+<div class="score-board" id="scoreBoard">
+  ✅ 答對 <span id="correctCount">0</span> 題｜❌ 答錯 <span id="wrongCount">0</span> 題
+</div>
+
+<script>
+  let correctCount = 0;
+  let wrongCount = 0;
+  const answeredItems = new Set();
+
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function answer(opt, isCorrect) {
+    const item = opt.closest('.quiz-item');
+    const itemIndex = Array.from(document.querySelectorAll('.quiz-item')).indexOf(item);
+
+    if (answeredItems.has(itemIndex)) return;
+    answeredItems.add(itemIndex);
+
+    const allOpts = item.querySelectorAll('.option');
+    allOpts.forEach(o => o.style.pointerEvents = 'none');
+
+    if (isCorrect) {
+      opt.classList.add('correct');
+      correctCount++;
+    } else {
+      opt.classList.add('wrong');
+      wrongCount++;
+      // 找到正確答案並顯示
+      allOpts.forEach(o => {
+        if (o.getAttribute('onclick') && o.getAttribute('onclick').includes('true')) {
+          o.classList.add('correct');
+        }
+      });
+    }
+
+    document.getElementById('correctCount').textContent = correctCount;
+    document.getElementById('wrongCount').textContent = wrongCount;
+    document.getElementById('scoreBoard').classList.add('show');
+  }
+
+  function toggleAns(btn) {
+    const box = btn.nextElementSibling;
+    box.classList.toggle('show');
+    btn.textContent = box.classList.contains('show') ? '隱藏解析' : '查看解析';
+  }
+
+  function copyText(id) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = event.target;
+      const original = btn.textContent;
+      btn.textContent = '✅ 已複製！';
+      btn.style.background = '#4CAF50';
+      btn.style.color = 'white';
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '#FFD93D';
+        btn.style.color = '#333';
+      }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
