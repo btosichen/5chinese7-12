@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10課 沉默的動物園 ✨超強記憶學習站</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: '微軟正黑體', 'Microsoft JhengHei', Arial, sans-serif;
+         background: linear-gradient(135deg, #fff9c4 0%, #ffe0f0 50%, #e0f4ff 100%);
+         min-height: 100vh; }
+
+  /* ===== HEADER ===== */
+  .hero { background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff);
+          text-align: center; padding: 28px 16px 20px; position: relative; overflow: hidden; }
+  .hero h1 { font-size: 2rem; color: #fff; text-shadow: 3px 3px 0 #c0392b, -1px -1px 0 #c0392b;
+             letter-spacing: 2px; }
+  .hero p { color: #fff; font-size: 1.1rem; margin-top: 6px; text-shadow: 1px 1px 2px #555; }
+  .hero-deco { position: absolute; font-size: 3rem; opacity: .25; }
+  .hero-deco.d1 { top: 4px; left: 12px; }
+  .hero-deco.d2 { top: 4px; right: 12px; }
+
+  /* ===== TABS ===== */
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+          padding: 14px 12px 0; background: #fffbe6; border-bottom: 3px solid #ffd93d; }
+  .tab-btn { padding: 9px 18px; border: none; border-radius: 20px 20px 0 0; cursor: pointer;
+             font-size: 1rem; font-weight: bold; transition: all .2s;
+             background: #ffe0b2; color: #bf360c; }
+  .tab-btn.active { background: #ff6b6b; color: #fff; transform: translateY(-3px);
+                    box-shadow: 0 4px 12px rgba(255,107,107,.4); }
+  .tab-btn:hover:not(.active) { background: #ffcc80; }
+
+  /* ===== PANELS ===== */
+  .panel { display: none; padding: 24px 16px; max-width: 960px; margin: 0 auto; }
+  .panel.active { display: block; }
+
+  /* ===== SECTION TITLE ===== */
+  .sec-title { font-size: 1.4rem; font-weight: bold; color: #fff;
+               background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+               padding: 8px 20px; border-radius: 30px; display: inline-block;
+               margin-bottom: 18px; box-shadow: 2px 4px 8px rgba(0,0,0,.15); }
+
+  /* ===== JOURNEY MAP ===== */
+  .journey { display: flex; flex-wrap: wrap; gap: 0; justify-content: center;
+             align-items: center; margin: 10px 0 24px; }
+  .j-step { background: #fff; border-radius: 16px; padding: 14px 12px;
+             text-align: center; width: 130px; box-shadow: 3px 3px 0 #ffd93d;
+             border: 3px solid #ffd93d; position: relative; }
+  .j-step .emoji { font-size: 2.4rem; }
+  .j-step .label { font-size: .85rem; font-weight: bold; color: #d84315; margin-top: 4px; }
+  .j-step .desc { font-size: .75rem; color: #555; margin-top: 3px; }
+  .j-arrow { font-size: 2rem; color: #ff6b6b; padding: 0 4px; align-self: center; }
+
+  /* ===== MEMORY CARDS ===== */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .mem-card { border-radius: 18px; padding: 18px; color: #fff; position: relative; overflow: hidden;
+              box-shadow: 4px 6px 15px rgba(0,0,0,.15); cursor: default;
+              transition: transform .2s; }
+  .mem-card:hover { transform: translateY(-4px); }
+  .mem-card .card-icon { font-size: 2.8rem; }
+  .mem-card .card-term { font-size: 1.3rem; font-weight: bold; margin: 6px 0 4px; }
+  .mem-card .card-def { font-size: .9rem; opacity: .95; line-height: 1.5; }
+  .mem-card .card-hook { font-size: .82rem; background: rgba(255,255,255,.25);
+                          border-radius: 8px; padding: 6px 10px; margin-top: 8px; }
+  .mc-red    { background: linear-gradient(135deg, #ff6b6b, #ee0979); }
+  .mc-orange { background: linear-gradient(135deg, #ff9a00, #ff6b6b); }
+  .mc-green  { background: linear-gradient(135deg, #11998e, #38ef7d); }
+  .mc-blue   { background: linear-gradient(135deg, #2193b0, #6dd5ed); }
+  .mc-purple { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
+  .mc-pink   { background: linear-gradient(135deg, #f953c6, #b91d73); }
+
+  /* ===== COMPARISON TABLE ===== */
+  .compare-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0 24px; }
+  .compare-box { border-radius: 18px; padding: 18px; text-align: center; }
+  .compare-box.left  { background: linear-gradient(135deg, #fff9c4, #fff176); border: 3px solid #fdd835; }
+  .compare-box.right { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border: 3px solid #66bb6a; }
+  .compare-box h3 { font-size: 1.6rem; margin-bottom: 8px; }
+  .compare-box .sym { font-size: 3rem; font-weight: bold; color: #d84315; }
+  .compare-box p { font-size: .88rem; color: #333; line-height: 1.6; margin-top: 6px; }
+  .compare-box .example { background: rgba(255,255,255,.7); border-radius: 10px;
+                            padding: 8px; margin-top: 10px; font-size: .85rem; color: #555;
+                            text-align: left; line-height: 1.7; }
+  .compare-tip { background: #fff3e0; border-left: 5px solid #ff9800; border-radius: 10px;
+                 padding: 14px 18px; margin-top: 10px; font-size: .92rem; color: #4a2500; }
+
+  /* ===== SIZE VIZ ===== */
+  .size-wrap { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin: 10px 0; }
+  .size-card { background: #fff; border-radius: 16px; padding: 16px; text-align: center;
+               box-shadow: 3px 3px 0 #6bcb77; border: 3px solid #6bcb77; min-width: 140px; }
+  .size-card .s-animal { font-size: 2.6rem; }
+  .size-card .s-name { font-weight: bold; color: #2e7d32; margin: 4px 0; }
+  .size-card .s-size { font-size: .88rem; color: #555; }
+  .size-bar { height: 18px; border-radius: 9px; margin: 8px 0 4px;
+              background: linear-gradient(90deg, #6bcb77, #4d96ff); }
+
+  /* ===== RHETORIC ===== */
+  .rhet-card { border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+  .rhet-card.blue { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-left: 6px solid #1e88e5; }
+  .rhet-card.pink { background: linear-gradient(135deg, #fce4ec, #f8bbd0); border-left: 6px solid #e91e63; }
+  .rhet-card.green { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-left: 6px solid #43a047; }
+  .rhet-card h4 { font-size: 1.1rem; color: #1a237e; margin-bottom: 6px; }
+  .rhet-card .quote { font-size: 1rem; font-style: italic; color: #444; background: rgba(255,255,255,.6);
+                       border-radius: 8px; padding: 8px 12px; margin: 6px 0; }
+  .rhet-card .explain { font-size: .88rem; color: #333; line-height: 1.6; }
+
+  /* ===== QUIZ ===== */
+  .quiz-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .filter-btn { padding: 6px 14px; border-radius: 16px; border: 2px solid #aaa;
+                background: #fff; cursor: pointer; font-size: .88rem; font-weight: bold; transition: all .2s; }
+  .filter-btn.active-f { background: #ff6b6b; color: #fff; border-color: #ff6b6b; }
+
+  .quiz-q { background: #fff; border-radius: 18px; padding: 18px 20px; margin-bottom: 16px;
+             box-shadow: 3px 3px 0 rgba(0,0,0,.08); border: 2px solid #e0e0e0;
+             transition: border-color .2s; }
+  .quiz-q:hover { border-color: #ff6b6b; }
+  .q-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .q-num { background: #ff6b6b; color: #fff; border-radius: 50%; width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+  .q-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tag { padding: 2px 10px; border-radius: 10px; font-size: .78rem; font-weight: bold; }
+  .tag-hot  { background: #ff5252; color: #fff; }
+  .tag-hard { background: #7c4dff; color: #fff; }
+  .tag-med  { background: #ff9800; color: #fff; }
+  .tag-easy { background: #4caf50; color: #fff; }
+  .tag-cat  { background: #26c6da; color: #fff; }
+
+  .q-text { font-size: 1rem; color: #222; font-weight: bold; margin-bottom: 10px; line-height: 1.6; }
+  .q-opts { display: flex; flex-direction: column; gap: 6px; }
+  .q-opt { padding: 9px 14px; border-radius: 10px; border: 2px solid #e0e0e0;
+            cursor: pointer; font-size: .93rem; color: #333; transition: all .2s; }
+  .q-opt:hover { background: #fff9c4; border-color: #fdd835; }
+  .q-opt.correct { background: #e8f5e9 !important; border-color: #43a047 !important; color: #1b5e20 !important; }
+  .q-opt.wrong   { background: #ffebee !important; border-color: #e53935 !important; color: #b71c1c !important; }
+
+  .q-explain { display: none; background: linear-gradient(135deg, #e3f2fd, #fff9c4);
+               border-radius: 10px; padding: 12px 16px; margin-top: 10px;
+               font-size: .88rem; color: #333; line-height: 1.6; border-left: 4px solid #1e88e5; }
+  .q-explain.show { display: block; }
+
+  /* fill-blank & short answer */
+  .q-input { width: 100%; padding: 8px 12px; border-radius: 10px; border: 2px solid #e0e0e0;
+             font-size: .95rem; margin-top: 8px; }
+  .q-submit { margin-top: 8px; padding: 7px 20px; border-radius: 16px; border: none;
+               background: #ff6b6b; color: #fff; font-weight: bold; cursor: pointer;
+               font-size: .9rem; transition: background .2s; }
+  .q-submit:hover { background: #e53935; }
+
+  /* ===== SCORE BAR ===== */
+  .score-bar { position: sticky; top: 0; z-index: 99; background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+               padding: 8px 20px; display: flex; align-items: center; gap: 16px;
+               box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+  .score-bar span { color: #fff; font-weight: bold; font-size: 1rem; }
+  .score-num { font-size: 1.4rem !important; }
+  .reset-btn { margin-left: auto; padding: 4px 14px; border-radius: 14px; border: 2px solid #fff;
+               background: transparent; color: #fff; cursor: pointer; font-weight: bold; }
+
+  /* ===== TIPS BOX ===== */
+  .tip-box { background: linear-gradient(135deg, #fff9c4, #ffe0f0);
+              border-radius: 18px; padding: 18px; margin: 16px 0;
+              border: 2px dashed #fdd835; }
+  .tip-box h4 { font-size: 1.1rem; color: #d84315; margin-bottom: 8px; }
+  .tip-box p, .tip-box li { font-size: .9rem; color: #333; line-height: 1.8; }
+  .tip-box ul { padding-left: 20px; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 560px) {
+    .hero h1 { font-size: 1.4rem; }
+    .compare-wrap { grid-template-columns: 1fr; }
+    .j-step { width: 100px; }
+    .tab-btn { font-size: .85rem; padding: 7px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-deco d1">🦅</div>
+  <div class="hero-deco d2">🏔️</div>
+  <h1>✨ 第10課 沉默的動物園 ✨</h1>
+  <p>作者：桂文亞 ｜ 超強記憶學習站 🚀 自學不求人！</p>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('map')">🗺️ 故事地圖</button>
+  <button class="tab-btn" onclick="switchTab('memory')">🧠 超強記憶</button>
+  <button class="tab-btn" onclick="switchTab('punct')">✏️ 標點符號</button>
+  <button class="tab-btn" onclick="switchTab('rhetoric')">🎨 修辭技巧</button>
+  <button class="tab-btn" onclick="switchTab('quiz')">📝 練習題庫</button>
+</div>
+
+<!-- ===================== TAB 1: STORY MAP ===================== -->
+<div id="tab-map" class="panel active">
+  <div class="sec-title">🗺️ 故事旅行地圖</div>
+
+  <div class="tip-box">
+    <h4>🧠 超強記憶口訣：「飛→巴→館→機→空→想」</h4>
+    <p>開頭 <strong>飛</strong>機窗看見人形畫 → 搭 <strong>巴</strong>士8小時到納斯卡 → 逛 <strong>館</strong>（考古博物館）→ 搭小 <strong>機</strong>（飛機）→ 在 <strong>空</strong>中看動物圖案 → 最後是作者的感 <strong>想</strong></p>
+  </div>
+
+  <div class="journey">
+    <div class="j-step">
+      <div class="emoji">✈️</div>
+      <div class="label">①飛機窗外</div>
+      <div class="desc">看見神秘人形畫<br>「外星人的傑作！」</div>
+    </div>
+    <div class="j-arrow">→</div>
+    <div class="j-step">
+      <div class="emoji">🚌</div>
+      <div class="label">②搭巴士</div>
+      <div class="desc">利馬→納斯卡<br>8小時雙層巴士</div>
+    </div>
+    <div class="j-arrow">→</div>
+    <div class="j-step">
+      <div class="emoji">🏛️</div>
+      <div class="label">③考古博物館</div>
+      <div class="desc">織布、陶器、<br>樂器、飾物</div>
+    </div>
+    <div class="j-arrow">→</div>
+    <div class="j-step">
+      <div class="emoji">🛩️</div>
+      <div class="label">④搭小飛機</div>
+      <div class="desc">引擎轟隆<br>雲像蓮花飄過</div>
+    </div>
+    <div class="j-arrow">→</div>
+    <div class="j-step">
+      <div class="emoji">👁️</div>
+      <div class="label">⑤空中俯瞰</div>
+      <div class="desc">小狗、猴子、<br>蜂鳥、人形手、樹</div>
+    </div>
+    <div class="j-arrow">→</div>
+    <div class="j-step">
+      <div class="emoji">💭</div>
+      <div class="label">⑥旅行感想</div>
+      <div class="desc">人類渺小又偉大<br>納斯卡線是最佳證明</div>
+    </div>
+  </div>
+
+  <div class="sec-title" style="margin-top:10px">🦒 地上動物園大小比較</div>
+  <div class="size-wrap">
+    <div class="size-card">
+      <div class="s-animal">🐒</div>
+      <div class="s-name">猴子</div>
+      <div class="s-size">身長 102 公尺</div>
+      <div class="size-bar" style="width:85%"></div>
+    </div>
+    <div class="size-card">
+      <div class="s-animal">🐦</div>
+      <div class="s-name">鳥（蜂鳥）</div>
+      <div class="s-size">翅膀 120 公尺</div>
+      <div class="size-bar" style="width:100%"></div>
+    </div>
+    <div class="size-card">
+      <div class="s-animal">🐕</div>
+      <div class="s-name">小狗</div>
+      <div class="s-size">排列長達 50 公里！</div>
+      <div class="size-bar" style="width:60%"></div>
+    </div>
+    <div class="size-card">
+      <div class="s-animal">🌲</div>
+      <div class="s-name">樹</div>
+      <div class="s-size">植物圖案</div>
+      <div class="size-bar" style="width:45%"></div>
+    </div>
+    <div class="size-card">
+      <div class="s-animal">🖐️</div>
+      <div class="s-name">人形手</div>
+      <div class="s-size">人形圖案</div>
+      <div class="size-bar" style="width:50%"></div>
+    </div>
+  </div>
+  <div class="tip-box" style="margin-top:14px">
+    <h4>🔢 數字速記法</h4>
+    <ul>
+      <li>🐒 猴子 <strong>102</strong> 公尺 → 記「要零二隻猴子」</li>
+      <li>🐦 鳥翅 <strong>120</strong> 公尺 → 記「一二零，鳥在飛」</li>
+      <li>📏 整個排列長達 <strong>50</strong> 公里 → 五十公里可以從台北到桃園！</li>
+      <li>⏰ 巴士搭了 <strong>8</strong> 小時 → 像一個上學的完整一天！</li>
+      <li>🏙️ 納斯卡只有 <strong>兩萬五千</strong> 人口的小城</li>
+    </ul>
+  </div>
+
+  <div class="sec-title" style="margin-top:20px">🌏 地理位置快速記憶</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:10px">
+    <div class="size-card" style="border-color:#4d96ff;box-shadow:3px 3px 0 #4d96ff">
+      <div class="s-animal">🌎</div>
+      <div class="s-name" style="color:#1565c0">秘魯 Peru</div>
+      <div class="s-size">南美洲國家</div>
+    </div>
+    <div class="size-card" style="border-color:#ff9800;box-shadow:3px 3px 0 #ff9800">
+      <div class="s-animal">🏙️</div>
+      <div class="s-name" style="color:#e65100">利馬 Lima</div>
+      <div class="s-size">秘魯首都（出發點）</div>
+    </div>
+    <div class="size-card" style="border-color:#e91e63;box-shadow:3px 3px 0 #e91e63">
+      <div class="s-animal">🏜️</div>
+      <div class="s-name" style="color:#880e4f">納斯卡 Nazca</div>
+      <div class="s-size">納斯卡線所在地</div>
+    </div>
+    <div class="size-card" style="border-color:#9c27b0;box-shadow:3px 3px 0 #9c27b0">
+      <div class="s-animal">🌊</div>
+      <div class="s-name" style="color:#4a148c">太平洋</div>
+      <div class="s-size">沿途可見（白浪滔滔）</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TAB 2: MEMORY CARDS ===================== -->
+<div id="tab-memory" class="panel">
+  <div class="sec-title">🧠 成語超強記憶卡</div>
+  <div class="cards-grid">
+    <div class="mem-card mc-red">
+      <div class="card-icon">✍️</div>
+      <div class="card-term">神來之筆</div>
+      <div class="card-def">形容文章或藝術作品中，出現了特別精彩、靈感突現的地方。</div>
+      <div class="card-hook">🧠 記憶鉤：神仙突然來了，寫出一筆超厲害的畫！<br>📍課文用法：人形畫「就像三歲娃娃的神來之筆」</div>
+    </div>
+    <div class="mem-card mc-blue">
+      <div class="card-icon">🌊</div>
+      <div class="card-term">白浪滔滔</div>
+      <div class="card-def">形容大浪一波接一波，白色浪花連綿不斷。</div>
+      <div class="card-hook">🧠 記憶鉤：白色的浪，一滔（滔）又一滔（滔）！<br>📍課文用法：「白浪滔滔的太平洋海岸」</div>
+    </div>
+    <div class="mem-card mc-green">
+      <div class="card-icon">💯</div>
+      <div class="card-term">千真萬確</div>
+      <div class="card-def">形容事情非常確實、絕對真實，沒有一點疑問。</div>
+      <div class="card-hook">🧠 記憶鉤：一千次真的、一萬次確定 = 超級真實！<br>📍課文用法：「讓我們千真萬確用肉眼看見了」</div>
+    </div>
+    <div class="mem-card mc-purple">
+      <div class="card-icon">🙏</div>
+      <div class="card-term">膜拜</div>
+      <div class="card-def">跪拜、崇拜敬仰，常用來形容對自然或神明的崇敬。</div>
+      <div class="card-hook">🧠 記憶鉤：膜（薄膜/保護層）→ 把自己蓋起來躲在地上拜！<br>📍課文用法：「人類膜拜自然」</div>
+    </div>
+    <div class="mem-card mc-orange">
+      <div class="card-icon">🤏</div>
+      <div class="card-term">渺小</div>
+      <div class="card-def">形容非常微小、無足輕重，與龐大的事物相比顯得微不足道。</div>
+      <div class="card-hook">🧠 記憶鉤：渺（水很小）→ 像水滴一樣小小的！<br>📍課文用法：「人類面對自然的時候，是渺小的」</div>
+    </div>
+    <div class="mem-card mc-pink">
+      <div class="card-icon">🌾</div>
+      <div class="card-term">農耕民族</div>
+      <div class="card-def">以耕種農作物為主要生活方式的民族。</div>
+      <div class="card-hook">🧠 記憶鉤：從陶器圖案可以看出來他們種田！<br>📍課文用法：古納斯卡人是農耕民族</div>
+    </div>
+  </div>
+
+  <div class="sec-title" style="margin-top:24px">🔑 重要詞彙速查表</div>
+  <div style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:3px 3px 0 #ffd93d">
+    <thead>
+      <tr style="background:linear-gradient(90deg,#ff6b6b,#ffd93d);color:#fff">
+        <th style="padding:10px 14px;text-align:left">詞彙</th>
+        <th style="padding:10px 14px;text-align:left">意思</th>
+        <th style="padding:10px 14px;text-align:left">記憶提示</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:#fff9c4"><td style="padding:9px 14px;font-weight:bold">雲絮</td><td style="padding:9px 14px">細碎的雲朵</td><td style="padding:9px 14px">絮=棉絮→棉花糖般的雲☁️</td></tr>
+      <tr style="background:#fff"><td style="padding:9px 14px;font-weight:bold">燥熱</td><td style="padding:9px 14px">乾燥炎熱</td><td style="padding:9px 14px">燥=火+喿→火熱乾燥🔥</td></tr>
+      <tr style="background:#fff9c4"><td style="padding:9px 14px;font-weight:bold">考古博物館</td><td style="padding:9px 14px">研究古代歷史文物的博物館</td><td style="padding:9px 14px">考=研究 古=古代文物🏛️</td></tr>
+      <tr style="background:#fff"><td style="padding:9px 14px;font-weight:bold">廣闊綿延</td><td style="padding:9px 14px">遼闊而連綿不斷</td><td style="padding:9px 14px">像無邊際的地毯延伸🏜️</td></tr>
+      <tr style="background:#fff9c4"><td style="padding:9px 14px;font-weight:bold">文化遺址</td><td style="padding:9px 14px">古代文明留下的遺跡地點</td><td style="padding:9px 14px">遺=留下來 址=地點📍</td></tr>
+      <tr style="background:#fff"><td style="padding:9px 14px;font-weight:bold">天文曆</td><td style="padding:9px 14px">根據天文觀測製作的曆法</td><td style="padding:9px 14px">觀察日月星辰做出的日曆🌙</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tip-box" style="margin-top:20px">
+    <h4>⭐ 文章主旨速記</h4>
+    <p>納斯卡線是古納斯卡人留在沙漠中的巨大圖案，展現了<strong>人類的渺小與偉大</strong>。當人類與自然融合為一，就能創造出超越想像的奇蹟！</p>
+  </div>
+</div>
+
+<!-- ===================== TAB 3: PUNCTUATION ===================== -->
+<div id="tab-punct" class="panel">
+  <div class="sec-title">✏️ 夾注號 vs 破折號 超清楚比較</div>
+
+  <div class="compare-wrap">
+    <div class="compare-box left">
+      <h3>夾注號</h3>
+      <div class="sym">（　）</div>
+      <p><strong>用途：</strong>補充說明、加入補充資訊，去掉括號內容句子仍然完整通順。</p>
+      <p><strong>特點：</strong>補充說明，「可以拿掉」</p>
+      <div class="example">
+        📚 課文例句：<br>
+        到秘魯<strong>（Peru）</strong>旅行的人，絕對不會錯過納斯卡線<strong>（Nazca Lines）</strong>。<br><br>
+        ✅ 把（Peru）拿掉，句子還是通順的！
+      </div>
+    </div>
+    <div class="compare-box right">
+      <h3>破折號</h3>
+      <div class="sym">——</div>
+      <p><strong>用途：</strong>解釋說明、話題轉折、聲音延長，讓讀者更清楚前面說的是什麼。</p>
+      <p><strong>特點：</strong>解釋說明，「強調連結」</p>
+      <div class="example">
+        📚 課文例句：<br>
+        我們搭乘雙層巴士到納斯卡<strong>——</strong>有著兩萬五千人口的小城。<br><br>
+        ✅ 破折號後面是對「納斯卡」的解釋說明！
+      </div>
+    </div>
+  </div>
+
+  <div class="compare-tip">
+    <strong>🔥 考試超重點！判斷口訣：</strong><br>
+    👉 「可以拿掉不影響句意」→ 夾注號 （　）<br>
+    👉 「解釋前面說的是什麼」→ 破折號 ——<br>
+    👉 夾注號是<strong>圓括號</strong>，破折號是<strong>長橫線</strong>
+  </div>
+
+  <div class="sec-title" style="margin-top:24px">🃏 立刻練習：哪個符號？</div>
+  <div id="punct-practice" style="display:flex;flex-direction:column;gap:12px;margin-top:10px">
+  </div>
+</div>
+
+<!-- ===================== TAB 4: RHETORIC ===================== -->
+<div id="tab-rhetoric" class="panel">
+  <div class="sec-title">🎨 修辭手法圖解</div>
+
+  <div class="rhet-card blue">
+    <h4>🟦 比喻（甲像乙）</h4>
+    <div class="quote">「一朵朵白雲像蓮花似的，飄過我的小窗前。」</div>
+    <div class="explain">
+      ✅ <strong>本體</strong>（甲）：白雲<br>
+      ✅ <strong>喻體</strong>（乙）：蓮花<br>
+      ✅ <strong>效果</strong>：讓讀者想像到白雲的形狀美麗、輕盈，像蓮花般優雅漂浮<br>
+      🧠 <strong>記憶法</strong>：找「像、似的、好像、如同」這些關鍵字！
+    </div>
+  </div>
+
+  <div class="rhet-card pink">
+    <h4>🟥 誇飾（故意誇大）</h4>
+    <div class="quote">「氣流已經把機上的人都震成一圈圈的彈簧啦！」</div>
+    <div class="explain">
+      ✅ <strong>誇大的地方</strong>：人不可能真的變成彈簧<br>
+      ✅ <strong>目的</strong>：強調飛機顛簸得非常厲害<br>
+      ✅ <strong>效果</strong>：讓讀者感受到搭小飛機時的搖晃感，生動有趣<br>
+      🧠 <strong>判斷法</strong>：在現實中不可能發生，但讀起來很誇張 = 誇飾！
+    </div>
+  </div>
+
+  <div class="rhet-card green">
+    <h4>🟩 排比（三個以上平行）</h4>
+    <div class="quote">「小狗、猴子、蜂鳥、人形手、樹……」</div>
+    <div class="explain">
+      ✅ <strong>結構</strong>：列舉多種動植物圖案，結構相同<br>
+      ✅ <strong>效果</strong>：讓讀者感受到納斯卡線上動植物圖案的種類繁多，景象壯觀<br>
+      🧠 <strong>判斷法</strong>：連續出現相同結構的詞或句子 = 排比！
+    </div>
+  </div>
+
+  <div class="tip-box" style="margin-top:16px">
+    <h4>🔥 修辭題答題鷹架（段考必用！）</h4>
+    <p>這句話用了【<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>】修辭。<br>
+    畫面：我看到了 ___________<br>
+    情緒：這讓我感覺 ___________<br>
+    作者想強調的是 ___________</p>
+  </div>
+
+  <div class="sec-title" style="margin-top:20px">🔤 敘述順序</div>
+  <div style="background:#fff;border-radius:16px;padding:16px;box-shadow:3px 3px 0 #6bcb77;border:2px solid #6bcb77">
+    <p style="font-size:.95rem;color:#333;line-height:1.8">
+      本文使用<strong>「順敘法」</strong>——依照事情發生的時間先後順序來敘述。<br>
+      <strong>順序</strong>：先飛機窗外看人形畫（引起讀者好奇）→ 搭巴士旅途描寫 → 參觀博物館 → 搭小飛機 → 空中俯瞰地上動物園 → 最後的旅行感想。<br><br>
+      💡 <strong>為何這樣安排？</strong>開頭先秀出神秘的人形畫，<strong>引發讀者好奇心</strong>，再一步步交代前因後果，讓整篇文章有驚喜感！
+    </p>
+  </div>
+</div>
+
+<!-- ===================== TAB 5: QUIZ ===================== -->
+<div id="tab-quiz" class="panel">
+  <div class="score-bar">
+    <span>🎯 得分：</span>
+    <span class="score-num" id="score-display">0</span>
+    <span>/ <span id="total-display">0</span> 題</span>
+    <span id="pct-display" style="margin-left:8px">（--）</span>
+    <button class="reset-btn" onclick="resetQuiz()">🔄 重新作答</button>
+  </div>
+
+  <div style="padding: 8px 0 4px">
+    <div class="quiz-filter">
+      <span style="font-weight:bold;color:#555;align-self:center">篩選：</span>
+      <button class="filter-btn active-f" onclick="filterQuiz('all',this)">全部</button>
+      <button class="filter-btn" onclick="filterQuiz('hot',this)">🔥 必考</button>
+      <button class="filter-btn" onclick="filterQuiz('hard',this)">⭐ 難題</button>
+      <button class="filter-btn" onclick="filterQuiz('閱讀',this)">📖 閱讀理解</button>
+      <button class="filter-btn" onclick="filterQuiz('成語',this)">💬 成語</button>
+      <button class="filter-btn" onclick="filterQuiz('語病',this)">🔧 語病</button>
+      <button class="filter-btn" onclick="filterQuiz('修辭',this)">🎨 修辭</button>
+      <button class="filter-btn" onclick="filterQuiz('標點',this)">✏️ 標點</button>
+    </div>
+  </div>
+
+  <div id="quiz-container"></div>
+</div>
+
+<script>
+// ===== TAB SWITCH =====
+function switchTab(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ===== PUNCTUATION PRACTICE =====
+const punctExercises = [
+  { sentence: '到秘魯（Peru）旅行的人，絕對不會錯過納斯卡線。', answer: '夾注號', hint: '把（Peru）拿掉，句子仍然通順 ✅' },
+  { sentence: '我們搭乘雙層巴士到納斯卡——有著兩萬五千人口的小城。', answer: '破折號', hint: '破折號後面是解釋「納斯卡」的內容 ✅' },
+  { sentence: '她叫小明（我的同學）一起去爬山。', answer: '夾注號', hint: '把（我的同學）拿掉，句子仍然通順 ✅' },
+  { sentence: '這就是納斯卡線——南美洲最具吸引力的歷史謎題。', answer: '破折號', hint: '破折號後面解釋了「納斯卡線」是什麼 ✅' },
+];
+const pp = document.getElementById('punct-practice');
+punctExercises.forEach((ex, i) => {
+  const div = document.createElement('div');
+  div.style.cssText = 'background:#fff;border-radius:14px;padding:16px;box-shadow:2px 2px 0 #fdd835;border:2px solid #fdd835';
+  div.innerHTML = `<p style="font-weight:bold;color:#333;margin-bottom:10px">例句 ${i+1}：${ex.sentence}</p>
+  <div style="display:flex;gap:10px">
+    <button onclick="checkPunct(this,'夾注號','${ex.hint}')" style="flex:1;padding:10px;border-radius:12px;border:2px solid #fdd835;background:#fff9c4;cursor:pointer;font-weight:bold;font-size:.95rem">夾注號 （）</button>
+    <button onclick="checkPunct(this,'破折號','${ex.hint}')" style="flex:1;padding:10px;border-radius:12px;border:2px solid #4caf50;background:#e8f5e9;cursor:pointer;font-weight:bold;font-size:.95rem">破折號 ——</button>
+  </div>
+  <div class="q-explain" id="punct-hint-${i}"></div>`;
+  div.setAttribute('data-answer', ex.answer);
+  div.setAttribute('data-hint-id', `punct-hint-${i}`);
+  pp.appendChild(div);
+});
+function checkPunct(btn, chosen, hint) {
+  const card = btn.closest('[data-answer]');
+  const correct = card.getAttribute('data-answer');
+  const hintDiv = document.getElementById(card.getAttribute('data-hint-id'));
+  const btns = card.querySelectorAll('button');
+  btns.forEach(b => b.disabled = true);
+  if (chosen === correct) {
+    btn.style.background = '#c8e6c9'; btn.style.borderColor = '#43a047'; btn.style.color = '#1b5e20';
+    hintDiv.textContent = '✅ 答對了！' + hint;
+  } else {
+    btn.style.background = '#ffcdd2'; btn.style.borderColor = '#e53935'; btn.style.color = '#b71c1c';
+    btns.forEach(b => { if (b.textContent.includes(correct)) { b.style.background='#c8e6c9'; b.style.borderColor='#43a047'; b.style.color='#1b5e20'; }});
+    hintDiv.textContent = '❌ 答錯了。正確答案是「' + correct + '」！' + hint;
+  }
+  hintDiv.classList.add('show');
+}
+
+// ===== QUIZ DATA =====
+const questions = [
+  // ── 閱讀理解 ──
+  { id:1, cat:'閱讀', hot:true, hard:false,
+    text:'根據課文，作者一開始是在哪裡看到人形畫的？',
+    opts:['A. 在考古博物館的展覽中','B. 從飛機窗往外看','C. 在納斯卡的沙漠地面上','D. 從雙層巴士的車窗看出去'],
+    ans:1, explain:'第一段寫道「隨著前座機長的高喊聲，從飛機窗看出去，眼下的山壁突然出現一個人形畫」。✅' },
+
+  { id:2, cat:'閱讀', hot:true, hard:false,
+    text:'作者從利馬到納斯卡，搭了什麼交通工具？花了多少時間？',
+    opts:['A. 搭小飛機，約一小時','B. 搭雙層巴士，約八小時','C. 搭火車，約五小時','D. 搭計程車，約三小時'],
+    ans:1, explain:'課文第二段：「我們從秘魯首都利馬，搭乘八小時的雙層巴士到納斯卡」。✅' },
+
+  { id:3, cat:'閱讀', hot:true, hard:false,
+    text:'沿途的自然景觀是怎樣的？（一邊是什麼？另一邊是什麼？）',
+    opts:['A. 一邊是森林，一邊是山脈','B. 一邊是太平洋海岸，一邊是廣闊綿延的沙漠','C. 一邊是城市，一邊是農田','D. 一邊是河流，一邊是沙漠'],
+    ans:1, explain:'課文：「一邊是白浪滔滔的太平洋海岸，一邊是廣闊綿延的沙漠地帶。」✅' },
+
+  { id:4, cat:'閱讀', hot:true, hard:false,
+    text:'在考古博物館，作者看到了哪些古代文物？',
+    opts:['A. 石器、骨頭、木乃伊','B. 兵馬俑、陶瓷、字畫','C. 精美織布、陶器、樂器和飾物','D. 金字塔模型、法老王遺體'],
+    ans:2, explain:'課文：「農耕時代遺留下來的精美織布、陶器、樂器和飾物，為後人留下了見證。」✅' },
+
+  { id:5, cat:'閱讀', hot:false, hard:false,
+    text:'從陶器上的圖案，我們可以知道古代納斯卡人是什麼民族？',
+    opts:['A. 漁獵民族','B. 游牧民族','C. 農耕民族','D. 工商民族'],
+    ans:2, explain:'課文：「從大量陶器上所畫的圖案，我們可以知道：這是一個農耕民族。」✅' },
+
+  { id:6, cat:'閱讀', hot:true, hard:false,
+    text:'關於納斯卡線的形成，課文中提到的其中一種說法是？',
+    opts:['A. 外星人刻畫出來的','B. 古納斯卡人為發展農業製作的「巨大天文曆」','C. 火山爆發留下的痕跡','D. 被風沙吹刮形成的自然圖案'],
+    ans:1, explain:'課文：「這些圖案的線條對應了當時日月星辰的運行關係，是古納斯卡人為了發展農業製作的『巨大天文曆』」。✅' },
+
+  { id:7, cat:'閱讀', hot:false, hard:true,
+    text:'文章開頭先描寫飛機上看到人形畫，再回頭描述旅途、博物館，這樣的安排有什麼好處？',
+    opts:['A. 讓文章看起來更長','B. 一開始就引發讀者好奇心，再慢慢解說背景','C. 讓讀者感到困惑','D. 符合時間先後順序，比較容易理解'],
+    ans:1, explain:'開頭先出示神秘的人形畫（設置懸念），引發讀者的好奇心，再回頭補充旅途過程，這是「製造懸念」的寫作技巧。⭐難題' },
+
+  { id:8, cat:'閱讀', hot:false, hard:false,
+    text:'納斯卡線中，猴子圖案的身長大約是多少？',
+    opts:['A. 50公尺','B. 85公尺','C. 102公尺','D. 120公尺'],
+    ans:2, explain:'課文：「猴子身長一百零二公尺」。注意：鳥翅膀是120公尺，不要搞混！✅' },
+
+  { id:9, cat:'閱讀', hot:true, hard:false,
+    text:'課文標題「沉默的動物園」中的「沉默」是什麼意思？',
+    opts:['A. 動物園裡的動物全都不叫','B. 動物園的遊客很安靜','C. 納斯卡線的動植物圖案安靜地存在了兩千年，沒有任何聲音','D. 那裡的天氣很悶熱'],
+    ans:2, explain:'課文：「這座沉默的動物園就這麼安靜的存在了兩千年！」表示納斯卡線上的動物圖案靜靜地躺在沙漠中，已有兩千年之久。✅' },
+
+  { id:10, cat:'閱讀', hot:true, hard:true,
+    text:'作者在文章最後說：「人類面對自然的時候，是渺小的⋯⋯但當人類與自然融合為一的時候，人類也是可以偉大的」。這句話的意思最接近下列哪個說法？',
+    opts:['A. 人類只要努力，就能征服自然','B. 人類雖然渺小，卻能在與自然和諧共處中展現偉大','C. 自然比人類重要，所以要保護自然','D. 人類應該膜拜自然，不要破壞它'],
+    ans:1, explain:'作者的意思是人類面對大自然雖然渺小，但古納斯卡人與自然融合，創造出納斯卡線這樣的奇蹟，證明人類也可以很偉大。⭐進階推論題！' },
+
+  { id:11, cat:'閱讀', hot:false, hard:false,
+    text:'搭乘的小飛機有什麼特徵？',
+    opts:['A. 飛機很新，飛行非常平穩','B. 飛機很小、年紀卻不小，引擎聲轟隆轟隆','C. 飛機很大，可以載很多人','D. 飛機很快，只花了十分鐘'],
+    ans:1, explain:'課文：「飛機小，年紀卻不小，引擎聲轟隆轟隆的，有時候使人懷疑它就要飛不動了。」✅' },
+
+  // ── 成語 ──
+  { id:12, cat:'成語', hot:true, hard:false,
+    text:'「神來之筆」用在下列哪個情境最恰當？',
+    opts:['A. 小明畫了一幅普通的風景畫交給老師','B. 作家在故事的最後加入一個意想不到的結局，讓整篇文章精彩萬分','C. 媽媽用鉛筆寫了一張購物清單','D. 同學在黑板上寫了很多字'],
+    ans:1, explain:'「神來之筆」形容文章或藝術中突然出現的精彩之處，如同神靈助筆。選(B)，意想不到的精彩結局就是「神來之筆」。✅' },
+
+  { id:13, cat:'成語', hot:true, hard:false,
+    text:'下列哪個句子中，「千真萬確」用法最恰當？',
+    opts:['A. 這道數學題千真萬確地算完了。','B. 我親眼看見他跌倒，這是千真萬確的事！','C. 他千真萬確地走進教室。','D. 那個電影千真萬確地很好看。'],
+    ans:1, explain:'「千真萬確」形容事情非常確實、絕對真實。(B)「我親眼看見」強調確鑿無疑，符合此成語語義。✅' },
+
+  { id:14, cat:'成語', hot:false, hard:true,
+    text:'「白浪滔滔」與下列哪個詞語意思最相近？',
+    opts:['A. 風平浪靜','B. 波濤洶湧','C. 清風徐來','D. 細雨綿綿'],
+    ans:1, explain:'「白浪滔滔」形容大浪連綿不斷，與「波濤洶湧」意思最接近，都形容海浪大而有氣勢。「風平浪靜」反而是相反詞。⭐難題' },
+
+  { id:15, cat:'成語', hot:false, hard:false,
+    text:'選出填入空格最合適的詞語：「這道題答案太奇怪了，老師說這______不可能是正確答案。」',
+    opts:['A. 神來之筆','B. 千真萬確','C. 絕對','D. 白浪滔滔'],
+    ans:2, explain:'這裡需要表達「絕對」、「確定」的意思，用「千真萬確不可能是正確答案」最為自然通順。「千真萬確」在此與「不可能」搭配，強調確定性。✅' },
+
+  // ── 語病 ──
+  { id:16, cat:'語病', hot:true, hard:false,
+    text:'下列哪個句子沒有語病？',
+    opts:['A. 他不但聰明，而且他也很努力。','B. 雖然天氣很冷，但是我穿很多衣服。','C. 我昨天看了一部電影，非常感動。','D. 透過這次旅行，讓我學到很多東西。'],
+    ans:2, explain:'(A) 語意重複（「他不但聰明，而且也很努力」，「他」重複）；(B) 雖然⋯但是，搭配正確 ✅；(D) 「透過⋯讓我」缺少主語（主語被「透過」給吃掉了）。✅' },
+
+  { id:17, cat:'語病', hot:true, hard:false,
+    text:'「雖然天氣炎熱，而且大家都很努力工作。」這句話有語病，問題出在哪裡？',
+    opts:['A. 缺少主語','B. 關聯詞搭配錯誤，「雖然」應搭配「但是」，不是「而且」','C. 語意重複','D. 句子不完整'],
+    ans:1, explain:'「雖然⋯但是⋯」是讓步轉折；「雖然⋯而且⋯」文法上錯誤。應改為「雖然天氣炎熱，但是大家都很努力工作。」✅' },
+
+  { id:18, cat:'語病', hot:false, hard:true,
+    text:'「透過這次旅行，讓我們大開眼界。」這句話的語病是什麼？正確的改法是？',
+    opts:['A. 沒有語病','B. 語意重複，應刪去「讓」','C. 成分殘缺，缺少主語，應改為「這次旅行讓我們大開眼界」或「透過這次旅行，我們大開眼界。」','D. 詞序錯誤，應把「旅行」移到句尾'],
+    ans:2, explain:'「透過⋯讓⋯」句型中，「透過」把主語給吃掉了，導致句子缺少主語。正確改法：刪去「讓」→「透過這次旅行，我們大開眼界」，或直接改為「這次旅行讓我們大開眼界」。⭐難題！' },
+
+  { id:19, cat:'語病', hot:false, hard:false,
+    text:'下列哪句有「語意重複」的語病？',
+    opts:['A. 納斯卡線是世界聞名的文化遺址。','B. 他是一個誠實而且不說謊的人。','C. 我們搭飛機從高空俯視沙漠。','D. 古納斯卡人把圖案畫在沙漠裡。'],
+    ans:1, explain:'(B) 「誠實」與「不說謊」意思相同，語意重複。應改為「他是一個誠實的人」或「他是一個不說謊的人」。✅' },
+
+  { id:20, cat:'語病', hot:true, hard:false,
+    text:'「因為天氣太熱，所以他穿了很多衣服。」這句話有什麼問題？',
+    opts:['A. 沒有語病','B. 語意矛盾，天氣熱應該穿少，不是穿多','C. 關聯詞使用錯誤','D. 缺少主語'],
+    ans:1, explain:'天氣太熱，應該「穿少」衣服而非「穿多」，語意前後矛盾。這種情況叫做「語意矛盾」。✅' },
+
+  // ── 標點符號 ──
+  { id:21, cat:'標點', hot:true, hard:false,
+    text:'「到秘魯（Peru）旅行的人」，這裡的括號是什麼符號？用途是什麼？',
+    opts:['A. 破折號；用來解釋說明','B. 夾注號；用來補充說明，去掉括號內容句子仍通順','C. 引號；用來引用別人說的話','D. 書名號；標示書籍名稱'],
+    ans:1, explain:'（Peru）是夾注號，功能是補充說明「秘魯」的英文名稱。把（Peru）拿掉，「到秘魯旅行的人」仍然通順。✅' },
+
+  { id:22, cat:'標點', hot:true, hard:false,
+    text:'「我們搭乘雙層巴士到納斯卡——有著兩萬五千人口的小城。」這裡的「——」是什麼符號？',
+    opts:['A. 夾注號','B. 省略號','C. 破折號；解釋說明前面的「納斯卡」','D. 頓號；表示停頓'],
+    ans:2, explain:'「——」是破折號，用來解釋說明前面提到的「納斯卡」是一個有兩萬五千人口的小城。✅' },
+
+  { id:23, cat:'標點', hot:false, hard:true,
+    text:'下列句子中，括號使用方式與「到秘魯（Peru）旅行的人」最相同的是？',
+    opts:['A. 他說：（我很開心。）','B. 這本書（語文課本）放在書包裡。','C. （一）春天到了。','D. 納斯卡（一個充滿謎團的地方）令人著迷。'],
+    ans:3, explain:'(D) 的括號內「一個充滿謎團的地方」是補充說明「納斯卡」，拿掉後句子仍通順，與課文用法完全相同。⭐難題！' },
+
+  { id:24, cat:'標點', hot:false, hard:false,
+    text:'破折號的用法不包括下列哪項？',
+    opts:['A. 解釋說明','B. 話題轉折','C. 補充英文名稱','D. 聲音延長'],
+    ans:2, explain:'補充英文名稱（如Peru、Nazca Lines）是夾注號的功能，不是破折號。破折號的主要用法是：解釋說明、話題轉折、聲音延長。✅' },
+
+  // ── 修辭 ──
+  { id:25, cat:'修辭', hot:true, hard:false,
+    text:'「一朵朵白雲像蓮花似的，飄過我的小窗前。」這句話使用了什麼修辭？',
+    opts:['A. 擬人','B. 比喻','C. 誇飾','D. 排比'],
+    ans:1, explain:'這句話以「白雲」比喻「蓮花」，用「像⋯似的」表達，是「比喻」修辭。本體=白雲，喻體=蓮花。✅' },
+
+  { id:26, cat:'修辭', hot:true, hard:false,
+    text:'「氣流已經把機上的人都震成一圈圈的彈簧啦！」這句話使用了什麼修辭？',
+    opts:['A. 比喻','B. 擬人','C. 誇飾','D. 設問'],
+    ans:2, explain:'人不可能真的變成彈簧，作者故意誇大飛機顛簸的程度，是「誇飾」修辭。目的是讓讀者感受搭小飛機時的劇烈搖晃。✅' },
+
+  { id:27, cat:'修辭', hot:true, hard:true,
+    text:'「就像三歲娃娃的神來之筆：圓圓的臉、一對圓圓的大眼、長長的身體和一雙長腳。」這裡用了哪些修辭手法？',
+    opts:['A. 只有比喻','B. 只有排比','C. 比喻＋排比','D. 誇飾＋排比'],
+    ans:2, explain:'「就像三歲娃娃的神來之筆」是比喻（把人形畫比作娃娃的塗鴉）；「圓圓的臉、一對圓圓的大眼、長長的身體和一雙長腳」是排比（相同結構連續列舉）。⭐難題！' },
+
+  { id:28, cat:'修辭', hot:false, hard:false,
+    text:'說明「一朵朵白雲像蓮花似的」這句比喻的本體與喻體。',
+    opts:['A. 本體=蓮花，喻體=白雲','B. 本體=白雲，喻體=蓮花','C. 本體=飛機，喻體=蓮花','D. 本體=雲絮，喻體=白雲'],
+    ans:1, explain:'比喻中，「被比喻的東西」是本體，「拿來比較的東西」是喻體。這裡是把白雲（本體）比作蓮花（喻體）。✅' },
+
+  // ── 字音字形 ──
+  { id:29, cat:'字形', hot:true, hard:false,
+    text:'下列哪個字詞使用正確？',
+    opts:['A. 燥熱（感到濕潤涼爽）','B. 燥熱（感到乾燥炎熱）','C. 躁熱（情緒激動）','D. 澡熱（洗澡後覺得熱）'],
+    ans:1, explain:'「燥熱」是乾燥炎熱，「燥」有火字旁，表示乾燥。「躁」是急躁（足字旁，與動作有關），「澡」是洗澡（氵字旁，與水有關）。✅' },
+
+  { id:30, cat:'字形', hot:false, hard:false,
+    text:'「渺小」的「渺」字，部首是什麼？與什麼意象有關？',
+    opts:['A. 火字旁，與熱有關','B. 三點水，與水（小如水滴）有關','C. 山字部，與山有關','D. 人字部，與人有關'],
+    ans:1, explain:'「渺」字的部首是三點水（氵），表示小如水滴、微不足道的意象，所以「渺小」形容非常微小。✅' },
+
+  // ── 寫作仿寫 ──
+  { id:31, cat:'寫作', hot:true, hard:false,
+    text:'「一朵朵白雲像蓮花似的，飄過我的小窗前。」下列哪個仿寫句子結構最相似？',
+    opts:['A. 天空很藍。','B. 一顆顆星星像鑽石似的，閃爍在夜空中。','C. 他跑得很快。','D. 海浪打上岸邊，真的很大聲。'],
+    ans:1, explain:'原句結構：量詞+名詞+「像⋯似的」+動詞片語。(B) 「一顆顆星星像鑽石似的，閃爍在夜空中」完全符合此結構。✅' },
+
+  { id:32, cat:'寫作', hot:false, hard:true,
+    text:'請判斷下列哪個句子有「加入五感描寫」，最能讓讀者感受現場氛圍？',
+    opts:['A. 那天天氣很熱。','B. 太陽熱力逼人，空氣中瀰漫著沙漠的熱氣，我的皮膚感覺像在被烤。','C. 我去了沙漠，然後很累。','D. 沙漠很廣闊。'],
+    ans:1, explain:'(B) 運用了視覺（太陽熱力逼人）＋觸覺（皮膚像在被烤）＋嗅覺（空氣中的熱氣），五感描寫最豐富。⭐難題！' },
+
+  { id:33, cat:'閱讀', hot:true, hard:false,
+    text:'鳥的翅膀有多長？',
+    opts:['A. 50公尺','B. 102公尺','C. 120公尺','D. 150公尺'],
+    ans:2, explain:'課文：「鳥的翅膀有一百二十公尺長」。注意：猴子是102公尺，鳥翅膀是120公尺！✅' },
+
+  { id:34, cat:'閱讀', hot:false, hard:false,
+    text:'納斯卡線位於哪個國家的沙漠中？',
+    opts:['A. 埃及','B. 中國','C. 秘魯','D. 墨西哥'],
+    ans:2, explain:'納斯卡線（Nazca Lines）位於南美洲國家秘魯（Peru）的納斯卡沙漠。✅' },
+
+  { id:35, cat:'閱讀', hot:true, hard:true,
+    text:'「這神奇的地上畫遠遠超越想像，讓我們千真萬確用肉眼看見了，一個似乎不可能存在現實中的實體。」此句的主旨最接近？',
+    opts:['A. 納斯卡線的圖案很美麗','B. 納斯卡線大到令人難以置信，竟然能用肉眼清楚看見','C. 作者認為這是外星人的傑作','D. 納斯卡線的建造方法很複雜'],
+    ans:1, explain:'「遠遠超越想像」強調其震撼性；「千真萬確用肉眼看見了」強調圖案之大、之真實，超乎常人想像。⭐進階推論題！' },
+];
+
+// ===== RENDER QUIZ =====
+let answered = {}, correct = 0, total = 0;
+const qContainer = document.getElementById('quiz-container');
+
+function renderQuestions(filter) {
+  qContainer.innerHTML = '';
+  const filtered = filter === 'all' ? questions :
+    filter === 'hot' ? questions.filter(q => q.hot) :
+    filter === 'hard' ? questions.filter(q => q.hard) :
+    questions.filter(q => q.cat === filter);
+
+  filtered.forEach((q, idx) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q';
+    div.setAttribute('data-cat', q.cat);
+    div.setAttribute('data-hot', q.hot);
+    div.setAttribute('data-hard', q.hard);
+    div.setAttribute('data-id', q.id);
+
+    let tags = `<span class="tag tag-cat">${q.cat}</span>`;
+    if (q.hot) tags += `<span class="tag tag-hot">🔥 必考</span>`;
+    if (q.hard) tags += `<span class="tag tag-hard">⭐ 難題</span>`;
+    if (!q.hot && !q.hard) tags += `<span class="tag tag-easy">✅ 基本</span>`;
+
+    const optsHtml = q.opts.map((o, i) =>
+      `<div class="q-opt" onclick="checkAns(this,${q.id},${i},${q.ans})" data-idx="${i}">${o}</div>`
+    ).join('');
+
+    div.innerHTML = `
+      <div class="q-header">
+        <div class="q-num">${idx+1}</div>
+        <div class="q-tags">${tags}</div>
+      </div>
+      <div class="q-text">${q.text}</div>
+      <div class="q-opts">${optsHtml}</div>
+      <div class="q-explain" id="explain-${q.id}">${q.explain}</div>`;
+
+    // restore state
+    if (answered[q.id] !== undefined) {
+      const opts = div.querySelectorAll('.q-opt');
+      opts.forEach(o => o.style.pointerEvents = 'none');
+      opts[answered[q.id]].classList.add(answered[q.id] === q.ans ? 'correct' : 'wrong');
+      if (answered[q.id] !== q.ans) opts[q.ans].classList.add('correct');
+      div.querySelector(`#explain-${q.id}`).classList.add('show');
+    }
+    qContainer.appendChild(div);
+  });
+}
+
+function checkAns(el, qid, chosen, correct_idx) {
+  if (answered[qid] !== undefined) return;
+  answered[qid] = chosen;
+  const opts = el.parentElement.querySelectorAll('.q-opt');
+  opts.forEach(o => o.style.pointerEvents = 'none');
+  if (chosen === correct_idx) {
+    el.classList.add('correct'); correct++;
+  } else {
+    el.classList.add('wrong');
+    opts[correct_idx].classList.add('correct');
+  }
+  total++;
+  document.getElementById(`explain-${qid}`).classList.add('show');
+  updateScore();
+}
+
+function updateScore() {
+  document.getElementById('score-display').textContent = correct;
+  document.getElementById('total-display').textContent = total;
+  const pct = total > 0 ? Math.round(correct/total*100) : 0;
+  const emoji = pct >= 90 ? '🏆' : pct >= 70 ? '😊' : pct >= 50 ? '💪' : '📚';
+  document.getElementById('pct-display').textContent = `${emoji} ${pct}%`;
+}
+
+function resetQuiz() {
+  answered = {}; correct = 0; total = 0;
+  updateScore();
+  const activeFilter = document.querySelector('.filter-btn.active-f');
+  const fkey = activeFilter ? activeFilter.getAttribute('data-filter') || 'all' : 'all';
+  renderQuestions(fkey);
+}
+
+function filterQuiz(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active-f'));
+  btn.classList.add('active-f');
+  btn.setAttribute('data-filter', filter);
+  renderQuestions(filter);
+}
+
+// init
+renderQuestions('all');
+</script>
+</body>
+</html>
