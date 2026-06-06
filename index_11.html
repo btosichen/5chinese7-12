@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏛️ 第11課 地下護衛軍 ── 超強記憶學習包</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --orange:#FF6B35;--yellow:#FFD23F;--blue:#2196F3;--cyan:#00BCD4;
+  --purple:#9C27B0;--pink:#E91E63;--green:#43A047;--red:#E53935;
+  --bg:#FFFBF0;--shadow:0 4px 16px rgba(0,0,0,0.10);--r:14px;
+}
+body{font-family:'Microsoft JhengHei','PingFang TC','Noto Sans TC',sans-serif;background:var(--bg);color:#333;line-height:1.7;}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#FF6B35,#FFD23F,#FF8C42);padding:36px 20px 28px;text-align:center;}
+.hero h1{font-size:2.2em;color:#fff;text-shadow:2px 2px 6px rgba(0,0,0,.25);margin-bottom:6px;}
+.hero p{color:rgba(255,255,255,.92);font-size:1.05em;}
+.hero-badges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px;}
+.hbadge{background:rgba(255,255,255,.25);color:#fff;border-radius:20px;padding:4px 14px;font-size:.85em;font-weight:bold;border:2px solid rgba(255,255,255,.5);}
+
+/* ── NAV ── */
+.nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px;background:#fff;position:sticky;top:0;z-index:99;box-shadow:0 2px 10px rgba(0,0,0,.10);justify-content:center;}
+.navbtn{padding:7px 14px;border-radius:20px;border:none;cursor:pointer;font-size:.82em;font-family:inherit;font-weight:bold;color:#fff;transition:transform .15s,filter .15s;}
+.navbtn:hover{transform:translateY(-2px);filter:brightness(1.12);}
+
+/* ── SECTION WRAPPER ── */
+.sec{max-width:920px;margin:28px auto;padding:0 14px;}
+.sec-head{padding:14px 22px;border-radius:var(--r) var(--r) 0 0;}
+.sec-head h2{font-size:1.5em;color:#fff;text-shadow:1px 1px 3px rgba(0,0,0,.2);}
+.sec-head p{color:rgba(255,255,255,.88);font-size:.9em;margin-top:3px;}
+.sec-body{background:#fff;border-radius:0 0 var(--r) var(--r);padding:22px;box-shadow:var(--shadow);}
+
+/* ── MIND MAP ── */
+.mm-wrap{background:linear-gradient(135deg,#FFFDE7,#E3F2FD);border-radius:var(--r);padding:20px;}
+.mm-root{display:inline-block;background:var(--orange);color:#fff;padding:10px 26px;border-radius:30px;font-size:1.3em;font-weight:bold;box-shadow:0 4px 12px rgba(255,107,53,.35);margin-bottom:18px;}
+.mm-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.mm-node{border-radius:var(--r);padding:14px 16px;flex:1;min-width:170px;max-width:220px;}
+.mm-node-title{font-weight:bold;font-size:1em;color:#fff;background:rgba(0,0,0,.18);padding:4px 10px;border-radius:10px;display:inline-block;margin-bottom:8px;}
+.mm-node ul{list-style:none;text-align:left;}
+.mm-node ul li{font-size:.88em;color:#444;padding:2px 0 2px 14px;position:relative;}
+.mm-node ul li::before{content:'▸';position:absolute;left:0;color:inherit;font-size:.8em;top:4px;}
+.mm-arrow{font-size:1.4em;color:#FF6B35;margin:0 6px;align-self:center;}
+
+/* ── CHAR COMPARISON ── */
+.char-group{margin-bottom:24px;}
+.char-group-label{display:inline-block;padding:5px 16px;border-radius:20px;font-weight:bold;font-size:.95em;margin-bottom:10px;color:#fff;}
+.char-cards{display:flex;gap:10px;flex-wrap:wrap;}
+.char-card{flex:1;min-width:130px;border-radius:12px;padding:14px 12px;text-align:center;border:3px solid transparent;transition:transform .2s;}
+.char-card:hover{transform:scale(1.05);}
+.char-big{font-size:2.8em;font-weight:bold;display:block;margin-bottom:4px;}
+.char-part{font-size:.72em;background:rgba(0,0,0,.07);padding:2px 8px;border-radius:8px;display:inline-block;margin-bottom:5px;}
+.char-tip{font-size:.8em;color:#555;margin-top:4px;line-height:1.4;}
+.char-tip b{color:#E91E63;}
+.char-ex{font-size:.78em;color:#777;margin-top:4px;}
+.mem-box{background:#FFFDE7;border-left:4px solid #FFD23F;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:.85em;color:#555;}
+.mem-box::before{content:'💡 記憶術：';font-weight:bold;color:#F57F17;}
+
+/* ── WORD MEANING ── */
+.wm-card{border-radius:12px;padding:18px;margin-bottom:14px;border-left:6px solid;}
+.wm-title{font-size:1.2em;font-weight:bold;margin-bottom:12px;}
+.wm-row{display:flex;gap:10px;flex-wrap:wrap;}
+.wm-box{flex:1;min-width:180px;padding:12px;border-radius:10px;text-align:center;}
+.wm-icon{font-size:2em;display:block;margin-bottom:4px;}
+.wm-num{font-weight:bold;font-size:1em;margin-bottom:4px;}
+.wm-def{font-size:.88em;color:#444;}
+.wm-eg{font-size:.8em;color:#777;margin-top:5px;font-style:italic;}
+
+/* ── IDIOM CARDS ── */
+.idiom-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:14px;}
+.idiom-card{border-radius:12px;padding:18px 14px;text-align:center;cursor:default;transition:transform .2s,box-shadow .2s;}
+.idiom-card:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.15);}
+.idiom-emoji{font-size:2.2em;display:block;margin-bottom:6px;}
+.idiom-word{font-size:1.25em;font-weight:bold;color:#fff;text-shadow:1px 1px 3px rgba(0,0,0,.25);margin-bottom:6px;}
+.idiom-meaning{font-size:.82em;color:rgba(255,255,255,.92);margin-bottom:4px;}
+.idiom-eg{font-size:.77em;color:rgba(255,255,255,.75);font-style:italic;}
+
+/* ── PATTERNS ── */
+.pat-card{background:#fff;border-radius:12px;padding:18px;margin-bottom:14px;border:3px solid;}
+.pat-formula{font-size:1.2em;font-weight:bold;padding:8px 16px;border-radius:8px;display:inline-block;margin-bottom:10px;}
+.pat-rule{color:#555;margin-bottom:8px;font-size:.95em;}
+.pat-egs{background:#F8F8F8;border-radius:8px;padding:12px;font-size:.9em;}
+.pat-egs li{margin-bottom:4px;color:#444;list-style:none;padding-left:14px;position:relative;}
+.pat-egs li::before{content:'✦';position:absolute;left:0;font-size:.7em;top:5px;}
+.pat-warn{background:#FCE4EC;border-radius:6px;padding:8px 12px;margin-top:8px;font-size:.84em;color:#C62828;}
+
+/* ── QUIZ ── */
+.quiz-meta{background:linear-gradient(135deg,#E3F2FD,#EDE7F6);border-radius:10px;padding:14px 20px;margin-bottom:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.qstat{text-align:center;min-width:70px;}
+.qstat-n{font-size:1.8em;font-weight:bold;}
+.qstat-l{font-size:.75em;color:#666;}
+.prog-wrap{flex:1;min-width:180px;}
+.prog-bg{background:#DDD;border-radius:8px;height:10px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,#FF6B35,#FFD23F);border-radius:8px;transition:width .5s;width:0%;}
+.prog-txt{font-size:.8em;color:#888;margin-top:3px;}
+.reset-btn{background:#FF6B35;color:#fff;border:none;border-radius:20px;padding:7px 18px;cursor:pointer;font-family:inherit;font-size:.88em;font-weight:bold;}
+.reset-btn:hover{filter:brightness(1.1);}
+
+.qsec{margin-bottom:28px;}
+.qsec-title{font-size:1.1em;font-weight:bold;padding:8px 18px;border-radius:8px;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.qcard{background:#fff;border-radius:12px;padding:16px 18px;margin-bottom:10px;border-left:5px solid;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.qcard.answered-correct{background:#F1F8E9;}
+.qcard.answered-wrong{background:#FFF3E0;}
+.qhead{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;}
+.qno{background:#EEE;min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82em;font-weight:bold;flex-shrink:0;}
+.qtxt{flex:1;font-size:.97em;line-height:1.65;}
+.qbadges{display:flex;gap:4px;flex-wrap:wrap;margin:5px 0 5px 36px;}
+.badge{font-size:.72em;padding:2px 8px;border-radius:10px;font-weight:bold;}
+.b-hot{background:#FFEBEE;color:#C62828;}
+.b-hard{background:#EDE7F6;color:#6A1B9A;}
+.b-med{background:#E8F5E9;color:#1B5E20;}
+.b-easy{background:#E3F2FD;color:#0D47A1;}
+.qopts{margin:6px 0 6px 36px;font-size:.92em;color:#555;}
+.qopts li{padding:2px 0;list-style:none;padding-left:12px;position:relative;}
+.qopts li::before{content:'（';position:absolute;left:0;}
+.qbtn-row{margin:8px 0 0 36px;display:flex;gap:8px;flex-wrap:wrap;}
+.abtn{background:#fff;border:2px solid #CCC;border-radius:8px;padding:5px 13px;cursor:pointer;font-family:inherit;font-size:.83em;color:#555;transition:all .15s;}
+.abtn:hover{background:#F5F5F5;border-color:#AAA;}
+.abtn.sel-correct{background:#E8F5E9;border-color:#43A047;color:#2E7D32;}
+.abtn.sel-wrong{background:#FFEBEE;border-color:#E53935;color:#B71C1C;}
+.ans-box{display:none;margin:8px 0 0 36px;background:linear-gradient(135deg,#E8F5E9,#F1F8E9);border-radius:8px;padding:10px 14px;font-size:.9em;border-left:4px solid #43A047;}
+.ans-box.show{display:block;animation:fadeIn .25s ease;}
+.ans-correct{color:#2E7D32;font-weight:bold;margin-bottom:3px;}
+.ans-why{color:#555;margin-top:3px;font-size:.92em;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .hero h1{font-size:1.6em;}
+  .mm-row,.char-cards,.wm-row{flex-direction:column;}
+  .mm-node,.char-card,.wm-box{max-width:100%;}
+  .idiom-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ████ HERO ████ -->
+<div class="hero">
+  <h1>🏛️ 第11課 地下護衛軍</h1>
+  <p>五年級下學期國語 ── 秦兵馬俑超強記憶學習包</p>
+  <div class="hero-badges">
+    <span class="hbadge">📖 課文結構圖</span>
+    <span class="hbadge">🔤 形近字辨析</span>
+    <span class="hbadge">💡 詞義比較</span>
+    <span class="hbadge">🃏 成語卡片</span>
+    <span class="hbadge">✏️ 50道練習題</span>
+  </div>
+</div>
+
+<!-- ████ NAV ████ -->
+<div class="nav">
+  <button class="navbtn" style="background:#FF6B35;" onclick="jump('s1')">🗺️ 課文地圖</button>
+  <button class="navbtn" style="background:#9C27B0;" onclick="jump('s2')">🔤 形近字</button>
+  <button class="navbtn" style="background:#00BCD4;" onclick="jump('s3')">💬 詞義辨析</button>
+  <button class="navbtn" style="background:#E91E63;" onclick="jump('s4')">🃏 成語卡</button>
+  <button class="navbtn" style="background:#43A047;" onclick="jump('s5')">📐 句型</button>
+  <button class="navbtn" style="background:#FF8F00;" onclick="jump('s6')">✏️ 練習題庫</button>
+</div>
+
+<!-- ████ S1：課文思維導圖 ████ -->
+<div class="sec" id="s1">
+  <div class="sec-head" style="background:linear-gradient(135deg,#FF6B35,#FF8C42);">
+    <h2>🗺️ 課文超強記憶地圖</h2>
+    <p>一眼看懂整篇課文的骨架，再也不怕考試！</p>
+  </div>
+  <div class="sec-body">
+    <div class="mm-wrap" style="text-align:center;">
+      <div class="mm-root">🏛️ 地下護衛軍</div>
+      <div style="font-size:.85em;color:#888;margin-bottom:12px;">文章結構：<b>總 → 分 → 總</b>　說明順序：<b>空間順序（由大→小）</b></div>
+      <div class="mm-row">
+
+        <div class="mm-node" style="background:#FFF3E0;border:3px solid #FF6B35;">
+          <div class="mm-node-title" style="background:#FF6B35;">📰 總起（第1段）</div>
+          <ul>
+            <li>時間：西元<b>1974</b>年</li>
+            <li>地點：中國<b>西安</b>附近</li>
+            <li>發現者：挖水井的<b>農民</b></li>
+            <li>發現物：<b>陶器碎片</b></li>
+            <li>→考古學家鑑定：秦代文物</li>
+            <li>→大舉開挖→兵馬俑出土</li>
+          </ul>
+        </div>
+
+        <div class="mm-arrow">▶</div>
+
+        <div class="mm-node" style="background:#EDE7F6;border:3px solid #9C27B0;min-width:230px;">
+          <div class="mm-node-title" style="background:#9C27B0;">📋 分說（第2-4段）空間：大→小</div>
+          <ul>
+            <li>🏯 <b>第2段：秦始皇陵</b></li>
+            <li style="padding-left:24px;">花費大量人力物力</li>
+            <li style="padding-left:24px;">布局講究、規模龐大</li>
+            <li>⛏️ <b>第3段：兵馬俑坑</b></li>
+            <li style="padding-left:24px;">世上數量最多的陪葬俑</li>
+            <li style="padding-left:24px;">三個坑（西元1974~後）</li>
+            <li>🪖 <b>第4段：坑內的俑</b></li>
+            <li style="padding-left:24px;">真實大小陶俑、陶馬</li>
+            <li style="padding-left:24px;">排列整齊、宛如軍隊</li>
+            <li style="padding-left:24px;">將軍俑→各類士兵俑</li>
+            <li style="padding-left:24px;">容貌逼真、栩栩如生</li>
+          </ul>
+        </div>
+
+        <div class="mm-arrow">▶</div>
+
+        <div class="mm-node" style="background:#E8F5E9;border:3px solid #43A047;">
+          <div class="mm-node-title" style="background:#43A047;">🏆 總結（第5段）</div>
+          <ul>
+            <li>不僅是中華文化奇蹟</li>
+            <li>更是人類的世界遺產</li>
+            <li>應珍藏、保護</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div style="margin-top:20px;background:#FFF9C4;border-radius:10px;padding:12px 16px;display:inline-block;text-align:left;max-width:700px;">
+        <b style="color:#E65100;">🔑 三個超重點，一定要記！</b>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;">
+          <div style="background:#FF6B35;color:#fff;border-radius:8px;padding:8px 14px;font-size:.88em;">①　農民發現 → 考古確認 → 全球震驚</div>
+          <div style="background:#9C27B0;color:#fff;border-radius:8px;padding:8px 14px;font-size:.88em;">②　空間順序：皇陵 → 俑坑 → 俑本身</div>
+          <div style="background:#43A047;color:#fff;border-radius:8px;padding:8px 14px;font-size:.88em;">③　結論：中華奇蹟 → 世界遺產</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ████ S2：形近字辨析 ████ -->
+<div class="sec" id="s2">
+  <div class="sec-head" style="background:linear-gradient(135deg,#9C27B0,#7B1FA2);">
+    <h2>🔤 形近字辨析比一比</h2>
+    <p>長得很像但意思不同！掌握「部首→意思」就不會錯！</p>
+  </div>
+  <div class="sec-body">
+
+    <!-- Group 1 -->
+    <div class="char-group">
+      <span class="char-group-label" style="background:#9C27B0;">① 陵 / 凌 / 陸　── 都有「夌」，部首決定意思</span>
+      <div class="char-cards">
+        <div class="char-card" style="background:#F3E5F5;border-color:#CE93D8;">
+          <span class="char-big" style="color:#7B1FA2;">陵</span>
+          <span class="char-part">部首：阜（⻖）= 土丘</span>
+          <div class="char-tip">有「土丘旁」<b>→ 山丘、墳墓</b></div>
+          <div class="char-ex">例：丘陵、陵墓、陵寢</div>
+        </div>
+        <div class="char-card" style="background:#E8EAF6;border-color:#9FA8DA;">
+          <span class="char-big" style="color:#3949AB;">凌</span>
+          <span class="char-part">部首：冫= 冰</span>
+          <div class="char-tip">有「冰點旁」<b>→ 冷、侵犯</b></div>
+          <div class="char-ex">例：欺凌、凌空、淩晨</div>
+        </div>
+        <div class="char-card" style="background:#E0F2F1;border-color:#80CBC4;">
+          <span class="char-big" style="color:#00695C;">陸</span>
+          <span class="char-part">部首：阜（⻖）= 土地</span>
+          <div class="char-tip">有「土丘旁」<b>→ 大地、土地</b></div>
+          <div class="char-ex">例：大陸、陸地、陸軍</div>
+        </div>
+      </div>
+      <div class="mem-box">「丘<b>陵</b>」= 土丘（阜旁）；「欺<b>凌</b>」= 冰冷欺負（冰旁）；「大<b>陸</b>」= 大地（阜旁）</div>
+    </div>
+
+    <!-- Group 2 -->
+    <div class="char-group">
+      <span class="char-group-label" style="background:#E91E63;">② 暮 / 墓 / 慕 / 幕　── 都有「莫」，下面的字決定意思</span>
+      <div class="char-cards">
+        <div class="char-card" style="background:#FFF8E1;border-color:#FFD54F;">
+          <span class="char-big" style="color:#E65100;">暮</span>
+          <span class="char-part">下：日（太陽）</span>
+          <div class="char-tip">太陽快消失<b>→ 傍晚</b></div>
+          <div class="char-ex">例：暮色、朝暮、暮年</div>
+        </div>
+        <div class="char-card" style="background:#EFEBE9;border-color:#BCAAA4;">
+          <span class="char-big" style="color:#4E342E;">墓</span>
+          <span class="char-part">下：土（泥土）</span>
+          <div class="char-tip">土裡面<b>→ 墳墓</b></div>
+          <div class="char-ex">例：陵墓、墓碑、墓地</div>
+        </div>
+        <div class="char-card" style="background:#FCE4EC;border-color:#F48FB1;">
+          <span class="char-big" style="color:#880E4F;">慕</span>
+          <span class="char-part">下：心（感情）</span>
+          <div class="char-tip">用心思念<b>→ 羨慕、愛戀</b></div>
+          <div class="char-ex">例：愛慕、欽慕、仰慕</div>
+        </div>
+        <div class="char-card" style="background:#E8EAF6;border-color:#9FA8DA;">
+          <span class="char-big" style="color:#1A237E;">幕</span>
+          <span class="char-part">下：巾（布）</span>
+          <div class="char-tip">布做的<b>→ 布幕、帷幕</b></div>
+          <div class="char-ex">例：幕後、開幕、幕僚</div>
+        </div>
+      </div>
+      <div class="mem-box">記口訣：「<b>日</b>落<b>暮</b>色、入<b>土</b>為<b>墓</b>、<b>心</b>中愛<b>慕</b>、<b>布</b>幕開演」</div>
+    </div>
+
+    <!-- Group 3 -->
+    <div class="char-group">
+      <span class="char-group-label" style="background:#00897B;">③ 掘 / 崛 / 倔　── 都有「屈」，部首決定意思</span>
+      <div class="char-cards">
+        <div class="char-card" style="background:#E0F2F1;border-color:#80CBC4;">
+          <span class="char-big" style="color:#004D40;">掘</span>
+          <span class="char-part">部首：扌= 手</span>
+          <div class="char-tip">用手做<b>→ 挖掘</b></div>
+          <div class="char-ex">例：挖掘、發掘、掘井</div>
+        </div>
+        <div class="char-card" style="background:#F1F8E9;border-color:#AED581;">
+          <span class="char-big" style="color:#33691E;">崛</span>
+          <span class="char-part">部首：山</span>
+          <div class="char-tip">山突起<b>→ 崛起、興起</b></div>
+          <div class="char-ex">例：崛起、崛然</div>
+        </div>
+        <div class="char-card" style="background:#FFF3E0;border-color:#FFCC80;">
+          <span class="char-big" style="color:#E65100;">倔</span>
+          <span class="char-part">部首：亻= 人</span>
+          <div class="char-tip">人固執<b>→ 倔強</b></div>
+          <div class="char-ex">例：倔強、倔頭倔腦</div>
+        </div>
+      </div>
+      <div class="mem-box">「<b>手</b>挖<b>掘</b>」、「<b>山</b>崛起（崛）」、「<b>人</b>倔強（倔）」── 部首=動作的主角！</div>
+    </div>
+
+    <!-- Group 4 -->
+    <div class="char-group">
+      <span class="char-group-label" style="background:#0288D1;">④ 俑 / 桶 / 蛹　── 都有「甬」，部首決定意思</span>
+      <div class="char-cards">
+        <div class="char-card" style="background:#E1F5FE;border-color:#81D4FA;">
+          <span class="char-big" style="color:#01579B;">俑</span>
+          <span class="char-part">部首：亻= 人</span>
+          <div class="char-tip">人形的<b>→ 陶俑（人偶）</b></div>
+          <div class="char-ex">例：兵馬俑、陶俑、木俑</div>
+        </div>
+        <div class="char-card" style="background:#F9FBE7;border-color:#DCE775;">
+          <span class="char-big" style="color:#558B2F;">桶</span>
+          <span class="char-part">部首：木</span>
+          <div class="char-tip">木製容器<b>→ 桶子</b></div>
+          <div class="char-ex">例：木桶、水桶、垃圾桶</div>
+        </div>
+        <div class="char-card" style="background:#F3E5F5;border-color:#CE93D8;">
+          <span class="char-big" style="color:#7B1FA2;">蛹</span>
+          <span class="char-part">部首：虫</span>
+          <div class="char-tip">昆蟲的<b>→ 蛹（毛毛蟲變蝴蝶前）</b></div>
+          <div class="char-ex">例：繭蛹、蛹期、化蛹</div>
+        </div>
+      </div>
+      <div class="mem-box">「<b>人</b>偶→俑」「<b>木</b>桶→桶」「<b>蟲</b>蛹→蛹」── 看部首就知道是什麼！</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ████ S3：詞義辨析 ████ -->
+<div class="sec" id="s3">
+  <div class="sec-head" style="background:linear-gradient(135deg,#00BCD4,#0097A7);">
+    <h2>💬 詞義辨析（一詞多義）</h2>
+    <p>同一個詞，不同的情境，意思完全不一樣！</p>
+  </div>
+  <div class="sec-body">
+
+    <div class="wm-card" style="border-color:#FF6B35;background:#FFF8F5;">
+      <div class="wm-title">💰 「價值」── 兩種意思，超容易考！</div>
+      <div class="wm-row">
+        <div class="wm-box" style="background:#FFF3E0;">
+          <span class="wm-icon">🏷️</span>
+          <div class="wm-num" style="color:#E65100;">義① 物品的價格、代價</div>
+          <div class="wm-def">東西值多少錢、多稀有</div>
+          <div class="wm-eg">「這件古文物<b>價值</b>連城。」<br>→ 值很多錢</div>
+        </div>
+        <div style="align-self:center;font-size:1.5em;color:#CCC;">vs</div>
+        <div class="wm-box" style="background:#E8F5E9;">
+          <span class="wm-icon">💡</span>
+          <div class="wm-num" style="color:#2E7D32;">義② 意義、作用</div>
+          <div class="wm-def">事物的重要性或意義</div>
+          <div class="wm-eg">「這段經歷很有<b>價值</b>。」<br>→ 有意義、值得</div>
+        </div>
+      </div>
+      <div class="mem-box" style="margin-top:12px;">判斷方法：能用「多少錢」替換 → 義①；能用「有意義」替換 → 義②</div>
+    </div>
+
+    <div class="wm-card" style="border-color:#9C27B0;background:#FAF5FF;">
+      <div class="wm-title">🔬 「研究」── 兩種意思，超容易考！</div>
+      <div class="wm-row">
+        <div class="wm-box" style="background:#EDE7F6;">
+          <span class="wm-icon">🤔</span>
+          <div class="wm-num" style="color:#6A1B9A;">義① 商量、考慮</div>
+          <div class="wm-def">討論、商議一件事</div>
+          <div class="wm-eg">「大家再<b>研究</b>一下再做決定。」<br>→ 商量、討論</div>
+        </div>
+        <div style="align-self:center;font-size:1.5em;color:#CCC;">vs</div>
+        <div class="wm-box" style="background:#E3F2FD;">
+          <span class="wm-icon">🔬</span>
+          <div class="wm-num" style="color:#0D47A1;">義② 深入探索事物的性質、規律</div>
+          <div class="wm-def">學術上的深入調查</div>
+          <div class="wm-eg">「教授<b>研究</b>癌症多年。」<br>→ 學術探索</div>
+        </div>
+      </div>
+      <div class="mem-box" style="margin-top:12px;">判斷方法：能用「商量」替換 → 義①；能用「學術調查」替換 → 義②</div>
+    </div>
+
+    <div style="background:#FFF9C4;border-radius:10px;padding:14px 18px;border-left:5px solid #FFD23F;">
+      <b style="color:#E65100;">⚠️ 超常考！考試必看：</b>
+      <div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap;">
+        <div style="background:#FF6B35;color:#fff;border-radius:8px;padding:8px 14px;font-size:.88em;flex:1;min-width:160px;">「故宮古文物無一不是<b>價值</b>連城的寶物」<br>→ 義①（市場價格）</div>
+        <div style="background:#9C27B0;color:#fff;border-radius:8px;padding:8px 14px;font-size:.88em;flex:1;min-width:160px;">「這個布娃娃雖破舊，卻極具紀念<b>價值</b>」<br>→ 義②（情感意義）</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ████ S4：成語卡 ████ -->
+<div class="sec" id="s4">
+  <div class="sec-head" style="background:linear-gradient(135deg,#E91E63,#C2185B);">
+    <h2>🃏 成語記憶卡片</h2>
+    <p>用圖像記憶成語！看圖片就能想到意思～</p>
+  </div>
+  <div class="sec-body">
+    <div class="idiom-grid">
+      <div class="idiom-card" style="background:linear-gradient(135deg,#FF6B35,#FF8F00);">
+        <span class="idiom-emoji">🦋✨</span>
+        <div class="idiom-word">栩栩如生</div>
+        <div class="idiom-meaning">描繪事物生動逼真，好像有生命一樣</div>
+        <div class="idiom-eg">例：陶俑的神情栩栩如生。</div>
+      </div>
+      <div class="idiom-card" style="background:linear-gradient(135deg,#E91E63,#C2185B);">
+        <span class="idiom-emoji">😄🎉</span>
+        <div class="idiom-word">眉飛色舞</div>
+        <div class="idiom-meaning">形容人非常興奮、得意的神態</div>
+        <div class="idiom-eg">例：弟弟眉飛色舞地講今天的趣事。</div>
+      </div>
+      <div class="idiom-card" style="background:linear-gradient(135deg,#5C6BC0,#3949AB);">
+        <span class="idiom-emoji">😔💧</span>
+        <div class="idiom-word">垂頭喪氣</div>
+        <div class="idiom-meaning">形容失意沮喪、沒有精神的樣子</div>
+        <div class="idiom-eg">例：考試不理想，哥哥垂頭喪氣。</div>
+      </div>
+      <div class="idiom-card" style="background:linear-gradient(135deg,#E53935,#B71C1C);">
+        <span class="idiom-emoji">😳🔴</span>
+        <div class="idiom-word">面紅耳赤</div>
+        <div class="idiom-meaning">臉和耳朵都紅了，形容羞愧或激動</div>
+        <div class="idiom-eg">例：被誇讚後她面紅耳赤。</div>
+      </div>
+      <div class="idiom-card" style="background:linear-gradient(135deg,#00897B,#00695C);">
+        <span class="idiom-emoji">💪⚡</span>
+        <div class="idiom-word">精神抖擻</div>
+        <div class="idiom-meaning">精神飽滿、充滿活力的樣子</div>
+        <div class="idiom-eg">例：士兵們精神抖擻站崗。</div>
+      </div>
+      <div class="idiom-card" style="background:linear-gradient(135deg,#0288D1,#01579B);">
+        <span class="idiom-emoji">🎒🚀</span>
+        <div class="idiom-word">整裝待發</div>
+        <div class="idiom-meaning">準備好所有裝備，等待出發（常指行軍）</div>
+        <div class="idiom-eg">例：士兵們整裝待發，準備出征。</div>
+      </div>
+      <div class="idiom-card" style="background:linear-gradient(135deg,#7CB342,#558B2F);">
+        <span class="idiom-emoji">✨🌟</span>
+        <div class="idiom-word">精神煥發</div>
+        <div class="idiom-meaning">容光焕發，精神狀態很好、有光彩</div>
+        <div class="idiom-eg">例：跑完步後，她精神煥發。</div>
+      </div>
+      <div class="idiom-card" style="background:linear-gradient(135deg,#8D6E63,#5D4037);">
+        <span class="idiom-emoji">🏺🔍</span>
+        <div class="idiom-word">栩栩如生 vs 維妙維肖</div>
+        <div class="idiom-meaning">都是「逼真」，但<b>栩栩如生</b>強調生動有活力；<b>維妙維肖</b>強調模仿得很像</div>
+        <div class="idiom-eg">考試常考區別！</div>
+      </div>
+    </div>
+
+    <div style="background:#FFFDE7;border-radius:10px;padding:14px;margin-top:16px;border:2px solid #FFD23F;">
+      <b style="color:#E65100;">🔥 超高頻考題：神態表情辨析</b>
+      <div style="margin-top:8px;font-size:.92em;color:#444;">
+        下列哪句話<b>沒有</b>描寫「神態表情」？<br>
+        ✅ <span style="color:#E91E63;">眉飛色舞</span>、<span style="color:#E91E63;">面紅耳赤</span>、<span style="color:#E91E63;">垂頭喪氣</span> = 都是神態表情<br>
+        ❌ 「這件寶物埋在土裡千年，如今才重見天日」= <b>描述事物狀態，不是神態！</b>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ████ S5：句型 ████ -->
+<div class="sec" id="s5">
+  <div class="sec-head" style="background:linear-gradient(135deg,#43A047,#2E7D32);">
+    <h2>📐 重點句型練習</h2>
+    <p>掌握三大句型，閱讀理解大加分！</p>
+  </div>
+  <div class="sec-body">
+
+    <div class="pat-card" style="border-color:#FF6B35;">
+      <div class="pat-formula" style="background:#FFF3E0;color:#E65100;">……無不……　＝　全部都……</div>
+      <div class="pat-rule">📌 「無」和「不」是兩個否定詞，連用後變成<b>雙重否定＝全部肯定</b>，且帶有加強語氣的效果。</div>
+      <ul class="pat-egs">
+        <li>「參觀兵馬俑的人，<b>無不</b>感到震撼無比。」<br>
+            → 意思：參觀兵馬俑的人，<b>全部都</b>感到震撼無比。</li>
+        <li>「故宮的古文物，<b>無不</b>是珍貴的寶藏。」<br>
+            → 意思：故宮的古文物，<b>全部都</b>是珍貴的寶藏。</li>
+      </ul>
+      <div class="pat-warn">⚠️ 考試常考：「無不」不是「沒有不」的意思，而是「<b>全部都</b>」！</div>
+    </div>
+
+    <div class="pat-card" style="border-color:#9C27B0;">
+      <div class="pat-formula" style="background:#EDE7F6;color:#7B1FA2;">不僅……更……　＝　不只……而且（程度更深）……</div>
+      <div class="pat-rule">📌 表示<b>遞進關係</b>：「不僅」後面已經很好了，「更」後面程度更強、範圍更廣。</div>
+      <ul class="pat-egs">
+        <li>「兵馬俑<b>不僅</b>代表中華文化的奇蹟，<b>更</b>是人類應該珍藏的世界遺產。」<br>
+            → 從「中華文化」擴大到「全人類」，範圍更廣！</li>
+        <li>「他<b>不僅</b>學習認真，<b>更</b>積極幫助同學。」</li>
+      </ul>
+      <div class="pat-warn">⚠️ 「更」後面的內容比「不僅」後面的<b>更重要或更大</b>，不能倒過來！</div>
+    </div>
+
+    <div class="pat-card" style="border-color:#00BCD4;">
+      <div class="pat-formula" style="background:#E0F7FA;color:#006064;">……而後……　＝　……之後再……（連貫複句）</div>
+      <div class="pat-rule">📌 表示<b>先後順序</b>：前面的事情完成後，才做後面的事。強調步驟次序。</div>
+      <ul class="pat-egs">
+        <li>「先鑑定是秦代文物，<b>而後</b>大舉開挖。」<br>
+            → 先鑑定 → 才開挖，有嚴格的步驟順序。</li>
+        <li>「老師走進教室後，先跟大家寒暄問好，<b>而後</b>開始上課。」</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ████ S6：練習題庫 ████ -->
+<div class="sec" id="s6">
+  <div class="sec-head" style="background:linear-gradient(135deg,#FF8F00,#FF6F00);">
+    <h2>✏️ 超強練習題庫（50題）</h2>
+    <p>點「看答案」可以查看！🔥=常考重點　⭐⭐⭐=難題　⭐⭐=中等　⭐=基礎</p>
+  </div>
+  <div class="sec-body">
+
+    <div class="quiz-meta">
+      <div class="qstat"><div class="qstat-n" id="totalQ">50</div><div class="qstat-l">總題數</div></div>
+      <div class="qstat"><div class="qstat-n" id="doneQ" style="color:#FF6B35;">0</div><div class="qstat-l">已查看</div></div>
+      <div class="prog-wrap">
+        <div class="prog-bg"><div class="prog-fill" id="progFill"></div></div>
+        <div class="prog-txt" id="progTxt">進度 0 / 50</div>
+      </div>
+      <button class="reset-btn" onclick="resetAll()">🔄 重置進度</button>
+    </div>
+
+    <!-- ── Part A：字音字形（12題）── -->
+    <div class="qsec">
+      <div class="qsec-title" style="background:#9C27B0;">🔤 A部分：字音字形辨析（12題）</div>
+
+      <div id="q1" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">1</div><div class="qtxt">「這座村莊四周丘<u>凌</u>環繞，種滿茶樹，宛如世外桃源。」請找出錯字並改正。</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(1)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a1"><div class="ans-correct">✅ 凌 → 陵</div><div class="ans-why">「丘陵」的陵，部首是阜（⻖土丘旁），不是冰旁（冫）。「凌」是欺凌、淩晨（冰冷/侵犯義）。</div></div>
+      </div>
+
+      <div id="q2" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">2</div><div class="qtxt">「考古學家在古代遺址中，挖<u>崛</u>出許多古物。」請找出錯字並改正。</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(2)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a2"><div class="ans-correct">✅ 崛 → 掘</div><div class="ans-why">「挖掘」的掘，部首是扌（手旁），代表用手挖。「崛」是崛起（山旁），意思是突起。</div></div>
+      </div>
+
+      <div id="q3" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">3</div><div class="qtxt">「太陽從山<u>癲</u>緩緩上升，四射的光芒照亮大地。」請找出錯字並改正。</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(3)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a3"><div class="ans-correct">✅ 癲 → 巔</div><div class="ans-why">「山巔」的巔，是山頂的意思，部首是山。「癲」是瘋癲，是病字頭（疒），意思完全不同。</div></div>
+      </div>
+
+      <div id="q4" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">4</div><div class="qtxt">「經過設計師的布置，原本雜亂的家變得<u>換</u>然一新。」請找出錯字並改正。</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(4)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a4"><div class="ans-correct">✅ 換 → 煥</div><div class="ans-why">「煥然一新」的煥，部首是火（灬），形容光彩煥發、煥然一新。「換」是替換（扌手旁），意思不同。</div></div>
+      </div>
+
+      <div id="q5" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">5</div><div class="qtxt">「整夜刺耳的鳴叫聲，讓附近住戶不<u>勘</u>其擾。」請找出錯字並改正。</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(5)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a5"><div class="ans-correct">✅ 勘 → 堪</div><div class="ans-why">「不堪其擾」的堪，是「受得了」的意思（土旁）。「勘」是勘查（刀旁），指調查檢驗。</div></div>
+      </div>
+
+      <div id="q6" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">6</div><div class="qtxt">「小蕎穿得太<u>丹</u>薄，在寒風中瑟瑟發抖。」請找出錯字並改正。</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(6)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a6"><div class="ans-correct">✅ 丹 → 單</div><div class="ans-why">「單薄」的單，形容衣物少而薄。「丹」是丹砂、丹藥（紅色顏料），意思完全不同。</div></div>
+      </div>
+
+      <div id="q7" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">7</div><div class="qtxt">「許多古代帝王的陵□，如今成為了旅遊景點。」□中應填入哪個字？<br><br>（A）暮　（B）墓　（C）募　（D）慕</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(7)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a7"><div class="ans-correct">✅ 答案：（B）墓</div><div class="ans-why">「陵墓」= 皇帝的墳墓。墓字下面是「土」，與埋葬有關。暮=傍晚（日），募=募款（力），慕=愛慕（心）。</div></div>
+      </div>
+
+      <div id="q8" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">8</div><div class="qtxt">「掘、崛、倔」三個字都有「屈」，請配對：<br>①用手挖掘　②固執強硬　③山丘突起<br><br>（A）掘①崛②倔③　（B）掘①崛③倔②　（C）掘③崛①倔②</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(8)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a8"><div class="ans-correct">✅ 答案：（B）掘①崛③倔②</div><div class="ans-why">掘（扌手）→挖掘①；崛（山）→山突起③；倔（亻人）→倔強②。記：「手挖山起人固執」！</div></div>
+      </div>
+
+      <div id="q9" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">9</div><div class="qtxt">「暮色、墓地、愛慕、幕後」── 以下哪個「莫」字下面的部件配對有誤？<br><br>（A）暮：下面是「日」（太陽）<br>（B）墓：下面是「土」（泥土）<br>（C）慕：下面是「力」（力氣）<br>（D）幕：下面是「巾」（布）</div></div>
+        <div class="qbadges"><span class="badge b-hard">⭐⭐⭐ 難題</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(9)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a9"><div class="ans-correct">✅ 答案：（C）有誤</div><div class="ans-why">「慕」下面是「心」（忄），代表感情上的思念、愛慕，不是「力」。記憶口訣：日暮、土墓、心慕、巾幕。</div></div>
+      </div>
+
+      <div id="q10" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">10</div><div class="qtxt">「兵馬俑」的「俑」，注音是什麼？<br><br>（A）ㄩㄥˋ　（B）ㄩㄥˇ　（C）ㄩˋ　（D）ㄧㄡˇ</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(10)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a10"><div class="ans-correct">✅ 答案：（B）ㄩㄥˇ（三聲）</div><div class="ans-why">俑（ㄩㄥˇ）是陪葬用的人偶。注意是三聲，不是四聲。</div></div>
+      </div>
+
+      <div id="q11" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">11</div><div class="qtxt">「俑、桶、蛹」三個字都有「甬」，請判斷以下說法是否正確：<br>「俑的部首是亻（人旁），所以俑是人形的東西」</div></div>
+        <div class="qbadges"><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(11)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a11"><div class="ans-correct">✅ 正確！</div><div class="ans-why">俑（亻人）→人形陶偶；桶（木）→木製容器；蛹（虫）→昆蟲幼蟲變態期。部首真的決定了字的類別！</div></div>
+      </div>
+
+      <div id="q12" class="qcard" style="border-color:#9C27B0;">
+        <div class="qhead"><div class="qno">12</div><div class="qtxt">小明寫了四個句子，請找出有錯字的句子：<br><br>（A）秦始皇建造了巨大的陵墓。<br>（B）考古學家大舉挖掘現場。<br>（C）參觀者看到兵馬俑都覺得震換無比。<br>（D）這支軍隊精神抖擻，整裝待發。</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(12)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a12"><div class="ans-correct">✅ 答案：（C）有錯字</div><div class="ans-why">「震換」應為「震撼」。撼（扌手旁）是搖動、震動的意思。換（扌手旁）是替換，此處意思不符。</div></div>
+      </div>
+
+    </div><!-- /Part A -->
+
+    <!-- ── Part B：詞義辨析（8題）── -->
+    <div class="qsec">
+      <div class="qsec-title" style="background:#00897B;">💬 B部分：詞義辨析（8題）</div>
+
+      <div id="q13" class="qcard" style="border-color:#00897B;">
+        <div class="qhead"><div class="qno">13</div><div class="qtxt">「這個布娃娃雖然破舊，但極具紀念『<b>價值</b>』，因為它是爸爸送我的。」<br>這裡的「價值」是哪個意思？<br><br>①泛稱物品的價格、代價　　②意義、作用</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(13)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a13"><div class="ans-correct">✅ 答案：②意義、作用</div><div class="ans-why">布娃娃破舊，市場上不值錢，但對「我」有紀念意義，所以這裡的「價值」指情感上的意義。</div></div>
+      </div>
+
+      <div id="q14" class="qcard" style="border-color:#00897B;">
+        <div class="qhead"><div class="qno">14</div><div class="qtxt">「故宮博物院收藏的古文物，無一不是『<b>價值</b>』連城的寶物。」<br>這裡的「價值」是哪個意思？<br><br>①泛稱物品的價格、代價　　②意義、作用</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(14)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a14"><div class="ans-correct">✅ 答案：①泛稱物品的價格、代價</div><div class="ans-why">「價值連城」是說東西非常珍貴，值很多城（很多錢），所以這裡指市場上的貴重程度。</div></div>
+      </div>
+
+      <div id="q15" class="qcard" style="border-color:#00897B;">
+        <div class="qhead"><div class="qno">15</div><div class="qtxt">「這件事關係著許多人的生計，大家想多『<b>研究</b>』一陣子，再做決定。」<br>這裡的「研究」是哪個意思？<br><br>①商量、考慮　　②深入探索事物的性質、規律</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(15)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a15"><div class="ans-correct">✅ 答案：①商量、考慮</div><div class="ans-why">「大家」一起「再研究一陣子」然後「做決定」，這裡是商量、討論的意思，不是學術研究。</div></div>
+      </div>
+
+      <div id="q16" class="qcard" style="border-color:#00897B;">
+        <div class="qhead"><div class="qno">16</div><div class="qtxt">「趙教授畢生潛心於『<b>研究</b>』癌症，對醫學界貢獻極大。」<br>這裡的「研究」是哪個意思？<br><br>①商量、考慮　　②深入探索事物的性質、規律</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(16)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a16"><div class="ans-correct">✅ 答案：②深入探索事物的性質、規律</div><div class="ans-why">教授「畢生潛心」研究癌症，這是長期學術研究，對醫學有貢獻，不是普通的商量。</div></div>
+      </div>
+
+      <div id="q17" class="qcard" style="border-color:#00897B;">
+        <div class="qhead"><div class="qno">17</div><div class="qtxt">以下哪個句子中「研究」的用法，和「大家研究了一下，決定去吃火鍋」相同？<br><br>（A）他花了十年研究量子力學<br>（B）媽媽說這件事需要再研究研究<br>（C）科學家研究出了新的疫苗<br>（D）教授的研究報告獲得大獎</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(17)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a17"><div class="ans-correct">✅ 答案：（B）</div><div class="ans-why">「大家研究了一下，決定去吃火鍋」是商量考慮（義①）。（B）「再研究研究」也是商量的意思。其他都是學術探索（義②）。</div></div>
+      </div>
+
+      <div id="q18" class="qcard" style="border-color:#00897B;">
+        <div class="qhead"><div class="qno">18</div><div class="qtxt">下列哪個句子中，「價值」的用法與其他三句不同？<br><br>（A）這顆寶石具有極高的市場價值<br>（B）這段友情對我而言有無比的價值<br>（C）文物的價值往往隨著時間增加<br>（D）這幅古畫在拍賣會上以高價成交，顯示其驚人的價值</div></div>
+        <div class="qbadges"><span class="badge b-hard">⭐⭐⭐ 難題</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(18)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a18"><div class="ans-correct">✅ 答案：（B）</div><div class="ans-why">（B）「友情對我的價值」是情感意義（義②）。其他三句（A）（C）（D）都是在說市場/金錢上的價格（義①）。</div></div>
+      </div>
+
+      <div id="q19" class="qcard" style="border-color:#00897B;">
+        <div class="qhead"><div class="qno">19</div><div class="qtxt">以下哪個語詞，在不同的句子中用法有①和②兩種不同的意思？<br><br>（A）兵馬俑　（B）研究　（C）陵墓　（D）考古</div></div>
+        <div class="qbadges"><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(19)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a19"><div class="ans-correct">✅ 答案：（B）研究</div><div class="ans-why">本課特別教導「研究」有兩個意思：①商量、考慮；②深入探索。這是本課的詞義辨析重點。</div></div>
+      </div>
+
+      <div id="q20" class="qcard" style="border-color:#00897B;">
+        <div class="qhead"><div class="qno">20</div><div class="qtxt">「整裝待發」和「盛裝打扮」都和「準備」有關，但意思不同。請判斷：<br>小明要去參加軍事比賽，他（　）地等待出發號令。<br>小美要參加學校的頒獎典禮，她（　）地走上舞台。<br><br>（A）整裝待發 / 盛裝打扮<br>（B）盛裝打扮 / 整裝待發<br>（C）兩個都填整裝待發<br>（D）兩個都填盛裝打扮</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(20)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a20"><div class="ans-correct">✅ 答案：（A）</div><div class="ans-why">「整裝待發」指準備裝備等待出發，多用於軍事、旅行出發前；「盛裝打扮」指穿著華麗正式服裝，用於正式場合。</div></div>
+      </div>
+
+    </div><!-- /Part B -->
+
+    <!-- ── Part C：閱讀理解（15題）── -->
+    <div class="qsec">
+      <div class="qsec-title" style="background:#0288D1;">📖 C部分：閱讀理解（15題）</div>
+
+      <div id="q21" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">21</div><div class="qtxt">秦兵馬俑是在哪一年被發現的？<br><br>（A）西元1947年　（B）西元1974年　（C）西元1994年　（D）西元1879年</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(21)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a21"><div class="ans-correct">✅ 答案：（B）西元1974年</div><div class="ans-why">課文第一段：「西元一九七四年，在中國西安附近……」，這個年份超常考，一定要記！</div></div>
+      </div>
+
+      <div id="q22" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">22</div><div class="qtxt">秦兵馬俑是被誰發現的？<br><br>（A）考古學家　（B）歷史學家　（C）挖水井的農民　（D）皇族後代</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(22)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a22"><div class="ans-correct">✅ 答案：（C）挖水井的農民</div><div class="ans-why">課文：「幾個農民在挖水井時，無意間發現了一些陶器的碎片。」是農民偶然發現的，不是考古學家主動挖掘的。</div></div>
+      </div>
+
+      <div id="q23" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">23</div><div class="qtxt">秦始皇為什麼建造巨大的陵墓？<br><br>（A）為了炫耀財富　（B）為了死後依然能坐擁帝國　（C）因為怕鬼　（D）因為大臣建議</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(23)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a23"><div class="ans-correct">✅ 答案：（B）為了死後依然能坐擁帝國</div><div class="ans-why">課文：「秦始皇，為了死後依然能坐擁帝國，在生前花費大量的人力和物力，為自己建造了巨大的陵墓。」</div></div>
+      </div>
+
+      <div id="q24" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">24</div><div class="qtxt">課文用哪兩個詞語描述皇陵的特色？<br><br>（A）壯觀雄偉　（B）布局講究，規模龐大　（C）精雕細琢，價值連城　（D）歷史悠久，舉世無雙</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(24)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a24"><div class="ans-correct">✅ 答案：（B）布局講究，規模龐大</div><div class="ans-why">課文原文：「這座皇陵布局講究，規模龐大」，這是課文裡的原句，要記住！</div></div>
+      </div>
+
+      <div id="q25" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">25</div><div class="qtxt">兵馬俑坑在世界上有什麼特殊地位？<br><br>（A）世界上面積最大的古墓　（B）世界上數量最多的陪葬俑<br>（C）世界上最古老的陶器　（D）世界上保存最完好的軍事遺跡</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(25)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a25"><div class="ans-correct">✅ 答案：（B）世界上數量最多的陪葬俑</div><div class="ans-why">課文強調兵馬俑坑內有「世上數量最多的陪葬俑」，這是它最特殊的地方。</div></div>
+      </div>
+
+      <div id="q26" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">26</div><div class="qtxt">坑內陶俑、陶馬的排列有什麼特點？（可多選）<br><br>（A）排列整齊，宛如軍隊　（B）和真人、真馬同樣大小　（C）全部長得一模一樣　（D）由將軍統領</div></div>
+        <div class="qbadges"><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(26)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a26"><div class="ans-correct">✅ 答案：（A）（B）（D）正確，（C）錯誤</div><div class="ans-why">課文說陶俑「容貌逼真」且「栩栩如生」，意思是每個表情都不同，而非一模一樣。（C）是錯誤的說法。</div></div>
+      </div>
+
+      <div id="q27" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">27</div><div class="qtxt">本課課文屬於哪一種文本類型？<br><br>（A）記敘文　（B）說明文（事物類）　（C）議論文　（D）抒情文</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(27)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a27"><div class="ans-correct">✅ 答案：（B）說明文（事物類）</div><div class="ans-why">本課客觀介紹秦兵馬俑的歷史背景、規模、特點，是「說明文」，專門說明一件事物，而非記敘故事或發表意見。</div></div>
+      </div>
+
+      <div id="q28" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">28</div><div class="qtxt">本課的說明順序是什麼？<br><br>（A）時間順序（由古到今）　（B）空間順序（由大到小）　（C）因果順序　（D）重要性順序（由重要到次要）</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(28)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a28"><div class="ans-correct">✅ 答案：（B）空間順序（由大到小）</div><div class="ans-why">課文從「皇陵整體」→「兵馬俑坑」→「坑內的俑」，是從大空間到小空間的說明方式。這是本課最重要的教學重點！</div></div>
+      </div>
+
+      <div id="q29" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">29</div><div class="qtxt">本課的整體文章結構是什麼？<br><br>（A）問答式　（B）總－分－總　（C）對比式　（D）並列式</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(29)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a29"><div class="ans-correct">✅ 答案：（B）總－分－總</div><div class="ans-why">第1段（總說兵馬俑出土）→ 第2-4段（分說皇陵、俑坑、俑本身）→ 第5段（總結價值）。這是「總分總」結構！</div></div>
+      </div>
+
+      <div id="q30" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">30</div><div class="qtxt">「陶俑排列整齊，宛如軍隊」這句話使用了哪種修辭手法？<br><br>（A）擬人　（B）比喻　（C）誇飾　（D）排比</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(30)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a30"><div class="ans-correct">✅ 答案：（B）比喻</div><div class="ans-why">「宛如」是「好像、如同」的意思，把陶俑的排列比喻成軍隊，這是比喻修辭（甲像乙）。</div></div>
+      </div>
+
+      <div id="q31" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">31</div><div class="qtxt">「參觀兵馬俑的人，無不感到震撼無比。」這句話的意思是？<br><br>（A）只有部分人感到震撼　（B）所有參觀過兵馬俑的人都感到震撼<br>（C）很少人感到震撼　（D）沒有人感到震撼</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(31)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a31"><div class="ans-correct">✅ 答案：（B）所有參觀過兵馬俑的人都感到震撼</div><div class="ans-why">「無不」＝雙重否定＝全部肯定。「無不感到震撼」= 「全部都感到震撼」，加強語氣！</div></div>
+      </div>
+
+      <div id="q32" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">32</div><div class="qtxt">課文中對「兵馬俑」的描述，以下哪個敘述有誤？<br><br>（A）發現地位於中國西安附近<br>（B）重現了秦代人物的姿態<br>（C）屬於古代青銅藝術<br>（D）具有極高的學術價值</div></div>
+        <div class="qbadges"><span class="badge b-hard">⭐⭐⭐ 難題</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(32)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a32"><div class="ans-correct">✅ 答案：（C）有誤</div><div class="ans-why">兵馬俑是「陶俑」（陶土做的），不是青銅藝術。青銅器是另一種中國古代藝術形式，與兵馬俑不同。</div></div>
+      </div>
+
+      <div id="q33" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">33</div><div class="qtxt">「兵馬俑不僅代表中華文化的奇蹟，更是人類應該珍藏的世界遺產。」關於「不僅……更……」，以下說法最正確的是？<br><br>（A）「不僅」和「更」意思相反，形成對比<br>（B）「更」後面的內容比「不僅」後面的範圍更廣<br>（C）這句話說兵馬俑只有中國人應該珍惜<br>（D）這個句型表示兩件事情沒有關聯</div></div>
+        <div class="qbadges"><span class="badge b-hard">⭐⭐⭐ 難題</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(33)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a33"><div class="ans-correct">✅ 答案：（B）</div><div class="ans-why">「不僅中華文化的奇蹟」→「更是人類的世界遺產」：從「中國/中華」擴大到「全人類/世界」，範圍更廣、程度更深。這是遞進關係！</div></div>
+      </div>
+
+      <div id="q34" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">34</div><div class="qtxt">以下哪個敘述「無法」說明兵馬俑是中華文化奇蹟？<br><br>（A）陵墓布局講究，規模龐大<br>（B）坑內文物眾多，陶俑陶馬數量多<br>（C）陶俑陶馬栩栩如生，表情生動<br>（D）兵馬俑具有極高的學術研究價值</div></div>
+        <div class="qbadges"><span class="badge b-hard">⭐⭐⭐ 難題</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(34)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a34"><div class="ans-correct">✅ 答案：（D）</div><div class="ans-why">「學術研究價值」說明兵馬俑對研究有幫助，但不直接說明為什麼是「文化奇蹟」。（A）（B）（C）都是說明它規模大、工藝精湛的理由。</div></div>
+      </div>
+
+      <div id="q35" class="qcard" style="border-color:#0288D1;">
+        <div class="qhead"><div class="qno">35</div><div class="qtxt">「先鑑定是秦代的文物，而後大舉開挖」── 這個句型「……而後……」說明了什麼？<br><br>（A）兩件事同時發生　（B）先後步驟的順序：前者完成才做後者<br>（C）兩件事互相矛盾　（D）後一件事是前一件事的原因</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(35)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a35"><div class="ans-correct">✅ 答案：（B）先後步驟的順序</div><div class="ans-why">「而後」是連貫複句，表示先做A（鑑定），再做B（開挖）。強調必須先完成前面的步驟，才能進行後面的行動。</div></div>
+      </div>
+
+    </div><!-- /Part C -->
+
+    <!-- ── Part D：成語語詞（8題）── -->
+    <div class="qsec">
+      <div class="qsec-title" style="background:#E91E63;">🃏 D部分：成語與四字語詞（8題）</div>
+
+      <div id="q36" class="qcard" style="border-color:#E91E63;">
+        <div class="qhead"><div class="qno">36</div><div class="qtxt">「栩栩如生」的意思是？<br><br>（A）描繪事物生動逼真，好像有生命一樣<br>（B）形容心情非常快樂<br>（C）形容排列得非常整齊<br>（D）形容非常努力學習</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(36)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a36"><div class="ans-correct">✅ 答案：（A）</div><div class="ans-why">「栩栩如生」形容圖畫、雕塑等非常生動逼真，好像有生命一樣。課文用來描寫兵馬俑的表情和姿態。</div></div>
+      </div>
+
+      <div id="q37" class="qcard" style="border-color:#E91E63;">
+        <div class="qhead"><div class="qno">37</div><div class="qtxt">以下哪句話中「栩栩如生」的用法最正確？<br><br>（A）張老師擅長雕刻動物，每一件作品都栩栩如生<br>（B）他栩栩如生地唱了一首歌<br>（C）今天的數學題目栩栩如生，我不會寫<br>（D）她跑步跑得栩栩如生，得了第一名</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(37)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a37"><div class="ans-correct">✅ 答案：（A）</div><div class="ans-why">「栩栩如生」用於描述藝術作品（雕塑、圖畫、文字描寫）生動逼真，不能用來描寫人的動作或行為。</div></div>
+      </div>
+
+      <div id="q38" class="qcard" style="border-color:#E91E63;">
+        <div class="qhead"><div class="qno">38</div><div class="qtxt">下列哪個句子沒有描寫「神態表情」？<br><br>（A）弟弟眉飛色舞地敘述今天發生的趣事<br>（B）發現自己犯錯後，妹妹面紅耳赤<br>（C）考試成績不理想，哥哥垂頭喪氣地坐在位置上<br>（D）這件寶物埋在土裡千年，如今才重見天日</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-hard">⭐⭐⭐ 難題</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(38)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a38"><div class="ans-correct">✅ 答案：（D）</div><div class="ans-why">（A）眉飛色舞（B）面紅耳赤（C）垂頭喪氣 都是描寫人的神態表情。（D）描寫的是「寶物」的狀態，不是人的表情！</div></div>
+      </div>
+
+      <div id="q39" class="qcard" style="border-color:#E91E63;">
+        <div class="qhead"><div class="qno">39</div><div class="qtxt">「將士們精神抖擻，整裝待發」──以下對這句話的解讀，哪個最正確？<br><br>（A）士兵們精神飽滿，準備好裝備等待出發命令<br>（B）士兵們穿著華麗的服裝在等待<br>（C）士兵們垂頭喪氣，準備撤退<br>（D）士兵們在整理行李，準備去旅行</div></div>
+        <div class="qbadges"><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(39)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a39"><div class="ans-correct">✅ 答案：（A）</div><div class="ans-why">「精神抖擻」=精神飽滿；「整裝待發」=準備好裝備等待出發。合起來是描寫士兵精神飽滿、準備出征的樣子。</div></div>
+      </div>
+
+      <div id="q40" class="qcard" style="border-color:#E91E63;">
+        <div class="qhead"><div class="qno">40</div><div class="qtxt">「眉飛色舞」最適合用在哪個情境？<br><br>（A）小明考試成績很差，回家後（　）地告訴媽媽<br>（B）小明今天被老師選為班長，他（　）地向同學分享這個好消息<br>（C）小明看到心愛的寵物狗過世，（　）地哭了<br>（D）小明站在台上演講，（　）地說了一句話</div></div>
+        <div class="qbadges"><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(40)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a40"><div class="ans-correct">✅ 答案：（B）</div><div class="ans-why">「眉飛色舞」形容非常興奮得意的神態。小明被選為班長（好事）→興奮→眉飛色舞。（A）是壞消息，應用垂頭喪氣。</div></div>
+      </div>
+
+      <div id="q41" class="qcard" style="border-color:#E91E63;">
+        <div class="qhead"><div class="qno">41</div><div class="qtxt">「以小人之心，度君子之腹」中，「君子」的意思是？<br><br>（A）皇帝　（B）品德高尚、行為正直的人　（C）小孩　（D）臣子</div></div>
+        <div class="qbadges"><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(41)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a41"><div class="ans-correct">✅ 答案：（B）品德高尚、行為正直的人</div><div class="ans-why">「君子」在中文裡通常指品德高尚的人，與「小人」（品德差的人）相對。這句話的意思是：用壞人的心態去猜測好人的行為。</div></div>
+      </div>
+
+      <div id="q42" class="qcard" style="border-color:#E91E63;">
+        <div class="qhead"><div class="qno">42</div><div class="qtxt">下列成語中，哪一組都是用來描寫「人的神態」的？<br><br>（A）眉飛色舞、面紅耳赤、垂頭喪氣<br>（B）栩栩如生、布局講究、規模龐大<br>（C）精神抖擻、整裝待發、大舉開挖<br>（D）不堪其擾、含糊其詞、精神煥發</div></div>
+        <div class="qbadges"><span class="badge b-hard">⭐⭐⭐ 難題</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(42)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a42"><div class="ans-correct">✅ 答案：（A）</div><div class="ans-why">（A）三個都是描寫人的神情表情：眉飛色舞（興奮）、面紅耳赤（羞愧/激動）、垂頭喪氣（沮喪）。其他選項包含非神態的詞語。</div></div>
+      </div>
+
+      <div id="q43" class="qcard" style="border-color:#E91E63;">
+        <div class="qhead"><div class="qno">43</div><div class="qtxt">「天不負苦心人」可以用來鼓勵哪種情況的人？<br><br>（A）剛剛取得成功，非常驕傲的人<br>（B）正在努力但還沒成功，需要鼓勵的人<br>（C）已經放棄，不想再努力的人<br>（D）成績非常好，不需要努力的人</div></div>
+        <div class="qbadges"><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(43)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a43"><div class="ans-correct">✅ 答案：（B）</div><div class="ans-why">「天不負苦心人」意思是「上天不會辜負努力的人」，適合用來鼓勵正在努力卻還沒成功的人，告訴他堅持下去就會成功。</div></div>
+      </div>
+
+    </div><!-- /Part D -->
+
+    <!-- ── Part E：句型語法（7題）── -->
+    <div class="qsec">
+      <div class="qsec-title" style="background:#43A047;">📐 E部分：句型語法（7題）</div>
+
+      <div id="q44" class="qcard" style="border-color:#43A047;">
+        <div class="qhead"><div class="qno">44</div><div class="qtxt">「看過這部影片的人，都被那緊張懸疑的劇情所吸引。」<br>請用「無不」改寫這個句子（意思不變）。</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(44)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a44"><div class="ans-correct">✅ 參考答案：看過這部影片的人，無不被那緊張懸疑的劇情所吸引。</div><div class="ans-why">把「都」改成「無不」即可。「無不」＝雙重否定＝全部都，意思相同但語氣更強。</div></div>
+      </div>
+
+      <div id="q45" class="qcard" style="border-color:#43A047;">
+        <div class="qhead"><div class="qno">45</div><div class="qtxt">以下哪個句子，「不僅……更……」的用法最正確？<br><br>（A）他不僅去了學校，更而且回到家了<br>（B）這次旅行不僅讓我增長見識，更讓我交到了新朋友<br>（C）不僅太陽很亮，更太陽很熱（重複主詞）<br>（D）她不僅很美麗，更但是很聰明（多餘的「但是」）</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-hard">⭐⭐⭐ 難題</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(45)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a45"><div class="ans-correct">✅ 答案：（B）</div><div class="ans-why">（A）「更而且」是重複詞；（C）主詞重複且結構不對；（D）「更但是」是重複詞。只有（B）結構正確：不僅＋A，更＋B（B比A更深廣）。</div></div>
+      </div>
+
+      <div id="q46" class="qcard" style="border-color:#43A047;">
+        <div class="qhead"><div class="qno">46</div><div class="qtxt">以下哪個句子有語病（語文問題）？<br><br>（A）將士們精神抖擻，整裝待發<br>（B）他不僅努力，而且也很勤奮（語意重複）<br>（C）看過兵馬俑的人，無不感到震撼<br>（D）這座皇陵布局講究，規模龐大</div></div>
+        <div class="qbadges"><span class="badge b-hot">🔥 常考</span><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(46)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a46"><div class="ans-correct">✅ 答案：（B）有語病</div><div class="ans-why">「不僅努力，而且也很勤奮」── 「努力」和「勤奮」意思幾乎相同，語意重複。應改為：「他不僅努力，而且成績優異。」</div></div>
+      </div>
+
+      <div id="q47" class="qcard" style="border-color:#43A047;">
+        <div class="qhead"><div class="qno">47</div><div class="qtxt">以下哪個句子的「而後」用法正確（強調先後步驟）？<br><br>（A）他吃飯而後睡覺（正確步驟順序）<br>（B）她而後說了一句話<br>（C）我而後要去學校<br>（D）他在而後的時間到了</div></div>
+        <div class="qbadges"><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(47)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a47"><div class="ans-correct">✅ 答案：（A）</div><div class="ans-why">「……而後……」要用在兩件有先後順序的事情，「先吃飯，而後睡覺」符合連貫複句格式。其他選項的「而後」位置和用法不正確。</div></div>
+      </div>
+
+      <div id="q48" class="qcard" style="border-color:#43A047;">
+        <div class="qhead"><div class="qno">48</div><div class="qtxt">「雖然……但是……」改寫題：<br>「雖然這件工作很辛苦，但是叔叔努力完成了目標。」<br>請用「不僅……更……」改寫（增強語氣，意思相近）。</div></div>
+        <div class="qbadges"><span class="badge b-hard">⭐⭐⭐ 難題</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(48)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a48"><div class="ans-correct">✅ 參考答案：叔叔不僅完成了這件辛苦的工作，更實現了開餐廳的願望。</div><div class="ans-why">用「不僅……更……」改寫時，把兩件正面的事情連起來，後者比前者更厲害。注意「更」後面要比「不僅」後面的事情更了不起。</div></div>
+      </div>
+
+      <div id="q49" class="qcard" style="border-color:#43A047;">
+        <div class="qhead"><div class="qno">49</div><div class="qtxt">下列哪個例子最能說明「無不」加強肯定的效果？<br><br>（A）「大家都感動了」和「大家無不感動」── 後者語氣更強、更肯定<br>（B）「大家都沒感動」和「大家無不感動」── 意思相反<br>（C）「大家無不感動」的意思是「大家都不感動」<br>（D）「無不」是一個表示否定的詞</div></div>
+        <div class="qbadges"><span class="badge b-med">⭐⭐ 中等</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(49)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a49"><div class="ans-correct">✅ 答案：（A）</div><div class="ans-why">「無不」是雙重否定（無+不），等於全部肯定，且語氣比「都」更強烈。「大家無不感動」比「大家都感動」更有加強的語氣效果。</div></div>
+      </div>
+
+      <div id="q50" class="qcard" style="border-color:#43A047;">
+        <div class="qhead"><div class="qno">50</div><div class="qtxt">用「不僅……更……」造一個完整的句子（自由發揮，注意「更」後面要比「不僅」後面程度更深）。</div></div>
+        <div class="qbadges"><span class="badge b-easy">⭐ 基礎</span></div>
+        <div class="qbtn-row"><button class="abtn" onclick="showAns(50)">👁️ 看答案</button></div>
+        <div class="ans-box" id="a50"><div class="ans-correct">✅ 參考答案示範：</div><div class="ans-why">① 這次校慶活動不僅好玩有趣，更讓全校同學增進了感情。<br>② 秦兵馬俑不僅展現了精湛的工藝，更是中華文化的驕傲。<br>③ 他不僅通過了考試，更以第一名的成績榮獲獎學金。<br><br>⭐ 重點：「更」後面的事情要比「不僅」後面的更了不起、範圍更大！</div></div>
+      </div>
+
+    </div><!-- /Part E -->
+
+  </div><!-- /sec-body -->
+</div><!-- /S6 -->
+
+<!-- Footer -->
+<div style="text-align:center;padding:24px;color:#AAA;font-size:.85em;background:#fff;margin-top:20px;">
+  🏛️ 第11課《地下護衛軍》超強記憶學習包｜五年級下學期國語<br>
+  共 50 題 ── 字音字形12題 + 詞義辨析8題 + 閱讀理解15題 + 成語語詞8題 + 句型語法7題
+</div>
+
+<script>
+// ── Progress tracking ──
+let viewed = new Set();
+const total = 50;
+
+function showAns(n){
+  const box = document.getElementById('a'+n);
+  const btn = box.previousElementSibling.querySelector('.abtn');
+  if(!box.classList.contains('show')){
+    box.classList.add('show');
+    if(btn) btn.textContent = '✅ 已查看';
+    if(!viewed.has(n)){
+      viewed.add(n);
+      updateProg();
+    }
+  } else {
+    box.classList.remove('show');
+    if(btn) btn.textContent = '👁️ 看答案';
+  }
+}
+
+function updateProg(){
+  const d = viewed.size;
+  document.getElementById('doneQ').textContent = d;
+  const pct = Math.round(d/total*100);
+  document.getElementById('progFill').style.width = pct+'%';
+  document.getElementById('progTxt').textContent = '進度 '+d+' / '+total+' ('+pct+'%)';
+}
+
+function resetAll(){
+  viewed.clear();
+  updateProg();
+  for(let i=1;i<=total;i++){
+    const box = document.getElementById('a'+i);
+    if(box){
+      box.classList.remove('show');
+      const row = box.previousElementSibling;
+      if(row){
+        const btn = row.querySelector('.abtn');
+        if(btn) btn.textContent = '👁️ 看答案';
+      }
+    }
+  }
+}
+
+function jump(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body>
+</html>
