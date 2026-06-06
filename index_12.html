@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第12課 金字塔之謎｜超強記憶學習包</title>
+<style>
+  :root {
+    --gold: #D4A017;
+    --sand: #F5E6C8;
+    --deep: #8B4513;
+    --teal: #2E8B8B;
+    --sky: #87CEEB;
+    --red: #E05252;
+    --green: #4CAF50;
+    --purple: #7B5EA7;
+    --orange: #FF8C00;
+    --bg: #FFF9F0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: '標楷體', 'DFKai-SB', serif; background: var(--bg); color: #333; }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #8B4513 0%, #D4A017 50%, #F5E6C8 100%);
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '𓂀 𓆣 𓇋 𓅓 𓆙';
+    font-size: 28px;
+    display: block;
+    opacity: 0.3;
+    letter-spacing: 20px;
+    margin-bottom: 10px;
+  }
+  .hero h1 { font-size: 2.8em; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+  .hero h2 { font-size: 1.4em; color: #FFE4A0; margin-top: 6px; }
+  .hero .badge {
+    display: inline-block; background: #fff; color: #8B4513;
+    border-radius: 20px; padding: 4px 16px; margin-top: 10px;
+    font-size: 0.95em; font-weight: bold;
+  }
+  .pyramid-deco {
+    width: 0; height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 70px solid rgba(255,255,255,0.2);
+    display: inline-block; margin: 10px 5px 0;
+  }
+
+  /* NAV */
+  .nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 16px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+  .nav a { text-decoration: none; padding: 6px 14px; border-radius: 20px; font-size: 0.9em; font-weight: bold; transition: all 0.2s; }
+  .nav a:hover { transform: translateY(-2px); opacity: 0.85; }
+  .nav a:nth-child(1) { background: #D4A017; color: #fff; }
+  .nav a:nth-child(2) { background: #2E8B8B; color: #fff; }
+  .nav a:nth-child(3) { background: #E05252; color: #fff; }
+  .nav a:nth-child(4) { background: #7B5EA7; color: #fff; }
+  .nav a:nth-child(5) { background: #4CAF50; color: #fff; }
+  .nav a:nth-child(6) { background: #FF8C00; color: #fff; }
+
+  /* SECTIONS */
+  section { max-width: 960px; margin: 30px auto; padding: 0 16px; }
+  .section-title {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 1.6em; padding: 12px 20px;
+    border-radius: 12px; margin-bottom: 20px; color: #fff;
+  }
+  .section-title .icon { font-size: 1.4em; }
+  .s1 { background: linear-gradient(90deg, #8B4513, #D4A017); }
+  .s2 { background: linear-gradient(90deg, #2E8B8B, #48CAE4); }
+  .s3 { background: linear-gradient(90deg, #E05252, #FF8C00); }
+  .s4 { background: linear-gradient(90deg, #7B5EA7, #B388FF); }
+  .s5 { background: linear-gradient(90deg, #4CAF50, #A5D6A7); }
+  .s6 { background: linear-gradient(90deg, #FF8C00, #FFD54F); }
+
+  /* STRUCTURE MAP */
+  .struct-map { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .struct-center {
+    background: linear-gradient(135deg, #8B4513, #D4A017);
+    color: #fff; border-radius: 16px; text-align: center;
+    padding: 18px; margin-bottom: 20px; font-size: 1.3em; font-weight: bold;
+  }
+  .struct-row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .struct-box {
+    flex: 1; min-width: 180px; border-radius: 12px;
+    padding: 14px; border-left: 5px solid;
+  }
+  .struct-box.gold { background: #FFF8E7; border-color: #D4A017; }
+  .struct-box.teal { background: #E8F5F5; border-color: #2E8B8B; }
+  .struct-box.red  { background: #FFF0F0; border-color: #E05252; }
+  .struct-box.purple { background: #F3EEF9; border-color: #7B5EA7; }
+  .struct-box h4 { font-size: 1em; margin-bottom: 6px; }
+  .struct-box ul { padding-left: 16px; font-size: 0.92em; line-height: 1.8; }
+  .arrow-down { text-align: center; font-size: 1.8em; color: #D4A017; margin: 4px 0; }
+
+  /* KANJI CARDS */
+  .kanji-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .kanji-card {
+    background: #fff; border-radius: 14px; padding: 16px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08); text-align: center;
+    border-top: 4px solid;
+  }
+  .kanji-card .char { font-size: 2.8em; line-height: 1.2; }
+  .kanji-card .reading { font-size: 0.85em; color: #888; margin: 2px 0; }
+  .kanji-card .meaning { font-size: 0.9em; color: #555; }
+  .kanji-card .similar { margin-top: 8px; font-size: 0.85em; background: #FFF3E0; border-radius: 8px; padding: 6px; }
+  .kanji-card .similar span { color: #E05252; font-weight: bold; }
+  .kanji-card .example { margin-top: 6px; font-size: 0.88em; color: #2E8B8B; }
+
+  /* WORD CARDS */
+  .word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .word-card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 3px 10px rgba(0,0,0,0.07); }
+  .word-card .word { font-size: 1.3em; font-weight: bold; color: #8B4513; }
+  .word-card .def { font-size: 0.92em; color: #444; margin: 6px 0; line-height: 1.6; }
+  .word-card .eg { font-size: 0.88em; color: #2E8B8B; border-left: 3px solid #2E8B8B; padding-left: 8px; }
+  .word-card .diff { font-size: 0.85em; background: #FFF3E0; border-radius: 8px; padding: 6px 8px; margin-top: 8px; }
+
+  /* VOCAB CARDS (成語/重點詞) */
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .vocab-card {
+    border-radius: 14px; padding: 18px; color: #fff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  }
+  .vocab-card .vword { font-size: 1.6em; font-weight: bold; letter-spacing: 4px; }
+  .vocab-card .vread { font-size: 0.85em; opacity: 0.85; margin: 2px 0; }
+  .vocab-card .vmean { font-size: 0.95em; margin-top: 8px; line-height: 1.6; }
+  .vocab-card .veg { font-size: 0.88em; margin-top: 8px; background: rgba(255,255,255,0.2); border-radius: 8px; padding: 6px 10px; }
+  .vc1 { background: linear-gradient(135deg, #8B4513, #D4A017); }
+  .vc2 { background: linear-gradient(135deg, #2E8B8B, #48CAE4); }
+  .vc3 { background: linear-gradient(135deg, #E05252, #FF8C00); }
+  .vc4 { background: linear-gradient(135deg, #7B5EA7, #B388FF); }
+  .vc5 { background: linear-gradient(135deg, #4CAF50, #A5D6A7); }
+  .vc6 { background: linear-gradient(135deg, #FF8C00, #FFD54F); }
+  .vc7 { background: linear-gradient(135deg, #E91E63, #FF8A80); }
+  .vc8 { background: linear-gradient(135deg, #1565C0, #42A5F5); }
+
+  /* SENTENCE PATTERNS */
+  .pattern-card { background: #fff; border-radius: 14px; padding: 20px; margin-bottom: 16px; box-shadow: 0 3px 12px rgba(0,0,0,0.07); border-left: 6px solid; }
+  .pattern-card.p1 { border-color: #D4A017; }
+  .pattern-card.p2 { border-color: #2E8B8B; }
+  .pattern-card.p3 { border-color: #E05252; }
+  .pattern-card .pattern-name { font-size: 1.1em; font-weight: bold; margin-bottom: 8px; color: #444; }
+  .pattern-card .pattern-formula { background: #F5E6C8; border-radius: 8px; padding: 10px; font-size: 1.05em; margin-bottom: 10px; text-align: center; }
+  .pattern-card .pattern-eg { font-size: 0.92em; color: #555; line-height: 1.8; }
+  .pattern-card .pattern-eg span { color: #E05252; font-weight: bold; }
+  .pattern-card .practice { background: #F0F8F0; border-radius: 8px; padding: 10px; margin-top: 10px; font-size: 0.9em; }
+
+  /* QUIZ */
+  .quiz-section { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 20px; }
+  .quiz-section h3 { font-size: 1.2em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px dashed #ddd; color: #8B4513; }
+  .q-item { margin-bottom: 18px; padding: 14px; border-radius: 10px; background: #FAFAFA; border: 1px solid #eee; }
+  .q-item:hover { background: #FFF8E7; }
+  .q-header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .q-num { background: #8B4513; color: #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.85em; flex-shrink: 0; font-weight: bold; }
+  .q-star { font-size: 0.8em; flex-shrink: 0; margin-top: 2px; }
+  .q-text { font-size: 0.98em; line-height: 1.7; flex: 1; }
+  .q-opts { padding-left: 38px; margin-top: 6px; }
+  .q-opts p { font-size: 0.93em; line-height: 1.8; color: #555; }
+  .q-ans { margin-top: 10px; padding: 8px 12px; background: #E8F5E9; border-radius: 8px; font-size: 0.9em; cursor: pointer; border: 1px solid #A5D6A7; }
+  .q-ans .ans-toggle { color: #4CAF50; font-weight: bold; }
+  .q-ans .ans-content { display: none; margin-top: 6px; color: #2E7D32; line-height: 1.6; }
+  .q-ans.open .ans-content { display: block; }
+  .diff-1::before { content: '⭐'; }
+  .diff-2::before { content: '⭐⭐'; }
+  .diff-3::before { content: '⭐⭐⭐'; }
+
+  /* KEY FACTS BOX */
+  .fact-box { background: linear-gradient(135deg, #FFF8E7, #F5E6C8); border-radius: 14px; padding: 20px; margin-bottom: 20px; border: 2px solid #D4A017; }
+  .fact-box h3 { color: #8B4513; margin-bottom: 12px; font-size: 1.15em; }
+  .fact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .fact-item { background: #fff; border-radius: 10px; padding: 12px; text-align: center; border-top: 3px solid #D4A017; }
+  .fact-item .fact-num { font-size: 1.8em; font-weight: bold; color: #8B4513; }
+  .fact-item .fact-label { font-size: 0.85em; color: #666; margin-top: 4px; }
+
+  /* PROVERB */
+  .proverb { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #fff; border-radius: 14px; padding: 24px; text-align: center; margin: 20px 0; }
+  .proverb .ptext { font-size: 1.6em; letter-spacing: 4px; color: #FFD700; margin-bottom: 8px; }
+  .proverb .pexplain { font-size: 0.95em; color: #aaa; }
+
+  /* COMPARE TABLE */
+  .compare-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.93em; }
+  .compare-table th { background: #8B4513; color: #fff; padding: 10px; text-align: center; }
+  .compare-table td { padding: 10px; border: 1px solid #ddd; vertical-align: top; }
+  .compare-table tr:nth-child(even) { background: #FFF8E7; }
+  .compare-table .correct { color: #4CAF50; font-weight: bold; }
+  .compare-table .wrong { color: #E05252; font-weight: bold; }
+
+  /* FOOTER */
+  footer { text-align: center; padding: 30px; color: #999; font-size: 0.85em; background: #fff; margin-top: 40px; }
+
+  /* TOGGLE */
+  .toggle-btn { background: none; border: none; cursor: pointer; font-size: inherit; font-family: inherit; width: 100%; text-align: left; display: flex; align-items: center; gap: 6px; }
+  .toggle-btn .arr { transition: transform 0.2s; }
+  .q-ans.open .toggle-btn .arr { transform: rotate(90deg); }
+
+  @media print {
+    .nav { display: none; }
+    .q-ans .ans-content { display: block !important; }
+    section { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="pyramid-deco"></div>
+    <div class="pyramid-deco" style="border-bottom-color:rgba(255,255,255,0.15);transform:scale(1.5);"></div>
+    <div class="pyramid-deco"></div>
+  </div>
+  <h1>第十二課 金字塔之謎</h1>
+  <h2>超強記憶學習包 🏺</h2>
+  <span class="badge">五年級下學期｜說明文｜改寫自《小牛頓》</span>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#struct">📐 課文結構</a>
+  <a href="#kanji">🔍 形近字</a>
+  <a href="#words">📖 詞義辨析</a>
+  <a href="#vocab">🃏 重點詞卡</a>
+  <a href="#patterns">✏️ 重點句型</a>
+  <a href="#quiz">📝 50道練習</a>
+</nav>
+
+<!-- ① 課文結構圖 -->
+<section id="struct">
+  <div class="section-title s1"><span class="icon">📐</span> 一、課文結構圖</div>
+  <div class="struct-map">
+
+    <div class="struct-center">
+      🏛️ 金字塔之謎｜說明文（非連續文本）<br>
+      <span style="font-size:0.8em;font-weight:normal;">主旨：介紹古埃及金字塔的形成、建造方法與目的，呈現古人高度的文明與智慧。</span>
+    </div>
+
+    <div class="proverb">
+      <div class="ptext">「人類怕時間，時間怕金字塔。」</div>
+      <div class="pexplain">阿拉伯諺語：金字塔歷經數千年依然矗立，象徵人類智慧永恆的結晶。</div>
+    </div>
+
+    <div class="struct-row">
+      <div class="struct-box gold">
+        <h4>🗺️ 第一段｜引入（空間）</h4>
+        <ul>
+          <li>從天空俯瞰埃及</li>
+          <li>金字塔散落於尼羅河西岸</li>
+          <li>已知金字塔有 60～70 座</li>
+          <li>吉薩三大金字塔最有名</li>
+        </ul>
+      </div>
+      <div class="struct-box teal">
+        <h4>📊 古夫金字塔小檔案</h4>
+        <ul>
+          <li>建造：約 4500 多年前</li>
+          <li>高度：約 146.5 公尺</li>
+          <li>占地：約 5 萬多平方公尺</li>
+          <li>由 230 萬塊巨石堆砌</li>
+          <li>每塊 ≥ 2.5 公噸</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="arrow-down">▼</div>
+
+    <div class="struct-row">
+      <div class="struct-box red">
+        <h4>⛏️ 第二段｜切割石材</h4>
+        <ul>
+          <li>工具：銅鑿子、木楔子</li>
+          <li>方法：在岩壁挖洞→插入楔子→灌水</li>
+          <li>原理：木頭吸水膨脹，迸開石塊</li>
+        </ul>
+      </div>
+      <div class="struct-box red">
+        <h4>🛷 第三段｜搬運巨石</h4>
+        <ul>
+          <li>工人以 25 人為一組</li>
+          <li>用木橇搬運</li>
+          <li>澆水或油（潤滑劑）減少摩擦力</li>
+          <li>號令下齊力拉動</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="arrow-down">▼</div>
+
+    <div class="struct-row">
+      <div class="struct-box purple">
+        <h4>🏗️ 第四段｜堆疊工法</h4>
+        <ul>
+          <li>科學家推測：螺旋狀斜坡</li>
+          <li>建造時用斜坡搬石</li>
+          <li>完工後從上往下拆除斜坡</li>
+          <li>用灰泥、礫石修整平面</li>
+        </ul>
+      </div>
+      <div class="struct-box purple">
+        <h4>⚰️ 第五段｜建造目的</h4>
+        <ul>
+          <li>古埃及人相信人死後永生</li>
+          <li>保存遺體→製成木乃伊</li>
+          <li>安放於金字塔墓室</li>
+          <li>象徵法老的永恆與偉大</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fact-box" style="margin-top:20px;">
+      <h3>📏 古夫金字塔 vs 世界建築比較</h3>
+      <div class="fact-grid">
+        <div class="fact-item">
+          <div class="fact-num">93m</div>
+          <div class="fact-label">🗽 自由女神像</div>
+        </div>
+        <div class="fact-item" style="border-top-color:#D4A017;">
+          <div class="fact-num" style="color:#D4A017;">146.5m</div>
+          <div class="fact-label">🏛️ 古夫金字塔</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-num">300m</div>
+          <div class="fact-label">🗼 艾菲爾鐵塔</div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-num">508m</div>
+          <div class="fact-label">🏙️ 臺北101</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ② 形近字辨析 -->
+<section id="kanji">
+  <div class="section-title s2"><span class="icon">🔍</span> 二、形近字辨析</div>
+  <div class="kanji-grid">
+
+    <div class="kanji-card" style="border-top-color:#D4A017;">
+      <div class="char">矗</div>
+      <div class="reading">ㄔㄨˋ</div>
+      <div class="meaning">高高地直立</div>
+      <div class="similar">形近字：<span>直</span>（ㄓˊ）<br>直→品→矗（三個直疊起來！）</div>
+      <div class="example">金字塔矗立沙漠中。</div>
+    </div>
+
+    <div class="kanji-card" style="border-top-color:#2E8B8B;">
+      <div class="char">蘊</div>
+      <div class="reading">ㄩㄣˋ</div>
+      <div class="meaning">積藏在內、含有</div>
+      <div class="similar">形近字：<span>醞</span>（ㄩㄣˋ）<br>蘊＝蘊藏；醞＝醞釀（酒）</div>
+      <div class="example">山中蘊藏豐富礦產。</div>
+    </div>
+
+    <div class="kanji-card" style="border-top-color:#E05252;">
+      <div class="char">瞰</div>
+      <div class="reading">ㄎㄢˋ</div>
+      <div class="meaning">從高處往下看</div>
+      <div class="similar">形近字：<span>橄</span>（ㄍㄢˇ）<br>瞰＝目＋敢；橄＝木＋感（橄欖）</div>
+      <div class="example">從山頂俯瞰全城夜景。</div>
+    </div>
+
+    <div class="kanji-card" style="border-top-color:#7B5EA7;">
+      <div class="char">割</div>
+      <div class="reading">ㄍㄜ</div>
+      <div class="meaning">用刀切斷</div>
+      <div class="similar">形近字：<span>戈</span>（ㄍㄜ）<br>割＝害＋刀；戈是兵器名（不是割）</div>
+      <div class="example">用銅鑿子切割巨石。</div>
+    </div>
+
+    <div class="kanji-card" style="border-top-color:#4CAF50;">
+      <div class="char">橇</div>
+      <div class="reading">ㄑㄧㄠ</div>
+      <div class="meaning">在地面滑行的工具</div>
+      <div class="similar">形近字：<span>翹</span>（ㄑㄧㄠˋ）<br>橇＝木旁（工具）；翹＝羽旁（翹起）</div>
+      <div class="example">用木橇搬運巨石。</div>
+    </div>
+
+    <div class="kanji-card" style="border-top-color:#FF8C00;">
+      <div class="char">潤</div>
+      <div class="reading">ㄖㄨㄣˋ</div>
+      <div class="meaning">不乾燥、使滑順</div>
+      <div class="similar">形近字：<span>閏</span>（ㄖㄨㄣˋ）<br>潤＝氵（水）＋閏；閏月、閏年</div>
+      <div class="example">潤滑劑減少摩擦力。</div>
+    </div>
+
+    <div class="kanji-card" style="border-top-color:#E91E63;">
+      <div class="char">摩</div>
+      <div class="reading">ㄇㄛˊ</div>
+      <div class="meaning">互相接觸並移動</div>
+      <div class="similar">形近字：<span>磨</span>（ㄇㄛˊ）<br>摩＝手旁（手的動作）；磨＝石旁（磨石）</div>
+      <div class="example">減少摩擦力，更省力。</div>
+    </div>
+
+    <div class="kanji-card" style="border-top-color:#1565C0;">
+      <div class="char">據</div>
+      <div class="reading">ㄐㄩˋ</div>
+      <div class="meaning">根據、依靠</div>
+      <div class="similar">形近字：<span>踞</span>（ㄐㄩˋ）<br>據＝手旁（執持）；踞＝足旁（蹲踞）</div>
+      <div class="example">科學家根據推測提出說法。</div>
+    </div>
+
+    <div class="kanji-card" style="border-top-color:#D4A017;">
+      <div class="char">劑</div>
+      <div class="reading">ㄐㄧˋ</div>
+      <div class="meaning">調製的藥或化學物</div>
+      <div class="similar">形近字：<span>濟</span>（ㄐㄧˋ）<br>劑＝刀旁（調製）；濟＝氵（水、幫助）</div>
+      <div class="example">澆水或油當潤滑劑。</div>
+    </div>
+
+    <div class="kanji-card" style="border-top-color:#2E8B8B;">
+      <div class="char">妥</div>
+      <div class="reading">ㄊㄨㄛˇ</div>
+      <div class="meaning">穩當、適當</div>
+      <div class="similar">形近字：<span>安</span>（ㄢ）<br>妥＝爪＋女；安＝宀＋女（安靜）</div>
+      <div class="example">妥善保存法老遺體。</div>
+    </div>
+
+    <div class="kanji-card" style="border-top-color:#E05252;">
+      <div class="char">礫</div>
+      <div class="reading">ㄌㄧˋ</div>
+      <div class="meaning">碎石、小石子</div>
+      <div class="similar">形近字：<span>爍</span>（ㄕㄨㄛˋ）<br>礫＝石旁（石子）；爍＝火旁（光亮）</div>
+      <div class="example">用灰泥和礫石修整。</div>
+    </div>
+
+    <div class="kanji-card" style="border-top-color:#7B5EA7;">
+      <div class="char">諺</div>
+      <div class="reading">ㄧㄢˋ</div>
+      <div class="meaning">流傳民間的智慧語句</div>
+      <div class="similar">形近字：<span>彥</span>（ㄧㄢˋ）<br>諺＝言旁（說的話）；彥是人名用字</div>
+      <div class="example">這是一句著名的諺語。</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ③ 詞義辨析 -->
+<section id="words">
+  <div class="section-title s3"><span class="icon">📖</span> 三、詞義辨析</div>
+  <div class="word-grid">
+
+    <div class="word-card">
+      <div class="word">矗立 vs 屹立</div>
+      <div class="def">
+        <b>矗立</b>：高高地直立（強調「高」的視覺感）<br>
+        <b>屹立</b>：堅定地立著（強調「穩固不倒」）
+      </div>
+      <div class="eg">金字塔矗立沙漠，數千年來依然屹立不搖。</div>
+      <div class="diff">🔑 矗立→外形高聳；屹立→意志堅定</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word">俯瞰 vs 鳥瞰</div>
+      <div class="def">
+        <b>俯瞰</b>：從高處向下看（動作描述）<br>
+        <b>鳥瞰</b>：像鳥一樣從上方看（角度比喻）
+      </div>
+      <div class="eg">從飛機俯瞰大地，如同鳥瞰圖一般壯觀。</div>
+      <div class="diff">🔑 兩者意思接近，鳥瞰更強調廣闊視野</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word">推測 vs 猜測</div>
+      <div class="def">
+        <b>推測</b>：根據證據或邏輯判斷（有依據）<br>
+        <b>猜測</b>：沒有根據地猜想（無依據）
+      </div>
+      <div class="eg">科學家根據文物<b>推測</b>建造方法，而非隨意<b>猜測</b>。</div>
+      <div class="diff">🔑 推測有理由；猜測靠運氣</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word">妥善 vs 完善</div>
+      <div class="def">
+        <b>妥善</b>：處理得穩妥、恰當（動作結果）<br>
+        <b>完善</b>：完備、周全（狀態描述）
+      </div>
+      <div class="eg">請<b>妥善</b>保存文物；博物館的設備十分<b>完善</b>。</div>
+      <div class="diff">🔑 妥善搭配「處理/保存」；完善搭配「制度/設備」</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word">蘊含 vs 包含</div>
+      <div class="def">
+        <b>蘊含</b>：深藏著、隱含（有豐富深意）<br>
+        <b>包含</b>：裡面有（直接的涵蓋）
+      </div>
+      <div class="eg">金字塔<b>蘊含</b>古埃及的智慧；學習包<b>包含</b>五個單元。</div>
+      <div class="diff">🔑 蘊含較深沉；包含較直接</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word">忽視 vs 漠視</div>
+      <div class="def">
+        <b>忽視</b>：沒有注意到、不重視<br>
+        <b>漠視</b>：明知道卻冷漠地不理睬（態度更惡劣）
+      </div>
+      <div class="eg">不能<b>忽視</b>環保問題；我們不應<b>漠視</b>弱勢族群的需求。</div>
+      <div class="diff">🔑 忽視是無意；漠視是有意冷漠</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word">包裹（動）vs 包裹（名）</div>
+      <div class="def">
+        <b>包裹（動）</b>ㄅㄠ ㄍㄨㄛˇ：用布或紙纏繞<br>
+        <b>包裹（名）</b>ㄅㄠ ㄍㄨㄛˇ：包好的物品（包包）
+      </div>
+      <div class="eg">用布條<b>包裹</b>遺體，製成木乃伊。</div>
+      <div class="diff">🔑 本課用動詞義：纏繞、包覆</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word">永生 vs 長生</div>
+      <div class="def">
+        <b>永生</b>：永遠存活，死後靈魂不滅（宗教信仰）<br>
+        <b>長生</b>：長久地活著（人世間的壽命延長）
+      </div>
+      <div class="eg">古埃及人建金字塔，相信可以得到<b>永生</b>。</div>
+      <div class="diff">🔑 永生是超自然信仰；長生是現世追求</div>
+    </div>
+
+  </div>
+
+  <!-- 比較表格 -->
+  <div style="margin-top:20px;">
+    <h3 style="color:#8B4513;margin-bottom:12px;">📊 一字多義：「號」</h3>
+    <table class="compare-table">
+      <tr><th>詞語</th><th>注音</th><th>意義</th><th>例句</th></tr>
+      <tr><td>號令</td><td>ㄏㄠˋ ㄌㄧㄥˋ</td><td class="correct">命令、指揮</td><td>在工頭的號令下，大家齊力搬石。</td></tr>
+      <tr><td>暗號</td><td>ㄢˋ ㄏㄠˋ</td><td>標記、記號</td><td>他們用暗號傳遞訊息。</td></tr>
+      <tr><td>名號</td><td>ㄇㄧㄥˊ ㄏㄠˋ</td><td>名稱、別名</td><td>古夫金字塔又稱「大金字塔」。</td></tr>
+      <tr><td>哀號</td><td>ㄞ ㄏㄠˊ</td><td>放聲大哭</td><td>聽到噩耗，他不禁哀號起來。</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ④ 重點詞卡 -->
+<section id="vocab">
+  <div class="section-title s4"><span class="icon">🃏</span> 四、重點詞語卡片</div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card vc1">
+      <div class="vword">矗立</div>
+      <div class="vread">ㄔㄨˋ ㄌㄧˋ</div>
+      <div class="vmean">高高地直立，形容建築物或人挺立的樣子。</div>
+      <div class="veg">📍 金字塔歷經數千年，依舊雄偉地矗立著。</div>
+    </div>
+
+    <div class="vocab-card vc2">
+      <div class="vword">蘊含</div>
+      <div class="vread">ㄩㄣˋ ㄏㄢˊ</div>
+      <div class="vmean">深藏著、隱含著（某種精神、意義或寶藏）。</div>
+      <div class="veg">📍 這篇文章蘊含深厚的人生哲理。</div>
+    </div>
+
+    <div class="vocab-card vc3">
+      <div class="vword">俯瞰</div>
+      <div class="vread">ㄈㄨˇ ㄎㄢˋ</div>
+      <div class="vmean">從高處向下眺望，視野廣闊。</div>
+      <div class="veg">📍 從空中俯瞰，金字塔如模型般壯觀。</div>
+    </div>
+
+    <div class="vocab-card vc4">
+      <div class="vword">潤滑劑</div>
+      <div class="vread">ㄖㄨㄣˋ ㄏㄨㄚˊ ㄐㄧˋ</div>
+      <div class="vmean">用來減少兩物體間摩擦力的物質（如水、油）。</div>
+      <div class="veg">📍 在木橇上澆水作為潤滑劑，搬運更省力。</div>
+    </div>
+
+    <div class="vocab-card vc5">
+      <div class="vword">妥善</div>
+      <div class="vread">ㄊㄨㄛˇ ㄕㄢˋ</div>
+      <div class="vmean">處理得穩當、恰當，沒有疏漏。</div>
+      <div class="veg">📍 請妥善保管重要文件，避免遺失。</div>
+    </div>
+
+    <div class="vocab-card vc6">
+      <div class="vword">推測</div>
+      <div class="vread">ㄊㄨㄟ ㄘㄜˋ</div>
+      <div class="vmean">根據已知的事實或道理，判斷未知的情況。</div>
+      <div class="veg">📍 科學家推測古夫金字塔是用斜坡建造的。</div>
+    </div>
+
+    <div class="vocab-card vc7">
+      <div class="vword">木乃伊</div>
+      <div class="vread">ㄇㄨˋ ㄋㄞˇ ㄧ</div>
+      <div class="vmean">用香料、布條等保存的乾燥遺體，用於古埃及葬禮。</div>
+      <div class="veg">📍 法老的遺體被製成木乃伊，安放於墓室中。</div>
+    </div>
+
+    <div class="vocab-card vc8">
+      <div class="vword">諺語</div>
+      <div class="vread">ㄧㄢˋ ㄩˇ</div>
+      <div class="vmean">民間流傳、言簡意賅的智慧語句。</div>
+      <div class="veg">📍 「人類怕時間，時間怕金字塔」是著名的阿拉伯諺語。</div>
+    </div>
+
+    <div class="vocab-card vc1">
+      <div class="vword">摩擦力</div>
+      <div class="vread">ㄇㄛˊ ㄘㄚ ㄌㄧˋ</div>
+      <div class="vmean">兩物體接觸面相對移動時產生的阻力。</div>
+      <div class="veg">📍 加油當潤滑劑，可以減少摩擦力。</div>
+    </div>
+
+    <div class="vocab-card vc3">
+      <div class="vword">楔子</div>
+      <div class="vread">ㄒㄧㄝ ˙ ㄗ</div>
+      <div class="vmean">一端薄一端厚的木塊或鐵塊，插入縫隙使物體固定或撐開。</div>
+      <div class="veg">📍 在石縫插入楔子，再灌水使巨石迸裂。</div>
+    </div>
+
+    <div class="vocab-card vc2">
+      <div class="vword">礫石</div>
+      <div class="vread">ㄌㄧˋ ㄕˊ</div>
+      <div class="vmean">細碎的小石子，常用於填補縫隙或鋪路。</div>
+      <div class="veg">📍 用灰泥和礫石修整金字塔的表面。</div>
+    </div>
+
+    <div class="vocab-card vc5">
+      <div class="vword">號令</div>
+      <div class="vread">ㄏㄠˋ ㄌㄧㄥˋ</div>
+      <div class="vmean">發出指揮命令，讓大家一起行動。</div>
+      <div class="veg">📍 工頭一聲號令，所有工人同步搬運巨石。</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ⑤ 重點句型 -->
+<section id="patterns">
+  <div class="section-title s5"><span class="icon">✏️</span> 五、重點句型</div>
+
+  <div class="pattern-card p1">
+    <div class="pattern-name">🔷 句型一｜有的……有的……（複句：分類說明）</div>
+    <div class="pattern-formula">有的＿＿＿，有的＿＿＿。</div>
+    <div class="pattern-eg">
+      課文例句：「工人的編制以二十五人為一組，<span>有的</span>負責在木橇上澆水或油當潤滑劑，<span>有的</span>負責出力拉動巨石。」
+      <br><br>
+      🖊️ 功能：並列不同的人或事物各自做的事，說明分工情況。
+    </div>
+    <div class="practice">
+      💡 練習造句：蜜蜂在花園中辛勤工作，有的___________，有的___________。
+    </div>
+  </div>
+
+  <div class="pattern-card p2">
+    <div class="pattern-name">🔷 句型二｜根據……推測（依據推論）</div>
+    <div class="pattern-formula">根據＿＿＿，（科學家）推測＿＿＿。</div>
+    <div class="pattern-eg">
+      課文例句：「<span>根據</span>科學家<span>推測</span>，他們可能是在金字塔四周修築一條螺旋狀的斜坡……」
+      <br><br>
+      🖊️ 功能：表示有依據的判斷，而非憑空猜測，用於說明文中表達科學推論。
+    </div>
+    <div class="practice">
+      💡 練習造句：根據地上留下的腳印，我推測___________。
+    </div>
+  </div>
+
+  <div class="pattern-card p3">
+    <div class="pattern-name">🔷 句型三｜如果……就……（假設複句）</div>
+    <div class="pattern-formula">如果＿＿＿，就可以＿＿＿。</div>
+    <div class="pattern-eg">
+      應用例句：「<span>如果</span>在木橇上澆水或油，<span>就可以</span>減少摩擦力，更省力地搬動巨石。」
+      <br><br>
+      🖊️ 功能：假設條件成立後，說明會產生的結果，常用於解釋科學原理。
+    </div>
+    <div class="practice">
+      💡 練習造句：如果大家都妥善保護文物，就可以___________。
+    </div>
+  </div>
+
+  <div class="pattern-card p1" style="border-color:#7B5EA7;">
+    <div class="pattern-name">🔷 句型四｜雖然……，依舊／仍然……（轉折強調）</div>
+    <div class="pattern-formula">雖然＿＿＿，（金字塔）依舊／仍然＿＿＿。</div>
+    <div class="pattern-eg">
+      課文例句：「金字塔<span>歷經數千年</span>，<span>依舊</span>雄偉的矗立著，它的神祕與傳說始終吸引人們前往探索。」
+      <br><br>
+      🖊️ 功能：先說不利條件，再強調結果，凸顯金字塔的偉大與永恆。
+    </div>
+    <div class="practice">
+      💡 練習造句：雖然這棵老樹飽受風雨，依舊___________。
+    </div>
+  </div>
+
+</section>
+
+<!-- ⑥ 50道練習題 -->
+<section id="quiz">
+  <div class="section-title s6"><span class="icon">📝</span> 六、50道練習題</div>
+  <p style="margin-bottom:16px;color:#888;font-size:0.9em;">⭐基礎　⭐⭐進階　⭐⭐⭐挑戰｜點選「看答案」展開解析</p>
+
+  <!-- 第一大題：閱讀理解 -->
+  <div class="quiz-section">
+    <h3>📚 第一大題｜閱讀理解（題1–15）</h3>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">1</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">本課「金字塔之謎」是什麼類型的文章？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 記敘文（故事）　Ｂ 說明文　Ｃ 議論文　Ｄ 日記體</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 說明文</b><br>解析：本文用小標題、圖表、數據介紹金字塔的知識，是典型說明文（非連續文本）。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">2</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">古夫金字塔的高度約為多少公尺？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 約93公尺　Ｂ 約146.5公尺　Ｃ 約300公尺　Ｄ 約508公尺</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 約146.5公尺</b><br>解析：課文小檔案明確寫出塔身高度約146.5公尺，約93公尺是自由女神像。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">3</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">古夫金字塔由多少塊巨石堆砌而成？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 約100萬塊　Ｂ 約230萬塊　Ｃ 約500萬塊　Ｄ 約23萬塊</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 約230萬塊</b><br>解析：課文小檔案：「由兩百三十萬塊的巨大石灰石堆砌而成。」</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">4</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">古埃及人切割巨石時，用了哪些工具和方法？（可複選）</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 鋸子切割　Ｂ 銅鑿子穿孔　Ｃ 木楔子插入縫隙再灌水　Ｄ 火藥爆破</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ＋Ｃ</b><br>解析：課文說當時沒有鐵器，用銅鑿子穿孔，再插入木楔子灌水，利用木頭吸水膨脹的張力迸開石塊。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">5</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">工人搬運巨石時，在木橇上澆水或油的目的是什麼？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 清洗石塊表面　Ｂ 減少摩擦力，更省力　Ｃ 讓巨石更重　Ｄ 防止巨石乾裂</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 減少摩擦力，更省力</b><br>解析：水或油作為「潤滑劑」，減少木橇與地面之間的摩擦力，讓巨石移動更容易。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">6</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">古埃及人為什麼要建造金字塔？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 展示技術，吸引觀光　Ｂ 存放糧食備用　Ｃ 相信人死後可永生，保存法老遺體　Ｄ 作為軍事防禦工事</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｃ</b><br>解析：課文說古埃及人相信永生，只要遺體妥善保存，就可以得到永生，所以建造金字塔作為墓室。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">7</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">根據課文，工人的編制是如何分組的？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 以10人為一組，分三隊　Ｂ 以25人為一組，分工合作　Ｃ 以100人為一組輪流　Ｄ 沒有分組，所有人一起</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 以25人為一組，分工合作</b><br>解析：課文明確寫出「工人的編制以二十五人為一組」，有的澆水潤滑，有的出力拉動。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">8</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">科學家推測古埃及人是用什麼方法把巨石堆疊上去的？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 用起重機吊起　Ｂ 建造螺旋狀斜坡推上去　Ｃ 用熱氣球吊運　Ｄ 直接人力堆疊</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 建造螺旋狀斜坡推上去</b><br>解析：課文說科學家推測在金字塔四周建螺旋狀斜坡，將巨石沿坡推上，完工後再拆除斜坡。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">9</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">「人類怕時間，時間怕金字塔。」這句阿拉伯諺語的主要意思是？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 人類的壽命比時間還長　Ｂ 金字塔的雄偉永恆，超越時間考驗　Ｃ 金字塔讓時間停止　Ｄ 時間可以摧毀一切</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ</b><br>解析：萬物都怕時間的侵蝕，但金字塔歷經數千年依然矗立，因此說「時間怕金字塔」，強調其永恆偉大。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">10</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">下列關於古夫金字塔的敘述，何者正確？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 它是埃及最古老的金字塔　Ｂ 它是現存最高的建築物　Ｃ 它是吉薩三大金字塔中最大、最出名的　Ｄ 它的高度超過臺北101</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｃ</b><br>解析：課文明確說「古夫金字塔最大、最出名，又稱為大金字塔」。它約146.5公尺，遠低於臺北101（508公尺）。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">11</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">本課使用了小標題，這樣的設計有什麼好處？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 讓文章看起來更美觀　Ｂ 幫助讀者快速掌握各段落重點　Ｃ 增加文章的字數　Ｄ 代替圖片說明</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ</b><br>解析：本課的學習重點即「運用小標題，迅速掌握段落內容」，說明文中小標題是快速定位資訊的工具。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">12</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">課文中的「小檔案」和「比較圖」屬於什麼類型的文本？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 連續文本（純文字段落）　Ｂ 非連續文本（圖表）　Ｃ 詩歌文本　Ｄ 對話文本</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 非連續文本</b><br>解析：圖表、小檔案、比較圖等不是連續段落文字，而是「非連續文本」，需要結合圖文閱讀。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">13</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">作者在文末說金字塔的神祕與傳說「始終吸引人們前往探索」，主要表達什麼？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 金字塔是最受歡迎的旅遊景點　Ｂ 金字塔仍有許多未解之謎，充滿魅力　Ｃ 每個人都應該去埃及旅遊　Ｄ 金字塔的謎題已被科學完全解開</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ</b><br>解析：「始終吸引」表示持續不斷，「探索」表示仍有未知。課文名為「之謎」，暗示許多問題仍待解答，引發讀者好奇。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">14</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">從課文整體來看，本文的主要目的是什麼？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 說服讀者去埃及旅遊　Ｂ 說明金字塔的形成與建造方法，並呈現古埃及人的智慧　Ｃ 批評現代人不如古人聰明　Ｄ 介紹埃及的地理環境</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ</b><br>解析：課文「主旨」明確：「了解埃及金字塔蘊含古埃及人的文明與智慧」。文章重心在說明，不是遊說或批評。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">15</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">以下哪個標題最適合本課第三段（搬運巨石的方法）？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 金字塔的故事　Ｂ 如何搬移巨石　Ｃ 古埃及的宗教信仰　Ｄ 木橇的製作方法</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 如何搬移巨石</b><br>解析：第三段主要說明用木橇和潤滑劑搬運巨石的方法，小標題應能概括段落核心內容。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 第二大題：字詞辨析 -->
+  <div class="quiz-section">
+    <h3>🔤 第二大題｜字詞辨析（題16–25）</h3>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">16</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">「金字塔□立在尼羅河西岸。」空格應填哪個字？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 直　Ｂ 矗　Ｃ 屹　Ｄ 站</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 矗</b>（矗立）<br>解析：矗立強調高高地直立，描述建築物或山峰的高聳視覺感，是本課重要詞語。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">17</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">「從空中□□大地，視野遼闊。」空格應填哪個詞？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 俯視　Ｂ 仰望　Ｃ 俯瞰　Ｄ 鳥瞰</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｃ或Ｄ皆可（俯瞰／鳥瞰）</b><br>解析：兩者皆指從高處向下望，但若強調像飛機/鳥的視角，鳥瞰更傳神；俯瞰較一般用法。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">18</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">「媽媽切菜時不小心被刀子□傷。」空格應填哪個字？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 戈　Ｂ 割　Ｃ 刮　Ｄ 戟</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 割</b><br>解析：「割傷」是用刀切斷皮膚的意思。「戈」是古代武器（一種長柄兵器），不是動詞。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">19</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">「請□善保存這些珍貴文物。」空格應填哪個字？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 安　Ｂ 穩　Ｃ 妥　Ｄ 好</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｃ 妥</b>（妥善）<br>解析：妥善表示穩當、適當地處理，是固定搭配詞語，本課學習生字。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">20</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">下列哪組詞語的用法有誤？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 蘊藏→山中蘊藏豐富的礦產　Ｂ 推測→根據線索推測事件真相<br>Ｃ 忽視→她非常忽視地照顧老人（誤）　Ｄ 矗立→高塔矗立在城市中心</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｃ</b><br>解析：「忽視」意思是不重視、忽略，與「照顧老人」語意相反，應改為「細心地照顧」或「她用心照顧老人，絲毫不忽視」。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">21</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">「□滑劑可以減少兩物體間的摩擦力。」空格應填哪個字？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 閏　Ｂ 潤　Ｃ 閱　Ｄ 間</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 潤</b><br>解析：「潤滑劑」的潤是水旁（氵），表示液體性質。「閏」是日曆用字（閏月、閏年），字形相近但意思不同。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">22</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">「□語是民間流傳的智慧語句。」空格應填哪個字？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 彥　Ｂ 諺　Ｃ 言　Ｄ 宴</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 諺</b><br>解析：諺語的「諺」有言字旁，表示說出來的話。「彥」是人名常用字，讀音相同但意思不同。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">23</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">「□石」的□應填什麼字？（地上細碎的小石子）</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 厲　Ｂ 爍　Ｃ 礫　Ｄ 粒</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｃ 礫</b><br>解析：礫石是石頭類，所以有石字旁（石）。「爍」有火字旁（光亮義）；「粒」有米字旁（顆粒義）。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">24</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">「推測」和「猜測」的主要差別是什麼？選出正確的說明。</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 推測比猜測更不可信　Ｂ 推測有依據，猜測沒有依據<br>Ｃ 兩者完全相同　Ｄ 猜測比推測更科學</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ</b><br>解析：「推測」是根據已知線索或邏輯進行判斷，有依據；「猜測」則多為憑感覺隨意猜想，沒有依據。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">25</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">以下哪個句子中「包裹」是動詞用法（動作）？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 郵差送來一個大包裹　Ｂ 古埃及人用布條包裹遺體　Ｃ 桌上放著禮物包裹　Ｄ 媽媽拆開包裹</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ</b><br>解析：Ｂ中「包裹遺體」是「用布條纏繞/包覆」，是動作（動詞）。其餘選項的「包裹」都是名詞（指包好的物品）。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 第三大題：語病辨析 -->
+  <div class="quiz-section">
+    <h3>🔧 第三大題｜語病辨析（題26–33）</h3>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">26</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">下列哪一句沒有語病？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 金字塔不但高大雄偉，而且也非常壯觀。<br>Ｂ 科學家根據線索推測出建造方法。<br>Ｃ 透過這次參觀，讓我學到了很多知識。<br>Ｄ 雖然金字塔很大，而且很神祕。</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ</b><br>解析：Ａ語意重複（不但…也）；Ｃ成分殘缺（透過…讓我→缺主語）；Ｄ關聯詞誤用（雖然…而且→應為雖然…但是）。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">27</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">「雖然古夫金字塔歷史悠久，而且依然矗立不搖。」這句話的語病是？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 語意重複　Ｂ 關聯詞誤用（應用「但是」）　Ｃ 詞序錯誤　Ｄ 沒有語病</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 關聯詞誤用</b><br>解析：「雖然」搭配「但是」（轉折）；「而且」是遞進關係，與「雖然」不搭。改為：「雖然歷史悠久，但是依然矗立。」</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">28</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">「他不但努力學習，而且也非常用功。」這句話的語病是？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 關聯詞誤用　Ｂ 語意重複（努力學習＝用功）　Ｃ 缺少主詞　Ｄ 詞序錯誤</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 語意重複</b><br>解析：「努力學習」和「用功」意思重疊，二選一即可。改為：「他不但努力學習，而且樂於助人。」</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">29</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">「透過這次參觀金字塔，讓同學們大開眼界。」語病在哪裡？如何修改？</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 語病：<b>成分殘缺（缺主語）</b><br>「透過…讓」結構導致句子沒有主語。<br>修改方式：<br>①「透過這次參觀金字塔，<b>同學們</b>大開眼界。」（刪去「讓」）<br>②「這次參觀金字塔，讓同學們大開眼界。」（刪去「透過」）</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">30</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">下列哪一句使用「有的……有的……」句型最正確？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 有的工人負責澆水，有的拉動巨石，大家分工合作。<br>Ｂ 有的金字塔很高，有的因為太高了。<br>Ｃ 有的古埃及人，有的現代人。<br>Ｄ 有的時候，有的地方不同。</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ａ</b><br>解析：「有的……有的……」用來並列同一群體中不同個體的不同動作或狀態，Ａ句結構完整且意思清晰。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">31</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">找出語病並改寫：「根據科學家，推測金字塔是用斜坡建造的。」</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 語病：「根據科學家」搭配不當，「根據」後應接依據/線索/研究，而非人。<br>修改：「<b>根據科學家的研究</b>，推測金字塔是用斜坡建造的。」</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">32</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">下列哪一句「如果……就……」句型使用有誤？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 如果加入潤滑劑，就能減少摩擦力。<br>Ｂ 如果妥善保存遺體，就可以得到永生。<br>Ｃ 如果金字塔，就很高。<br>Ｄ 如果我努力練習，就能進步。</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｃ</b><br>解析：「如果金字塔」後面缺少條件描述（動詞片語），句子不完整。正確用法：如果＋[條件]，就＋[結果]。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">33</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">改寫語病句：「雖然金字塔建造困難重重，而且古埃及人還是完成了它。」</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 語病：關聯詞誤用（雖然…而且→轉折句應用「但是/仍然/還是」）<br>修改：「雖然金字塔建造困難重重，<b>但是</b>古埃及人還是完成了它。」</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 第四大題：修辭分析 -->
+  <div class="quiz-section">
+    <h3>🎨 第四大題｜修辭分析（題34–41）</h3>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">34</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">「人類怕時間，時間怕金字塔。」這句話使用了哪種修辭？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 比喻　Ｂ 擬人　Ｃ 排比　Ｄ 誇飾</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 擬人＋誇飾</b>（主要是擬人）<br>解析：把「時間」擬人化，說它也會「怕」某樣東西；同時也有誇大金字塔永恆的誇飾效果。主要答擬人即可。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">35</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">「從天空俯瞰埃及，巨大的金字塔散落在尼羅河西岸，讓人無法忽視。」這段文字的描寫方式是？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 由下往上　Ｂ 由上往下（空間順序）　Ｃ 時間順序　Ｄ 邏輯順序</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 由上往下（空間順序）</b><br>解析：「從天空俯瞰」是由高空視角向下看，是空間描寫的「由上往下」視角，為本課文章結構特色。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">36</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">課文說古夫金字塔「令人驚嘆」，這裡使用了哪種說明方法？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 舉例說明　Ｂ 數字說明（列數字）　Ｃ 比較說明　Ｄ 定義說明</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ 數字說明</b><br>解析：課文用具體數字（高146.5公尺、占地5萬平方公尺、230萬塊巨石）來說明金字塔的龐大，讓讀者有具體感受。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">37</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">「有的負責澆水當潤滑劑，有的負責出力拉動巨石。」使用了哪種修辭？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 排比　Ｂ 比喻　Ｃ 設問　Ｄ 誇飾</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ａ 排比</b><br>解析：「有的……有的……」是相同結構的並列說明，屬於排比修辭，強調工人分工的多樣性。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">38</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">課文用比較圖呈現古夫金字塔與自由女神像、艾菲爾鐵塔、臺北101的高度，這樣的說明目的是？</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 說明臺北101最高　Ｂ 用讀者熟悉的建築當對比，讓數字更有感覺<br>Ｃ 批評現代建築不如金字塔　Ｄ 只是裝飾用途</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ</b><br>解析：比較說明法：用讀者熟悉的事物當參考點，讓抽象的數字（146.5公尺）變得具體可感，是說明文的重要技巧。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">39</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">分析「金字塔歷經數千年，依舊雄偉地矗立著，它的神祕與傳說始終吸引人們前往探索。」的修辭效果。</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 修辭：<b>擬人＋誇飾</b><br>「神祕與傳說始終吸引人們」→將金字塔的特質擬人化（能「吸引」）<br>效果：讓金字塔彷彿有生命般散發魅力，引發讀者對未解之謎的好奇與嚮往。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">40</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">請仿照例句，寫出一句使用「有的……有的……」排比句型的句子（主題：圖書館裡的學生）。</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 參考答案：「圖書館裡，<b>有的</b>學生埋首翻閱課外書，<b>有的</b>認真在本子上記錄筆記，<b>有的</b>輕聲與同學討論問題。」<br>重點：三個以上並列，動作具體清楚，結構對稱。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">41</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">課文如何幫助讀者理解「木楔子灌水讓石頭裂開」的過程？用了什麼說明策略？</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 說明策略：<b>步驟說明＋圖文輔助</b><br>①步驟順序：挖洞→插楔子→灌水→木頭吸水膨脹→石頭迸裂（程序清晰）<br>②配合工具圖示（銅鑿子、楔子示意圖），讓讀者「看得見」過程<br>效果：將抽象工法轉為可理解的圖解步驟，是說明文的「程序說明法」。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 第五大題：綜合應用 -->
+  <div class="quiz-section">
+    <h3>🖊️ 第五大題｜綜合應用（題42–50）</h3>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">42</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">請用「矗立」造一個句子。</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 參考答案：「那棵百年老樹矗立在校園中央，像是守護全校師生的巨人。」（＋比喻加分！）</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">43</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">請用「根據……推測」造一個句子。</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 參考答案：「根據雲的顏色和風向，氣象員推測今天下午可能會有大雨。」</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">44</div>
+        <div class="q-star diff-1"></div>
+        <div class="q-text">請用「妥善」造一個句子。</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 參考答案：「請大家妥善保管自己的隨身物品，以免遺失。」</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">45</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">仿照例句，填入適當的詞語：<br>例：吸引（人們）前往（探索）<br>仿：觀察（　　）覓食（　　）</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 參考答案：「觀察（小鳥）覓食（築巢）」<br>格式：動詞＋名詞，動詞＋名詞，維持並列結構。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">46</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">仿寫句型：「安放於金字塔的墓室中」→「（　　）於（　　）的（　　）上」</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 參考答案：「（綻放）於（大樹）的（枝椏）上」或「（站立）於（學校）的（大門旁）」</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">47</div>
+        <div class="q-star diff-2"></div>
+        <div class="q-text">本課說明文的結構順序為何？選出正確的排列。</div>
+      </div>
+      <div class="q-opts">
+        <p>Ａ 建造目的→切割石材→搬運巨石→堆疊工法→引入<br>Ｂ 引入金字塔→切割石材→搬運巨石→堆疊工法→建造目的<br>Ｃ 建造目的→搬運巨石→堆疊工法→切割石材→引入<br>Ｄ 引入→建造目的→切割石材→堆疊工法→搬運巨石</p>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 答案：<b>Ｂ</b><br>解析：課文按照「引入→工法步驟（切割→搬運→堆疊）→建造目的」的邏輯順序說明，最後以建造原因作為結論。</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">48</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">如果你要向外國朋友介紹一個臺灣的世界遺產（潛力點），應該包含哪些說明要素？參考本課說明文寫出至少四點。</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 參考要素（仿課文說明架構）：<br>①地理位置（在哪裡）<br>②歷史背景（何時建造、由誰建造）<br>③建築特色（材料、規模、工法）<br>④文化意義（代表什麼精神、為什麼重要）<br>⑤數字資料（具體數據讓說明更有力）<br>⑥圖表輔助（圖片、比較圖）</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">49</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">馬丘比丘和古夫金字塔有哪些相似之處？請從課文及延伸資料中找出至少三點。</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 參考答案：<br>①都是用石材建造的古代建築<br>②建造時間距今超過500~4500年，歷史悠久<br>③都被列為世界遺產<br>④建造方式不依賴現代機械（推測用斜坡/人力）<br>⑤建造目的與統治者（法老/印加帝王）有關</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-header">
+        <div class="q-num">50</div>
+        <div class="q-star diff-3"></div>
+        <div class="q-text">🌟 挑戰題｜請以「如果我能穿越回古埃及……」為開頭，寫一段150字以上的短文，運用至少一種課文句型（有的…有的…／根據…推測…／如果…就…）和一種修辭。</div>
+      </div>
+      <div class="q-ans" onclick="this.classList.toggle('open')">
+        <button class="toggle-btn"><span class="arr">▶</span> 看答案與解析</button>
+        <div class="ans-content">✅ 評分重點（老師版）：<br>【內容】：有具體的畫面和細節（五感描寫）<br>【句型】：正確使用至少一個課文句型<br>【修辭】：加入比喻、擬人或排比<br>【結構】：有開頭、中間感受、結尾領悟<br><br>參考開頭：「如果我能穿越回古埃及，我一定要親眼見識那壯觀的工程現場。在一片金黃沙漠中，巨大的石塊像山一樣矗立在眼前……有的工人奮力拉著繩索，有的在木橇上澆水潤滑。根據眼前所見，我推測這需要幾萬人同心協力……」</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  📚 第12課「金字塔之謎」超強記憶學習包｜五年級下學期國語<br>
+  改寫自《小牛頓》｜說明文·非連續文本<br>
+  <span style="color:#D4A017;">𓂀 人類怕時間，時間怕金字塔。𓂀</span>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('.nav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
