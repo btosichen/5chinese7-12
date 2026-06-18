@@ -1,1156 +1,995 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>國語五下 ・ L7–L10 總複習護照</title>
+<title>國語五下 L7–L10 複習系統</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F3ECDA;
-  --paper-dot:#E4D8B8;
-  --card:#FFFCF4;
-  --ink:#1F3D34;
-  --ink-soft:#4B6359;
-  --clay:#BC5B39;
-  --clay-soft:#E7C3AE;
-  --blue:#2B4B6F;
-  --blue-soft:#CBD9E6;
-  --gold:#B8902F;
-  --gold-soft:#EEDFAF;
-  --good:#3F7D5C;
-  --bad:#B8453A;
-  --serif:'Noto Serif TC', serif;
-  --sans:'Noto Sans TC', sans-serif;
-  --hand:'Caveat', cursive;
-  --radius:14px;
-  --shadow: 0 2px 0 rgba(31,61,52,.06), 0 8px 24px rgba(31,61,52,.10);
+  --bg:#eef6ff;--card:#fff;--text:#1a2a3e;--light:#556677;--border:#d0dff0;
+  --p:#3a7bd5;--pl:#ddeeff;--danger:#ff4f6e;--ok:#22c55e;--warn:#f59e0b;
+  --l7:#3a7bd5;--l8:#22a699;--l9:#e04a6a;--l10:#8b5cf6;
+  --font:'Noto Sans TC','Microsoft JhengHei',sans-serif;
 }
-*{box-sizing:border-box;}
-html,body{margin:0;padding:0;}
-body{
-  font-family:var(--sans);
-  color:var(--ink);
-  background-color:var(--paper);
-  background-image:
-    radial-gradient(circle, var(--paper-dot) 1px, transparent 1.4px);
-  background-size:22px 22px;
-  min-height:100vh;
-  -webkit-font-smoothing:antialiased;
+[data-theme=dark]{
+  --bg:#0f1420;--card:#1a2030;--text:#e0e8f8;--light:#8899bb;--border:#2a3a55;
+  --p:#5b9ef5;--pl:#1a2d50;--danger:#ff6b85;--ok:#4ade80;--warn:#fbbf24;
 }
-h1,h2,h3,h4{font-family:var(--serif); margin:0 0 .4em 0; line-height:1.3;}
-p{line-height:1.85; margin:.4em 0;}
-button{font-family:var(--sans); cursor:pointer;}
-:focus-visible{outline:3px solid var(--blue); outline-offset:2px;}
-@media (prefers-reduced-motion: reduce){
-  *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
-}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100vh;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;transition:background .3s,color .3s;}
+button{font-family:var(--font);cursor:pointer;}
+:focus-visible{outline:3px solid var(--p);outline-offset:2px;}
 
-/* ---------- layout shell ---------- */
-#app{max-width:980px; margin:0 auto; padding:18px 16px 60px;}
+/* ── shell ── */
+#app{max-width:1000px;margin:0 auto;padding:16px 14px 60px;}
 .topbar{
-  display:flex; align-items:center; gap:14px;
-  background:var(--ink); color:var(--paper);
-  border-radius:var(--radius);
-  padding:14px 20px;
-  box-shadow:var(--shadow);
-  margin-bottom:14px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:linear-gradient(135deg,#2563eb 0%,#0891b2 100%);
+  color:#fff;border-radius:20px;padding:16px 22px;margin-bottom:14px;
+  box-shadow:0 4px 20px rgba(37,99,235,.30);
 }
-.topbar .stamp-mini{width:46px;height:46px;flex:none;}
-.topbar-text h1{font-size:1.15rem; color:var(--paper); margin:0;}
-.topbar-text div{font-size:.78rem; color:var(--gold-soft); font-family:var(--hand); font-size:1rem;}
+.topbar-left{display:flex;align-items:center;gap:14px;}
+.topbar-icon{font-size:2.2rem;line-height:1;}
+.topbar h1{font-size:1.15rem;font-weight:900;margin-bottom:2px;}
+.topbar p{font-size:.78rem;opacity:.85;}
+.theme-btn{background:rgba(255,255,255,.2);border:none;border-radius:50%;width:38px;height:38px;font-size:1.1rem;color:#fff;flex:none;}
 
-nav.tabs{
-  display:flex; flex-wrap:wrap; gap:8px;
-  margin-bottom:18px;
+/* ── tabs ── */
+.tabs-wrap{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.tab-btn{
+  border:2px solid var(--border);background:var(--card);color:var(--light);
+  border-radius:50px;padding:8px 18px;font-size:.88rem;font-weight:700;
+  transition:all .2s;
 }
-nav.tabs button{
-  border:2px solid var(--ink);
-  background:var(--card);
-  color:var(--ink);
-  border-radius:999px;
-  padding:8px 16px;
-  font-size:.92rem;
-  font-weight:700;
-  transition:transform .15s ease, background .15s ease;
-}
-nav.tabs button:hover{transform:translateY(-2px);}
-nav.tabs button.active{background:var(--ink); color:var(--paper);}
+.tab-btn:hover{border-color:var(--p);color:var(--p);}
+.tab-btn.active{background:var(--p);border-color:var(--p);color:#fff;box-shadow:0 4px 12px rgba(58,123,213,.35);}
 
 .view{display:none;}
-.view.active{display:block; animation:fadeIn .35s ease;}
-@keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+.view.active{display:block;animation:fadeUp .3s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
-.card{
-  background:var(--card);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:20px 22px;
-  margin-bottom:16px;
-}
-.card h2{font-size:1.3rem; color:var(--ink); border-bottom:3px dotted var(--gold-soft); padding-bottom:8px;}
-.muted{color:var(--ink-soft); font-size:.88rem;}
-.pillrow{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 16px;}
-.pill{
-  border:2px solid var(--ink-soft); background:transparent; color:var(--ink);
-  border-radius:999px; padding:6px 14px; font-size:.85rem; font-weight:700;
-}
-.pill.active{background:var(--clay); border-color:var(--clay); color:#fff;}
+/* ── lesson pills ── */
+.lesson-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.lpill{border:2px solid var(--border);background:var(--card);color:var(--light);border-radius:50px;padding:6px 16px;font-size:.83rem;font-weight:700;transition:all .2s;}
+.lpill.a-l7,.lpill.a-l7:hover{background:var(--l7);border-color:var(--l7);color:#fff;}
+.lpill.a-l8,.lpill.a-l8:hover{background:var(--l8);border-color:var(--l8);color:#fff;}
+.lpill.a-l9,.lpill.a-l9:hover{background:var(--l9);border-color:var(--l9);color:#fff;}
+.lpill.a-l10,.lpill.a-l10:hover{background:var(--l10);border-color:var(--l10);color:#fff;}
 
-/* ---------- home / passport map ---------- */
-.route-wrap{position:relative; padding:30px 6px 10px;}
-.route-line{
-  position:absolute; top:78px; left:8%; right:8%; height:0;
-  border-top:3px dashed var(--gold);
-  z-index:0;
-}
-.stops{display:flex; justify-content:space-between; position:relative; z-index:1; flex-wrap:wrap; gap:18px;}
-.stop{flex:1 1 140px; text-align:center; cursor:pointer; border:none; background:none;}
-.stop .stamp{width:96px;height:96px;margin:0 auto 8px;}
-.stop .stop-label{font-weight:700; font-size:.95rem;}
-.stop .stop-sub{font-size:.78rem; color:var(--ink-soft);}
-.stop .progress-chip{
-  display:inline-block; margin-top:6px; font-size:.74rem; font-weight:700;
-  background:var(--paper); border:2px solid var(--gold); border-radius:999px; padding:2px 10px; color:var(--ink);
-}
+/* ── card ── */
+.card{background:var(--card);border-radius:18px;border:1.5px solid var(--border);padding:22px 24px;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.card-title{font-size:1.1rem;font-weight:900;margin-bottom:14px;}
+.muted{color:var(--light);font-size:.85rem;}
+.section-label{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--light);margin:18px 0 8px;}
 
-.statsgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-top:18px;}
-.statbox{background:var(--paper); border:2px solid var(--ink); border-radius:12px; padding:12px 14px; text-align:center;}
-.statbox .num{font-family:var(--serif); font-size:1.7rem; color:var(--clay); font-weight:900;}
-.statbox .lab{font-size:.78rem; color:var(--ink-soft);}
+/* ── summary card ── */
+.summary-box{background:var(--pl);border-radius:14px;padding:14px 18px;margin-bottom:18px;line-height:1.85;font-size:.93rem;}
 
-/* ---------- notes view ---------- */
-.vocab-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; margin:14px 0;}
-.vcard{
-  border:2px solid var(--ink); border-radius:12px; background:var(--paper); padding:12px 14px;
-  position:relative;
-}
-.vcard .vchar{font-family:var(--serif); font-size:1.8rem; font-weight:900; color:var(--ink);}
-.vcard .vpinyin{font-size:.82rem; color:var(--clay); font-weight:700;}
-.vcard .vword{font-size:.85rem; margin:4px 0; color:var(--ink-soft);}
-.vcard .vmnemonic{font-size:.78rem; color:var(--blue); border-top:1px dashed var(--blue-soft); padding-top:6px; margin-top:6px;}
-.qa-list{list-style:none; padding:0; margin:0;}
-.qa-list li{padding:8px 0; border-bottom:1px solid var(--gold-soft); font-size:.93rem;}
-.qa-list li b{color:var(--clay);}
-.idiom-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px;}
-.idiom-chip{border:2px dashed var(--blue); border-radius:10px; padding:8px 10px; font-size:.85rem; background:var(--blue-soft);}
-.idiom-chip .ians{font-weight:900; color:var(--blue); font-family:var(--serif);}
+/* ── vocab grid ── */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:20px;}
+.vcard{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:14px 16px;}
+.vchar{font-size:2rem;font-weight:900;line-height:1.2;margin-bottom:4px;}
+.vpinyin{font-size:.82rem;font-weight:700;color:var(--p);margin-bottom:2px;}
+.vword{font-size:.82rem;color:var(--light);margin-bottom:6px;}
+.vmnemonic{font-size:.78rem;border-top:1px solid var(--border);padding-top:7px;margin-top:4px;line-height:1.6;}
 
-/* ---------- quiz engine ---------- */
-.quiz-setup .pillrow{margin-bottom:6px;}
-.qcard{border:2px solid var(--ink); border-radius:16px; padding:22px; background:var(--paper); margin-top:14px;}
-.qcard .qmeta{font-size:.78rem; color:var(--ink-soft); margin-bottom:6px;}
-.qcard .qprompt{font-size:1.08rem; font-weight:700; margin-bottom:14px;}
-.opt-btn{
-  display:block; width:100%; text-align:left; margin-bottom:8px;
-  border:2px solid var(--ink); background:var(--card); border-radius:10px;
-  padding:10px 14px; font-size:.95rem;
-}
-.opt-btn:hover{background:#fff;}
-.opt-btn.correct{background:var(--good); color:#fff; border-color:var(--good);}
-.opt-btn.wrong{background:var(--bad); color:#fff; border-color:var(--bad);}
-.text-answer-row{display:flex; gap:8px; margin-bottom:10px;}
-.text-answer-row input{flex:1; font-size:1rem; padding:10px 12px; border:2px solid var(--ink); border-radius:10px; font-family:var(--sans);}
-.btn{
-  border:2px solid var(--ink); background:var(--ink); color:var(--paper);
-  border-radius:999px; padding:9px 20px; font-weight:700; font-size:.92rem;
-}
-.btn.secondary{background:var(--card); color:var(--ink);}
-.btn.clay{background:var(--clay); border-color:var(--clay); color:#fff;}
-.feedback{margin-top:10px; padding:10px 14px; border-radius:10px; font-weight:700;}
-.feedback.ok{background:var(--good); color:#fff;}
-.feedback.no{background:var(--bad); color:#fff;}
-.scorebar{display:flex; justify-content:space-between; align-items:center; font-size:.85rem; color:var(--ink-soft); margin-bottom:10px;}
+/* ── fillin list ── */
+.fillin-list{list-style:none;}
+.fillin-list li{padding:9px 0;border-bottom:1px solid var(--border);font-size:.92rem;display:flex;gap:8px;align-items:baseline;}
+.fillin-list li:last-child{border-bottom:none;}
+.fq-num{font-weight:700;color:var(--p);min-width:22px;}
+.fq-ans{font-weight:700;color:var(--ok);}
 
-/* ---------- 100 bank ---------- */
-.bank-item{border-bottom:1px solid var(--gold-soft); padding:12px 0;}
-.bank-item .bmeta{font-size:.72rem; color:var(--ink-soft); font-weight:700;}
-.bank-item .bprompt{font-weight:700; margin:4px 0;}
-.bank-item .banswer{display:none; background:var(--blue-soft); border-radius:8px; padding:8px 12px; margin-top:6px; font-size:.9rem;}
-.bank-item .banswer.show{display:block;}
-.reveal-btn{font-size:.8rem; border:1.5px solid var(--blue); color:var(--blue); background:transparent; border-radius:999px; padding:4px 12px;}
+/* ── rhetoric ── */
+.rhet-list{list-style:none;}
+.rhet-list li{padding:9px 0;border-bottom:1px solid var(--border);font-size:.9rem;line-height:1.7;}
+.rhet-list li:last-child{border-bottom:none;}
+.rhet-ans{display:inline-block;background:var(--pl);color:var(--p);font-weight:700;border-radius:6px;padding:1px 10px;margin-left:8px;font-size:.82rem;}
 
-/* ---------- plan view ---------- */
-.day-card{border-left:6px solid var(--clay); margin-bottom:14px; padding-left:16px;}
-.day-card h3{font-size:1.1rem;}
-.day-card .tip{background:var(--gold-soft); border-radius:10px; padding:8px 12px; font-size:.85rem; margin-top:8px;}
-.task{display:flex; align-items:flex-start; gap:8px; margin:6px 0; font-size:.93rem;}
-.task input{margin-top:4px; width:18px; height:18px;}
-.task.done span{text-decoration:line-through; color:var(--ink-soft);}
+/* ── idiom chips ── */
+.idiom-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:10px;}
+.ichip{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:10px 14px;}
+.ichip .iw{font-size:1.05rem;font-weight:700;margin-bottom:4px;}
+.ichip .im{font-size:.78rem;color:var(--light);}
+.ichip .ia{color:var(--p);font-weight:900;}
 
-/* ---------- flashcards ---------- */
-.deck-controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:14px;}
-.flip-area{display:flex; justify-content:center; margin:18px 0;}
-.flipcard{
-  width:280px; height:340px; perspective:1200px; cursor:pointer;
-}
-.flipcard-inner{
-  width:100%; height:100%; position:relative; transition:transform .5s;
-  transform-style:preserve-3d;
-}
-.flipcard.flipped .flipcard-inner{transform:rotateY(180deg);}
-.flip-face{
-  position:absolute; inset:0; border-radius:16px; border:3px solid var(--ink);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  padding:18px; text-align:center; backface-visibility:hidden; box-shadow:var(--shadow);
-}
-.flip-front{background:var(--card);}
-.flip-back{background:var(--ink); color:var(--paper); transform:rotateY(180deg);}
-.flip-front .fchar{font-family:var(--serif); font-size:2.4rem; font-weight:900;}
-.flip-back .bchar{font-family:var(--serif); font-size:2.6rem; font-weight:900; color:var(--gold-soft);}
-.flip-back .bpinyin{color:var(--clay-soft); font-weight:700; margin:4px 0;}
-.flip-back .bmnemo{font-size:.82rem; margin-top:8px; line-height:1.6;}
-.deckcount{font-size:.85rem; color:var(--ink-soft); text-align:center; margin-top:4px;}
-.mastery-row{display:flex; gap:10px; justify-content:center; margin-top:16px;}
-.mbtn{border-radius:12px; border:2px solid var(--ink); padding:10px 16px; font-weight:700; background:var(--card);}
-.mbtn.lvl-bad{border-color:var(--bad);}
-.mbtn.lvl-mid{border-color:var(--gold);}
-.mbtn.lvl-good{border-color:var(--good);}
+/* ── flip card ── */
+.flip-area{display:flex;flex-direction:column;align-items:center;padding:10px 0 6px;}
+.flip-outer{width:260px;height:320px;perspective:1000px;cursor:pointer;user-select:none;}
+.flip-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.flip-inner.flipped{transform:rotateY(180deg);}
+.flip-face{position:absolute;inset:0;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;text-align:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.ff{background:var(--card);border:2px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,.10);}
+.fb{transform:rotateY(180deg);color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.18);}
+.ff .hint{font-size:.8rem;color:var(--light);margin-top:14px;}
+.ff .fc-pinyin{font-size:1.6rem;font-weight:900;color:var(--p);margin-bottom:6px;}
+.ff .fc-word{font-size:.88rem;color:var(--light);}
+.fb .fc-char{font-size:2.8rem;font-weight:900;margin-bottom:8px;}
+.fb .fc-pinyin2{font-size:.88rem;opacity:.85;margin-bottom:4px;}
+.fb .fc-word2{font-size:.82rem;opacity:.8;margin-bottom:10px;}
+.fb .fc-mnemo{font-size:.78rem;opacity:.85;line-height:1.6;border-top:1px solid rgba(255,255,255,.3);padding-top:10px;margin-top:6px;}
+.flip-counter{font-size:.83rem;color:var(--light);margin:10px 0;}
+.flip-nav{display:flex;gap:12px;justify-content:center;margin:6px 0;}
+.flip-nav button,.mastery-row button{border:2px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:10px 20px;font-weight:700;font-size:.88rem;transition:all .15s;}
+.flip-nav button:hover{border-color:var(--p);color:var(--p);}
+.mastery-row{display:flex;gap:10px;justify-content:center;margin-top:4px;}
+.m-bad{border-color:var(--danger) !important;color:var(--danger) !important;}
+.m-mid{border-color:var(--warn) !important;color:var(--warn) !important;}
+.m-ok{border-color:var(--ok) !important;color:var(--ok) !important;}
 
-footer.note{font-size:.78rem; color:var(--ink-soft); text-align:center; margin-top:30px;}
+/* ── quiz ── */
+.quiz-setup{margin-bottom:16px;}
+.filter-label{font-size:.8rem;font-weight:700;color:var(--light);margin:12px 0 6px;}
+.filter-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.fpill{border:2px solid var(--border);background:var(--card);color:var(--light);border-radius:50px;padding:5px 14px;font-size:.82rem;font-weight:700;transition:all .2s;}
+.fpill.sel{background:var(--p);border-color:var(--p);color:#fff;}
+.start-btn{background:var(--p);color:#fff;border:none;border-radius:50px;padding:11px 28px;font-size:.95rem;font-weight:700;margin-top:14px;transition:opacity .2s;}
+.start-btn:hover{opacity:.88;}
+.qcard{background:var(--bg);border:1.5px solid var(--border);border-radius:16px;padding:20px 22px;margin:14px 0;}
+.q-meta{font-size:.75rem;color:var(--light);font-weight:700;margin-bottom:6px;}
+.q-prompt{font-size:1rem;font-weight:700;line-height:1.6;margin-bottom:16px;}
+.opt-btn{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--border);border-radius:12px;padding:10px 16px;margin-bottom:8px;font-size:.92rem;transition:all .15s;}
+.opt-btn:hover:not(:disabled){border-color:var(--p);color:var(--p);}
+.opt-btn.correct{background:#dcfce7;border-color:var(--ok);color:#166534;}
+.opt-btn.wrong{background:#ffe4e6;border-color:var(--danger);color:#9f1239;}
+.text-row{display:flex;gap:8px;margin-bottom:10px;}
+.text-row input{flex:1;font-family:var(--font);font-size:.95rem;padding:10px 14px;border:2px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);}
+.text-row input:focus{outline:none;border-color:var(--p);}
+.send-btn{background:var(--p);color:#fff;border:none;border-radius:12px;padding:10px 20px;font-weight:700;font-size:.9rem;}
+.feedback{margin-top:10px;padding:10px 16px;border-radius:12px;font-weight:700;font-size:.9rem;}
+.fb-ok{background:#dcfce7;color:#166534;}
+.fb-no{background:#ffe4e6;color:#9f1239;}
+.next-btn{background:var(--p);color:#fff;border:none;border-radius:50px;padding:10px 28px;font-weight:700;margin-top:12px;}
+.score-bar{display:flex;justify-content:space-between;font-size:.82rem;color:var(--light);margin-bottom:10px;}
+.result-card{text-align:center;padding:20px;}
+.result-score{font-size:2.6rem;font-weight:900;color:var(--p);}
+.result-label{font-size:.9rem;color:var(--light);margin-bottom:16px;}
+.retry-btn{background:var(--danger);color:#fff;border:none;border-radius:50px;padding:10px 24px;font-weight:700;margin:4px;}
+.back-btn{background:var(--card);color:var(--text);border:2px solid var(--border);border-radius:50px;padding:10px 24px;font-weight:700;margin:4px;}
+.wrong-list{text-align:left;list-style:none;margin:14px 0;}
+.wrong-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:.88rem;}
+.wrong-list li:last-child{border-bottom:none;}
 
-@media (max-width:640px){
-  .route-line{display:none;}
-  .stops{flex-direction:column;}
-  .topbar-text h1{font-size:1rem;}
+/* ── plan ── */
+.day-block{border-left:5px solid var(--p);margin-bottom:18px;padding:14px 18px;background:var(--card);border-radius:0 16px 16px 0;border-top:1.5px solid var(--border);border-right:1.5px solid var(--border);border-bottom:1.5px solid var(--border);}
+.day-title{font-size:1rem;font-weight:900;margin-bottom:10px;}
+.task-item{display:flex;align-items:flex-start;gap:10px;margin:7px 0;font-size:.9rem;}
+.task-item input[type=checkbox]{width:17px;height:17px;margin-top:3px;accent-color:var(--p);}
+.task-item.done span{text-decoration:line-through;color:var(--light);}
+.tip-box{background:var(--pl);border-radius:12px;padding:10px 14px;margin-top:12px;font-size:.83rem;line-height:1.65;}
+
+/* ── bank ── */
+.bank-controls{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.bank-btn{border:2px solid var(--border);background:var(--card);color:var(--text);border-radius:50px;padding:9px 20px;font-weight:700;font-size:.88rem;}
+.bank-btn.primary{background:var(--p);border-color:var(--p);color:#fff;}
+.bank-item{padding:12px 0;border-bottom:1px solid var(--border);}
+.bank-item:last-child{border-bottom:none;}
+.b-meta{font-size:.72rem;color:var(--light);font-weight:700;margin-bottom:4px;}
+.b-prompt{font-weight:700;font-size:.92rem;margin-bottom:6px;}
+.b-opts{font-size:.82rem;color:var(--light);margin-bottom:6px;}
+.reveal-btn{border:1.5px solid var(--p);background:transparent;color:var(--p);border-radius:50px;padding:3px 14px;font-size:.78rem;font-weight:700;}
+.b-answer{display:none;background:var(--pl);border-radius:10px;padding:8px 14px;margin-top:6px;font-size:.88rem;font-weight:700;color:var(--p);}
+.b-answer.show{display:block;}
+
+/* ── idiom training ── */
+.idiom-card-wrap{display:flex;justify-content:center;padding:10px 0;}
+.idiom-card{width:300px;min-height:280px;background:var(--card);border:2px solid var(--border);border-radius:20px;padding:24px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.08);}
+.ic-word{font-size:2rem;font-weight:900;margin-bottom:8px;}
+.ic-blank{color:var(--p);border-bottom:3px solid var(--p);display:inline-block;min-width:28px;}
+.ic-meaning{font-size:.88rem;color:var(--light);margin:10px 0;line-height:1.7;}
+.ic-reveal{display:none;}
+.ic-reveal.show{display:block;}
+.ic-ans{font-size:1.5rem;font-weight:900;color:var(--ok);margin:8px 0;}
+.idiom-nav{display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.idiom-nav button,.idiom-reveal-btn{border:2px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:9px 20px;font-weight:700;font-size:.88rem;}
+.idiom-reveal-btn{background:var(--p);border-color:var(--p);color:#fff;}
+
+@media(max-width:600px){
+  .vocab-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+  .topbar h1{font-size:1rem;}
+  .flip-outer{width:220px;height:280px;}
 }
 </style>
 </head>
 <body>
 <div id="app">
 
-  <div class="topbar">
-    <svg class="stamp-mini" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="#B8902F" stroke-width="3" stroke-dasharray="4 3"/><text x="50" y="58" font-size="34" text-anchor="middle">🧭</text></svg>
-    <div class="topbar-text">
-      <h1>國語五下總複習護照</h1>
-      <div>L7 魔術師爸爸 ・ L8 八歲一個人去旅行 ・ L9 紅鼻子醫生 ・ L10 沉默的動物園</div>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon">📚</div>
+    <div>
+      <h1>國語五下 L7–L10 複習系統</h1>
+      <p>魔術師爸爸・八歲一個人去旅行・紅鼻子醫生・沉默的動物園</p>
     </div>
   </div>
-
-  <nav class="tabs" id="mainTabs">
-    <button data-view="home" class="active">🗺️ 學習地圖</button>
-    <button data-view="notes">📖 重點筆記</button>
-    <button data-view="quiz">🎮 互動練習</button>
-    <button data-view="plan">📕 5天背誦計畫</button>
-    <button data-view="bank">📗 100題題庫</button>
-    <button data-view="cards">📘 默寫卡牌</button>
-  </nav>
-
-  <section class="view active" id="view-home"></section>
-  <section class="view" id="view-notes"></section>
-  <section class="view" id="view-quiz"></section>
-  <section class="view" id="view-plan"></section>
-  <section class="view" id="view-bank"></section>
-  <section class="view" id="view-cards"></section>
-
-  <footer class="note">用愛與耐心做的複習小工具・祝考試順利 📮</footer>
+  <button class="theme-btn" id="themeBtn" title="切換明暗">🌙</button>
 </div>
 
+<div class="tabs-wrap" id="mainTabs">
+  <button class="tab-btn active" data-tab="notes">📖 課文筆記</button>
+  <button class="tab-btn" data-tab="quiz">🎯 互動練習</button>
+  <button class="tab-btn" data-tab="plan">📕 5天計畫</button>
+  <button class="tab-btn" data-tab="bank">📗 100題題庫</button>
+  <button class="tab-btn" data-tab="cards">📘 注音默寫</button>
+  <button class="tab-btn" data-tab="idiom">🏆 成語特訓</button>
+</div>
+
+<section class="view active" id="view-notes"></section>
+<section class="view" id="view-quiz"></section>
+<section class="view" id="view-plan"></section>
+<section class="view" id="view-bank"></section>
+<section class="view" id="view-cards"></section>
+<section class="view" id="view-idiom"></section>
+
+</div><!-- #app -->
+
 <script>
-/* ===================== DATA ===================== */
-// ===================== 國語五下 L7-L10 總複習資料庫 =====================
+/* ==================== DATA ==================== */
 const LESSONS = {
   L7: {
-    key: 'L7', no:'第7課', title: '魔術師爸爸', genre: '詩歌', author: '米雅',
-    cover: '🎩',
-    summary: '這是一首詩。主角的爸爸離開後，主角發現爸爸像魔術師一樣，在春天變成小花，夏天變成大樹，秋天變成葉子，冬天變成煙，即使暫時找不到爸爸，主角仍相信爸爸會變成溫熱的親吻，留在自己臉上。全文透過「爸爸變成自然景物」這件事，表達主角對爸爸的思念，主旨是：思念不會因時間而變淡，就像爸爸用四季不同的形式，持續陪伴著主角。',
-    rhetoricOptions: {A:'譬喻', B:'類疊', C:'摹寫', D:'設問'},
-    vocab: [
-      {n:1, char:'徑', pinyin:'ㄐㄧㄥˋ jìng', word:'小徑、捷徑', mnemonic:'彳（走路）＋巠（一條直線）→走的窄路＝小徑／捷徑'},
-      {n:2, char:'渾', pinyin:'ㄏㄨㄣˊ hún', word:'渾濁、渾身', mnemonic:'氵（水）＋軍（混在一起）→水混濁不清＝渾濁'},
-      {n:3, char:'痱', pinyin:'ㄈㄟˋ fèi', word:'痱子', mnemonic:'疒（生病）＋非（許多小點）→皮膚長很多小紅點＝痱子'},
-      {n:4, char:'癢', pinyin:'ㄧㄤˇ yǎng', word:'發癢、不痛不癢', mnemonic:'疒（病）＋羊（像被羊毛刺到）→皮膚刺刺的感覺＝癢'},
-      {n:5, char:'魁', pinyin:'ㄎㄨㄟˊ kuí', word:'魁梧、罪魁禍首', mnemonic:'鬼＋斗（大容器）→像鬼怪一樣高大＝魁梧'},
-      {n:6, char:'梧', pinyin:'ㄨˊ wú', word:'魁梧、梧桐', mnemonic:'木＋吾（我）→高大的梧桐樹，常與「魁」連用＝魁梧'},
-      {n:7, char:'眠', pinyin:'ㄇㄧㄢˊ mián', word:'睡眠、不眠不休', mnemonic:'目＋民（躺平的人）→閉上眼睛躺著＝睡眠'},
-      {n:8, char:'枚', pinyin:'ㄇㄟˊ méi', word:'一枚石子', mnemonic:'木＋攴（輕輕拿著）→古人拿小木棒當計算單位＝一枚'},
-      {n:9, char:'絢', pinyin:'ㄒㄩㄢˋ xuàn', word:'絢麗', mnemonic:'糹（絲線）＋旬（十天，引申多彩）→色彩繽紛的絲線＝絢麗'},
-      {n:10, char:'湊', pinyin:'ㄘㄡˋ còu', word:'湊近、湊過來', mnemonic:'氵＋奏（聚在一起演奏）→水流聚集、靠近＝湊近'},
-      {n:11, char:'任', pinyin:'ㄖㄣˋ rèn', word:'任何、責任', mnemonic:'亻＋壬（挑著重擔的人）→人挑起責任＝任何／責任'},
-      {n:12, char:'何', pinyin:'ㄏㄜˊ hé', word:'任何、何時', mnemonic:'亻＋可（開口發問）→人開口問「可」＝任何／何時'},
-      {n:13, char:'概', pinyin:'ㄍㄞˋ gài', word:'大概、概算', mnemonic:'木＋既（已經刮平）→用木棍刮平穀物，引申大略估計＝大概'},
-      {n:14, char:'爾', pinyin:'ㄦˇ ěr', word:'出爾反爾', mnemonic:'古字的「你」→出爾反爾（你自己說的話又自己推翻）'},
+    key:'L7',no:'第7課',title:'魔術師爸爸',genre:'詩歌',author:'米雅',color:'#3a7bd5',
+    cover:'🎩',
+    summary:'這是一首詩。主角的爸爸離開後，主角發現爸爸像魔術師一樣，在春天變成小花，夏天變成大樹，秋天變成葉子，冬天變成煙，即使暫時找不到爸爸，主角仍相信爸爸會變成溫熱的親吻，留在自己臉上。全文透過「爸爸變成自然景物」這件事，表達主角對爸爸的思念，主旨是：思念不會因時間而變淡，就像爸爸用四季不同的形式，持續陪伴著主角。',
+    rhetoricOptions:{A:'譬喻',B:'類疊',C:'摹寫',D:'設問'},
+    vocab:[
+      {n:1,char:'徑',pinyin:'ㄐㄧㄥˋ',word:'小徑、捷徑',mnemonic:'彳（走路）＋巠（一條直線）→走的窄路＝小徑／捷徑'},
+      {n:2,char:'渾',pinyin:'ㄏㄨㄣˊ',word:'渾濁、渾身',mnemonic:'氵（水）＋軍（混在一起）→水混濁不清＝渾濁'},
+      {n:3,char:'痱',pinyin:'ㄈㄟˋ',word:'痱子',mnemonic:'疒（生病）＋非（許多小點）→皮膚長很多小紅點＝痱子'},
+      {n:4,char:'癢',pinyin:'ㄧㄤˇ',word:'發癢、不痛不癢',mnemonic:'疒（病）＋羊（像被羊毛刺到）→皮膚刺刺的感覺＝癢'},
+      {n:5,char:'魁',pinyin:'ㄎㄨㄟˊ',word:'魁梧、罪魁禍首',mnemonic:'鬼＋斗（大容器）→像鬼怪一樣高大＝魁梧'},
+      {n:6,char:'梧',pinyin:'ㄨˊ',word:'魁梧、梧桐',mnemonic:'木＋吾（我）→高大的梧桐樹，常與「魁」連用＝魁梧'},
+      {n:7,char:'眠',pinyin:'ㄇㄧㄢˊ',word:'睡眠、不眠不休',mnemonic:'目＋民（躺平的人）→閉上眼睛躺著＝睡眠'},
+      {n:8,char:'枚',pinyin:'ㄇㄟˊ',word:'一枚石子',mnemonic:'木＋攴（輕輕拿著）→古人拿小木棒當計算單位＝一枚'},
+      {n:9,char:'絢',pinyin:'ㄒㄩㄢˋ',word:'絢麗',mnemonic:'糹（絲線）＋旬（十天，引申多彩）→色彩繽紛的絲線＝絢麗'},
+      {n:10,char:'湊',pinyin:'ㄘㄡˋ',word:'湊近、湊過來',mnemonic:'氵＋奏（聚在一起演奏）→水流聚集、靠近＝湊近'},
+      {n:11,char:'任',pinyin:'ㄖㄣˋ',word:'任何、責任',mnemonic:'亻＋壬（挑著重擔的人）→人挑起責任＝任何／責任'},
+      {n:12,char:'何',pinyin:'ㄏㄜˊ',word:'任何、何時',mnemonic:'亻＋可（開口發問）→人開口問「可」＝任何／何時'},
+      {n:13,char:'概',pinyin:'ㄍㄞˋ',word:'大概、概算',mnemonic:'木＋既（已經刮平）→用木棍刮平穀物，引申大略估計＝大概'},
+      {n:14,char:'爾',pinyin:'ㄦˇ',word:'出爾反爾',mnemonic:'古字的「你」→出爾反爾（你自己說的話又自己推翻）'},
     ],
-    fillin: [
-      {n:1, q:'本課的文體是屬於①。', a:'詩歌'},
-      {n:2, q:'本課的作者是②。', a:'米雅'},
-      {n:3, q:'爸爸離開後，主角發現爸爸春天時變成③。', a:'小花'},
-      {n:4, q:'爸爸離開後，主角發現爸爸夏天時變成④。', a:'大樹'},
-      {n:5, q:'爸爸離開後，主角發現爸爸秋天時變成⑤。', a:'葉子'},
-      {n:6, q:'爸爸離開後，主角發現爸爸冬天時變成⑥。', a:'煙'},
-      {n:7, q:'即使暫時找不到爸爸，主角仍相信爸爸會變成⑦溫熱的親吻她的臉。', a:'眼淚'},
-      {n:8, q:'本文透過爸爸變成的自然景物，表達主角對⑧的思念。', a:'爸爸'},
-      {n:9, q:'全文的主旨是：思念不會隨著⑨而淡化。', a:'時間'},
-      {n:10, q:'就像爸爸在四季以不同的⑩形式，持續陪伴主角。', a:'景物'},
+    fillin:[
+      {n:1,q:'本課的文體是屬於①。',a:'詩歌'},
+      {n:2,q:'本課的作者是②。',a:'米雅'},
+      {n:3,q:'爸爸離開後，主角發現爸爸春天時變成③。',a:'小花'},
+      {n:4,q:'爸爸離開後，主角發現爸爸夏天時變成④。',a:'大樹'},
+      {n:5,q:'爸爸離開後，主角發現爸爸秋天時變成⑤。',a:'葉子'},
+      {n:6,q:'爸爸離開後，主角發現爸爸冬天時變成⑥。',a:'煙'},
+      {n:7,q:'即使暫時找不到爸爸，主角仍相信爸爸會變成⑦溫熱的親吻她的臉。',a:'眼淚'},
+      {n:8,q:'本文透過爸爸變成的自然景物，表達主角對⑧的思念。',a:'爸爸'},
+      {n:9,q:'全文的主旨是：思念不會隨著⑨而淡化。',a:'時間'},
+      {n:10,q:'就像爸爸在四季以不同的⑩形式，持續陪伴主角。',a:'景物'},
     ],
-    idioms: [
-      {n:1, prompt:'終南捷□', answer:'徑', meaning:'比喻達到目的最便捷的途徑'},
-      {n:2, prompt:'□□噩噩', answer:'渾', meaning:'渾渾噩噩：形容人糊塗、無所事事的樣子'},
-      {n:3, prompt:'罪□禍首', answer:'魁', meaning:'罪魁禍首：造成災禍的主要人物'},
-      {n:4, prompt:'不□不休', answer:'眠', meaning:'不眠不休：不睡覺也不休息，形容非常努力'},
-      {n:5, prompt:'出□反□', answer:'爾', meaning:'出爾反爾：說話反覆不講信用'},
-      {n:6, prompt:'不痛不□', answer:'癢', meaning:'不痛不癢：比喻不切實際、沒有作用'},
-      {n:7, prompt:'□勞□怨', answer:'任', meaning:'任勞任怨：不怕辛苦，也不怕別人埋怨'},
-      {n:8, prompt:'無可奈□', answer:'何', meaning:'無可奈何：沒有辦法、不得已'},
+    idioms:[
+      {n:1,prompt:'終南捷□',answer:'徑',meaning:'比喻達到目的最便捷的途徑'},
+      {n:2,prompt:'□□噩噩',answer:'渾',meaning:'渾渾噩噩：形容人糊塗、無所事事的樣子'},
+      {n:3,prompt:'罪□禍首',answer:'魁',meaning:'罪魁禍首：造成災禍的主要人物'},
+      {n:4,prompt:'不□不休',answer:'眠',meaning:'不眠不休：不睡覺也不休息，形容非常努力'},
+      {n:5,prompt:'出□反□',answer:'爾',meaning:'出爾反爾：說話反覆不講信用'},
+      {n:6,prompt:'不痛不□',answer:'癢',meaning:'不痛不癢：比喻不切實際、沒有作用'},
+      {n:7,prompt:'□勞□怨',answer:'任',meaning:'任勞任怨：不怕辛苦，也不怕別人埋怨'},
+      {n:8,prompt:'無可奈□',answer:'何',meaning:'無可奈何：沒有辦法、不得已'},
     ],
-    rhetoric: [
-      {n:1, sentence:'他一步一步向前走，一點一點累積勇氣，一次一次嘗試，直到成功那刻。', answer:'B'},
-      {n:2, sentence:'時間如一條靜默的長河，無聲地帶走昨日的故事，只留下回憶的粼粼波光。', answer:'A'},
-      {n:3, sentence:'咬下媽媽醃的脆梅，酸中帶甜的汁液在舌尖迸開，接著一股清爽的甘涼滑入喉嚨。', answer:'C'},
-      {n:4, sentence:'童年記憶宛若一本泛黃的相冊，每一頁都收藏著永不褪色的歡笑與淚水。', answer:'A'},
-      {n:5, sentence:'若沒有了挑戰，我們如何知道自己能變得有多堅強？這正是成長的意義嗎？', answer:'D'},
+    rhetoric:[
+      {n:1,sentence:'他一步一步向前走，一點一點累積勇氣，一次一次嘗試，直到成功那刻。',answer:'B'},
+      {n:2,sentence:'時間如一條靜默的長河，無聲地帶走昨日的故事，只留下回憶的粼粼波光。',answer:'A'},
+      {n:3,sentence:'咬下媽媽醃的脆梅，酸中帶甜的汁液在舌尖迸開，接著一股清爽的甘涼滑入喉嚨。',answer:'C'},
+      {n:4,sentence:'童年記憶宛若一本泛黃的相冊，每一頁都收藏著永不褪色的歡笑與淚水。',answer:'A'},
+      {n:5,sentence:'若沒有了挑戰，我們如何知道自己能變得有多堅強？這正是成長的意義嗎？',answer:'D'},
     ],
-    choice: [
-      {n:1, q:'詩中爸爸不曾變成以下哪一種事物？', options:{A:'小花',B:'大樹',C:'雨水',D:'葉子'}, answer:'C'},
-      {n:2, q:'「渾身長滿痱子」的「渾身」是代表什麼意思？', options:{A:'只有手腳',B:'臉上',C:'全身',D:'背後'}, answer:'C'},
-      {n:3, q:'「魁梧」是在本文中是形容樹長得很怎樣？', options:{A:'瘦小',B:'高大強壯',C:'彎曲',D:'古老'}, answer:'B'},
-      {n:4, q:'「抓不到任何一枚美麗的落葉」，主角心情可能是？', options:{A:'開心',B:'生氣',C:'失望',D:'興奮'}, answer:'C'},
-      {n:5, q:'爸爸「偶爾偷偷的，溫熱的，親吻過我的臉」，這表現了爸爸的什麼情感？', options:{A:'嚴厲',B:'思念與關愛',C:'不在意',D:'害羞'}, answer:'B'},
-      {n:6, q:'詩中「涼掉的火鍋湯」暗示了什麼？', options:{A:'火鍋不好吃',B:'主角忘記吃火鍋',C:'天氣太熱',D:'爸爸不在身邊的失落感'}, answer:'D'},
-      {n:7, q:'這首詩主要使用的寫作手法是什麼？', options:{A:'透過對話推進情節',B:'透過季節與自然事物象徵父愛',C:'透過數字說明事實',D:'透過比較表達意見'}, answer:'B'},
-      {n:8, q:'下列哪一項的敘述最接近這首詩的主旨？', options:{A:'描述四季的美景',B:'表達對過世父親的思念',C:'教導讀者魔術技巧',D:'說明家庭關係的冷淡'}, answer:'B'},
-      {n:9, q:'詩中將爸爸比喻為「魔術師」，主要想表達什麼？', options:{A:'爸爸真的會變魔術',B:'爸爸的愛以不同形式存在',C:'爸爸喜歡開玩笑',D:'爸爸的職業是魔術師'}, answer:'B'},
-      {n:10, q:'詩中重複「你把自己變成……」的句式，有什麼作用？', options:{A:'讓詩句更冗長',B:'增加韻律感',C:'展示作者的文采',D:'強調爸爸變化的多樣與愛的持續'}, answer:'D'},
-      {n:11, q:'詩的最後一節（從「即使這樣」到結尾）傳達了主角的什麼訊息？', options:{A:'已經忘記爸爸',B:'依然感受到爸爸的愛',C:'對爸爸的離開感到生氣',D:'決定不再想念爸爸'}, answer:'B'},
-      {n:12, q:'「你大概把自己變成眼淚了」一句中的「大概」表達了什麼？', options:{A:'主角的猜測與想像',B:'主角的肯定',C:'作者的疑問',D:'事實的陳述'}, answer:'A'},
-      {n:13, q:'透過整首詩，作者希望讀者體會到什麼？', options:{A:'魔術很有趣',B:'四季變化很快',C:'珍惜火鍋的時光',D:'親人的愛不會因離去而消失'}, answer:'D'},
-      {n:14, q:'下列哪一個「任」字的讀音與其他三個不同？', options:{A:'任務',B:'任何',C:'任性',D:'任先生'}, answer:'D'},
-      {n:15, q:'「不勝枚舉」的「枚」，意思是：', options:{A:'樹枝',B:'計算物的單位',C:'玫瑰花',D:'葉子'}, answer:'B'},
-      {n:16, q:'「感慨、慷慨」的「慨」，與哪個字的讀音相同？', options:{A:'概',B:'溉',C:'既',D:'凱'}, answer:'D'},
-      {n:17, q:'下列哪一組詞語的用字完全正確？', options:{A:'輝手、強勁',B:'痱子、排隊',C:'梧桐、語文',D:'枚場、玫瑰'}, answer:'B'},
-      {n:18, q:'如果要區分「徑」與「經」，從哪個角度分辨才能在意義上有區別？', options:{A:'一個與「路」有關，一個與「過程」有關',B:'讀音完全不同',C:'一個與「力量」有關，一個與「時間」有關',D:'一個是名詞，一個是動詞'}, answer:'A'},
+    choice:[
+      {n:1,q:'詩中爸爸不曾變成以下哪一種事物？',options:{A:'小花',B:'大樹',C:'雨水',D:'葉子'},answer:'C'},
+      {n:2,q:'「渾身長滿痱子」的「渾身」是代表什麼意思？',options:{A:'只有手腳',B:'臉上',C:'全身',D:'背後'},answer:'C'},
+      {n:3,q:'「魁梧」是在本文中是形容樹長得很怎樣？',options:{A:'瘦小',B:'高大強壯',C:'彎曲',D:'古老'},answer:'B'},
+      {n:4,q:'「抓不到任何一枚美麗的落葉」，主角心情可能是？',options:{A:'開心',B:'生氣',C:'失望',D:'興奮'},answer:'C'},
+      {n:5,q:'爸爸「偶爾偷偷的，溫熱的，親吻過我的臉」，這表現了爸爸的什麼情感？',options:{A:'嚴厲',B:'思念與關愛',C:'不在意',D:'害羞'},answer:'B'},
+      {n:6,q:'詩中「涼掉的火鍋湯」暗示了什麼？',options:{A:'火鍋不好吃',B:'主角忘記吃火鍋',C:'天氣太熱',D:'爸爸不在身邊的失落感'},answer:'D'},
+      {n:7,q:'這首詩主要使用的寫作手法是什麼？',options:{A:'透過對話推進情節',B:'透過季節與自然事物象徵父愛',C:'透過數字說明事實',D:'透過比較表達意見'},answer:'B'},
+      {n:8,q:'下列哪一項的敘述最接近這首詩的主旨？',options:{A:'描述四季的美景',B:'表達對過世父親的思念',C:'教導讀者魔術技巧',D:'說明家庭關係的冷淡'},answer:'B'},
+      {n:9,q:'詩中將爸爸比喻為「魔術師」，主要想表達什麼？',options:{A:'爸爸真的會變魔術',B:'爸爸的愛以不同形式存在',C:'爸爸喜歡開玩笑',D:'爸爸的職業是魔術師'},answer:'B'},
+      {n:10,q:'詩中重複「你把自己變成……」的句式，有什麼作用？',options:{A:'讓詩句更冗長',B:'增加韻律感',C:'展示作者的文采',D:'強調爸爸變化的多樣與愛的持續'},answer:'D'},
+      {n:11,q:'詩的最後一節傳達了主角的什麼訊息？',options:{A:'已經忘記爸爸',B:'依然感受到爸爸的愛',C:'對爸爸的離開感到生氣',D:'決定不再想念爸爸'},answer:'B'},
+      {n:12,q:'「你大概把自己變成眼淚了」一句中的「大概」表達了什麼？',options:{A:'主角的猜測與想像',B:'主角的肯定',C:'作者的疑問',D:'事實的陳述'},answer:'A'},
+      {n:13,q:'透過整首詩，作者希望讀者體會到什麼？',options:{A:'魔術很有趣',B:'四季變化很快',C:'珍惜火鍋的時光',D:'親人的愛不會因離去而消失'},answer:'D'},
+      {n:14,q:'下列哪一個「任」字的讀音與其他三個不同？',options:{A:'任務',B:'任何',C:'任性',D:'任先生'},answer:'D'},
+      {n:15,q:'「不勝枚舉」的「枚」，意思是：',options:{A:'樹枝',B:'計算物的單位',C:'玫瑰花',D:'葉子'},answer:'B'},
+      {n:16,q:'「感慨、慷慨」的「慨」，與哪個字的讀音相同？',options:{A:'概',B:'溉',C:'既',D:'凱'},answer:'D'},
+      {n:17,q:'下列哪一組詞語的用字完全正確？',options:{A:'輝手、強勁',B:'痱子、排隊',C:'梧桐、語文',D:'枚場、玫瑰'},answer:'B'},
+      {n:18,q:'如果要區分「徑」與「經」，從哪個角度分辨才能在意義上有區別？',options:{A:'一個與「路」有關，一個與「過程」有關',B:'讀音完全不同',C:'一個與「力量」有關，一個與「時間」有關',D:'一個是名詞，一個是動詞'},answer:'A'},
     ],
   },
 
-  L8: {
-    key:'L8', no:'第8課', title:'八歲，一個人去旅行', genre:'記敘文', author:'吳念真',
+  L8:{
+    key:'L8',no:'第8課',title:'八歲，一個人去旅行',genre:'記敘文',author:'吳念真',color:'#22a699',
     cover:'🚆',
     summary:'本課是記敘文。主角八歲時，星期天早上獨自坐火車到宜蘭的姨婆家，要拿回祖母的雨傘。途中遇到一位友善的老婆婆，老婆婆突然昏倒，同車乘客都過來幫忙，有人用主角隨身帶的萬金油救了婆婆。老婆婆醒來後，誤以為主角是自己的孫子，乘客也稱讚主角，老婆婆因感動與溫暖而流淚。主角到站時，已把祖母的臉與老婆婆的臉重疊在一起，急著喊出「阿嬤」。全文主旨是：人與人之間真誠的互動，能帶來溫暖。',
-    rhetoricOptions: {A:'譬喻', B:'類疊', C:'摹寫', D:'設問'},
-    vocab: [
-      {n:1, char:'銅', pinyin:'ㄊㄨㄥˊ tóng', word:'銅製、銅板', mnemonic:'釒（金屬）＋同（顏色相同）→一種金屬＝銅'},
-      {n:2, char:'盒', pinyin:'ㄏㄜˊ hé', word:'盒子', mnemonic:'合（蓋起來）＋皿（器皿）→蓋起來的器皿＝盒子'},
-      {n:3, char:'剎', pinyin:'ㄔㄚˋ chà', word:'剎那', mnemonic:'刀（快）＋殺（瞬間）→極短的瞬間＝剎那'},
-      {n:4, char:'釋', pinyin:'ㄕˋ shì', word:'釋出、愛不釋手', mnemonic:'釆（分辨）＋睪→放開、解開＝釋出／愛不釋手'},
-      {n:5, char:'塞', pinyin:'ㄙㄞ sāi', word:'塞進去', mnemonic:'宀（屋子）＋土＋土（堵住洞口）→把東西堵進去＝塞進'},
-      {n:6, char:'礦', pinyin:'ㄎㄨㄤˋ kuàng', word:'礦洞', mnemonic:'石＋廣（廣大地底）→廣大地底下的石頭＝礦洞'},
-      {n:7, char:'螞', pinyin:'ㄇㄚˇ mǎ', word:'螞蟻', mnemonic:'虫＋馬（忙碌如馬）→忙碌的小蟲＝螞蟻'},
-      {n:8, char:'喂', pinyin:'ㄨㄟˋ wèi', word:'喂！（招呼語）', mnemonic:'口＋畏→開口打招呼、叫人注意＝喂！'},
-      {n:9, char:'澆', pinyin:'ㄐㄧㄠ jiāo', word:'澆灌、借酒澆愁', mnemonic:'氵＋堯（高高站立後倒下）→水從高處倒下＝澆水／澆灌'},
-      {n:10, char:'怯', pinyin:'ㄑㄧㄝˋ qiè', word:'怯懦、怯聲怯氣', mnemonic:'忄（心）＋去（想逃走）→心裡想逃、害怕＝怯懦'},
-      {n:11, char:'❓（原稿字跡不清）', pinyin:'(建議對照課本)', word:'第11個生字', mnemonic:'此字在掃描稿中筆跡較模糊，無法百分百確認，建議直接翻開課本生字表第11格核對，避免背錯。'},
-      {n:12, char:'嚼', pinyin:'ㄐㄧㄠˊ jiáo', word:'咀嚼', mnemonic:'口＋爵（慢慢享用）→嘴巴慢慢磨碎食物＝咀嚼'},
-      {n:13, char:'遲', pinyin:'ㄔˊ chí', word:'遲到、姍姍來遲', mnemonic:'辶（走）＋犀（慢吞吞的犀牛）→走得慢＝遲到'},
-      {n:14, char:'聰', pinyin:'ㄘㄨㄥ cōng', word:'耳聰目明', mnemonic:'耳＋悤（用心）→用心聽得清楚＝耳聰目明'},
-      {n:15, char:'穴', pinyin:'ㄒㄩㄝˋ xué', word:'空穴來風', mnemonic:'象形字，畫出一個洞的樣子＝洞穴'},
-      {n:16, char:'瞧', pinyin:'ㄑㄧㄠˊ qiáo', word:'瞧一瞧', mnemonic:'目＋焦（專注盯著）→眼睛專注地看＝瞧'},
-      {n:17, char:'孫', pinyin:'ㄙㄨㄣ sūn', word:'含飴弄孫', mnemonic:'子＋系（血脈延續）→子女的子女＝孫子'},
-      {n:18, char:'孝', pinyin:'ㄒㄧㄠˋ xiào', word:'父慈子孝', mnemonic:'老＋子（子女扶老人）→子女扶持孝順父母＝孝順'},
+    rhetoricOptions:{A:'譬喻',B:'類疊',C:'摹寫',D:'設問'},
+    vocab:[
+      {n:1,char:'銅',pinyin:'ㄊㄨㄥˊ',word:'銅製、銅板',mnemonic:'釒（金屬）＋同（顏色相同）→一種金屬＝銅'},
+      {n:2,char:'盒',pinyin:'ㄏㄜˊ',word:'盒子',mnemonic:'合（蓋起來）＋皿（器皿）→蓋起來的器皿＝盒子'},
+      {n:3,char:'剎',pinyin:'ㄔㄚˋ',word:'剎那',mnemonic:'刀（快）＋殺（瞬間）→極短的瞬間＝剎那'},
+      {n:4,char:'釋',pinyin:'ㄕˋ',word:'釋出、愛不釋手',mnemonic:'釆（分辨）＋睪→放開、解開＝釋出／愛不釋手'},
+      {n:5,char:'塞',pinyin:'ㄙㄞ',word:'塞進去',mnemonic:'宀（屋子）＋土＋土（堵住洞口）→把東西堵進去＝塞進'},
+      {n:6,char:'礦',pinyin:'ㄎㄨㄤˋ',word:'礦洞',mnemonic:'石＋廣（廣大地底）→廣大地底下的石頭＝礦洞'},
+      {n:7,char:'螞',pinyin:'ㄇㄚˇ',word:'螞蟻',mnemonic:'虫＋馬（忙碌如馬）→忙碌的小蟲＝螞蟻'},
+      {n:8,char:'喂',pinyin:'ㄨㄟˋ',word:'喂！（招呼語）',mnemonic:'口＋畏→開口打招呼、叫人注意＝喂！'},
+      {n:9,char:'澆',pinyin:'ㄐㄧㄠ',word:'澆灌、借酒澆愁',mnemonic:'氵＋堯（高高站立後倒下）→水從高處倒下＝澆水／澆灌'},
+      {n:10,char:'怯',pinyin:'ㄑㄧㄝˋ',word:'怯懦、怯聲怯氣',mnemonic:'忄（心）＋去（想逃走）→心裡想逃、害怕＝怯懦'},
+      {n:11,char:'（對照課本）',pinyin:'（課本確認）',word:'第11個生字',mnemonic:'此字在掃描稿中筆跡較模糊，請直接翻開課本生字表第11格核對。'},
+      {n:12,char:'嚼',pinyin:'ㄐㄧㄠˊ',word:'咀嚼',mnemonic:'口＋爵（慢慢享用）→嘴巴慢慢磨碎食物＝咀嚼'},
+      {n:13,char:'遲',pinyin:'ㄔˊ',word:'遲到、姍姍來遲',mnemonic:'辶（走）＋犀（慢吞吞的犀牛）→走得慢＝遲到'},
+      {n:14,char:'聰',pinyin:'ㄘㄨㄥ',word:'耳聰目明',mnemonic:'耳＋悤（用心）→用心聽得清楚＝耳聰目明'},
+      {n:15,char:'穴',pinyin:'ㄒㄩㄝˋ',word:'空穴來風',mnemonic:'象形字，畫出一個洞的樣子＝洞穴'},
+      {n:16,char:'瞧',pinyin:'ㄑㄧㄠˊ',word:'瞧一瞧',mnemonic:'目＋焦（專注盯著）→眼睛專注地看＝瞧'},
+      {n:17,char:'孫',pinyin:'ㄙㄨㄣ',word:'含飴弄孫',mnemonic:'子＋系（血脈延續）→子女的子女＝孫子'},
+      {n:18,char:'孝',pinyin:'ㄒㄧㄠˋ',word:'父慈子孝',mnemonic:'老＋子（子女扶老人）→子女扶持孝順父母＝孝順'},
     ],
-    fillin: [
-      {n:1, q:'本課的文體是屬於①。', a:'記敘文'},
-      {n:2, q:'本課的作者是②。', a:'吳念真'},
-      {n:3, q:'星期天早上，主角獨自坐火車到③的姨婆家。', a:'宜蘭'},
-      {n:4, q:'主角要拿回祖母的④。', a:'雨傘'},
-      {n:5, q:'火車上遇到一位友善的老婆婆，後來老婆婆突然⑤。', a:'昏倒'},
-      {n:6, q:'同車的乘客都過來幫忙，有人用主角帶的⑥，救了婆婆。', a:'萬金油'},
-      {n:7, q:'老婆婆醒後，給了主角⑦表示感謝。', a:'銅板'},
-      {n:8, q:'這篇課文的主旨是：人與人之間的真誠互動，能帶來⑧。', a:'溫暖'},
+    fillin:[
+      {n:1,q:'本課的文體是屬於①。',a:'記敘文'},
+      {n:2,q:'本課的作者是②。',a:'吳念真'},
+      {n:3,q:'星期天早上，主角獨自坐火車到③的姨婆家。',a:'宜蘭'},
+      {n:4,q:'主角要拿回祖母的④。',a:'雨傘'},
+      {n:5,q:'火車上遇到一位友善的老婆婆，後來老婆婆突然⑤。',a:'昏倒'},
+      {n:6,q:'同車的乘客都過來幫忙，有人用主角帶的⑥，救了婆婆。',a:'萬金油'},
+      {n:7,q:'老婆婆醒後，給了主角⑦表示感謝。',a:'銅板'},
+      {n:8,q:'這篇課文的主旨是：人與人之間的真誠互動，能帶來⑧。',a:'溫暖'},
     ],
-    idioms: [
-      {n:1, prompt:'細□慢嚥', answer:'嚼', meaning:'細嚼慢嚥：吃東西時慢慢咀嚼，不急著吞下'},
-      {n:2, prompt:'借酒□愁', answer:'澆', meaning:'借酒澆愁：用喝酒來忘掉煩惱'},
-      {n:3, prompt:'□聲怯氣', answer:'怯', meaning:'怯聲怯氣：說話小心、膽怯的樣子'},
-      {n:4, prompt:'含飴弄□', answer:'孫', meaning:'含飴弄孫：含著糖逗弄孫子，形容晚年生活的安樂'},
-      {n:5, prompt:'姍姍來□', answer:'遲', meaning:'姍姍來遲：慢慢地來，形容遲到'},
-      {n:6, prompt:'空□來風', answer:'穴', meaning:'空穴來風：消息或謠言不是完全沒有原因'},
-      {n:7, prompt:'耳□目明', answer:'聰', meaning:'耳聰目明：耳朵靈敏，眼睛明亮，形容頭腦清楚'},
-      {n:8, prompt:'父慈子□', answer:'孝', meaning:'父慈子孝：父親慈愛，子女孝順'},
-      {n:9, prompt:'愛不□手', answer:'釋', meaning:'愛不釋手：喜愛到不願放下'},
-      {n:10, prompt:'□牆鐁壁', answer:'銅', meaning:'銅牆鐁壁：比喻非常堅固、無法攻破的防禦'},
+    idioms:[
+      {n:1,prompt:'細□慢嚥',answer:'嚼',meaning:'細嚼慢嚥：吃東西時慢慢咀嚼，不急著吞下'},
+      {n:2,prompt:'借酒□愁',answer:'澆',meaning:'借酒澆愁：用喝酒來忘掉煩惱'},
+      {n:3,prompt:'□聲怯氣',answer:'怯',meaning:'怯聲怯氣：說話小心、膽怯的樣子'},
+      {n:4,prompt:'含飴弄□',answer:'孫',meaning:'含飴弄孫：含著糖逗弄孫子，形容晚年生活的安樂'},
+      {n:5,prompt:'姍姍來□',answer:'遲',meaning:'姍姍來遲：慢慢地來，形容遲到'},
+      {n:6,prompt:'空□來風',answer:'穴',meaning:'空穴來風：消息或謠言不是完全沒有原因'},
+      {n:7,prompt:'耳□目明',answer:'聰',meaning:'耳聰目明：耳朵靈敏，眼睛明亮，形容頭腦清楚'},
+      {n:8,prompt:'父慈子□',answer:'孝',meaning:'父慈子孝：父親慈愛，子女孝順'},
+      {n:9,prompt:'愛不□手',answer:'釋',meaning:'愛不釋手：喜愛到不願放下'},
+      {n:10,prompt:'□牆鐵壁',answer:'銅',meaning:'銅牆鐵壁：比喻非常堅固、無法攻破的防禦'},
     ],
-    rhetoric: [
-      {n:1, sentence:'他一步一步向前走，一點一點累積勇氣，一次一次嘗試，直到成功那刻。', answer:'B'},
-      {n:2, sentence:'時間如一條靜默的長河，無聲地帶走昨日的故事，只留下回憶的粼粼波光。', answer:'A'},
-      {n:3, sentence:'咬下媽媽醃的脆梅，酸中帶甜的汁液在舌尖迸開，接著一股清爽的甘涼滑入喉嚨。', answer:'C'},
-      {n:4, sentence:'童年記憶宛若一本泛黃的相冊，每一頁都收藏著永不褪色的歡笑與淚水。', answer:'A'},
-      {n:5, sentence:'若沒有了挑戰，我們如何知道自己能變得有多堅強？這正是成長的意義嗎？', answer:'D'},
+    rhetoric:[
+      {n:1,sentence:'他一步一步向前走，一點一點累積勇氣，一次一次嘗試，直到成功那刻。',answer:'B'},
+      {n:2,sentence:'時間如一條靜默的長河，無聲地帶走昨日的故事，只留下回憶的粼粼波光。',answer:'A'},
+      {n:3,sentence:'咬下媽媽醃的脆梅，酸中帶甜的汁液在舌尖迸開，接著一股清爽的甘涼滑入喉嚨。',answer:'C'},
+      {n:4,sentence:'童年記憶宛若一本泛黃的相冊，每一頁都收藏著永不褪色的歡笑與淚水。',answer:'A'},
+      {n:5,sentence:'若沒有了挑戰，我們如何知道自己能變得有多堅強？這正是成長的意義嗎？',answer:'D'},
     ],
-    choice: [
-      {n:1, q:'老婆婆身上有什麼味道讓主角不再害怕？', options:{A:'香水味',B:'苦茶油擦頭髮的香味',C:'肥皂味',D:'汗味'}, answer:'B'},
-      {n:2, q:'老婆婆昏倒時，主角做了什麼？', options:{A:'自己幫她擦萬金油',B:'大叫「救人呵！」',C:'跑去叫列車長',D:'害怕得躲起來'}, answer:'B'},
-      {n:3, q:'主角離開火車時忘了什麼？', options:{A:'雨傘',B:'芭樂',C:'萬金油',D:'背包'}, answer:'A'},
-      {n:4, q:'乘客誤以為主角和老婆婆是什麼關係？', options:{A:'母子',B:'陌生人',C:'親戚',D:'鄰居'}, answer:'C'},
-      {n:5, q:'老婆婆聽到乘客稱讚主角時，為什麼流淚？', options:{A:'因為身體不舒服',B:'因為誤會覺得委屈',C:'因為感動與溫暖',D:'因為想起自己的兒子'}, answer:'C'},
-      {n:6, q:'主角為什麼沒有向乘客解釋自己不是老婆婆的孫子？', options:{A:'害怕被罵',B:'沒有機會說話',C:'覺得不需要解釋',D:'忘記解釋'}, answer:'B'},
-      {n:7, q:'主角為什麼覺得祖母的臉變成了火車上阿嬤的臉？', options:{A:'因為天色昏暗看不清',B:'因為兩人長得很像',C:'因為對阿嬤的記憶與對祖母的情感重疊',D:'因為作夢'}, answer:'C'},
-      {n:8, q:'這篇課文主要傳達的情感是什麼？', options:{A:'旅行的快樂',B:'冒險的刺激',C:'人與人之間的溫暖',D:'對家人的思念'}, answer:'C'},
-      {n:9, q:'從爸爸「堅決的眼神」可以推測他的用意可能是：', options:{A:'訓練主角獨立',B:'不想自己去拿傘',C:'懲罰主角',D:'讓主角去玩'}, answer:'A'},
-      {n:10, q:'老婆婆說「阿嬤不是別人哪」的意思是：', options:{A:'她認主角當孫子',B:'老人都是阿嬤',C:'不用分彼此',D:'她可能是主角的親戚'}, answer:'C'},
-      {n:11, q:'主角最後急著跑向祖母並大叫「阿嬤」，是因為：', options:{A:'害怕被罵',B:'急著還傘',C:'心中充滿感動與思念',D:'天色已暗很害怕'}, answer:'C'},
-      {n:12, q:'這篇課文以「八歲，一個人去旅行」為題，主要想突顯主旨的是：', options:{A:'小孩的勇敢與成長',B:'旅行的危險',C:'社會的冷漠',D:'家人的疏忽'}, answer:'A'},
-      {n:13, q:'下列哪個詞語中的「塞」字讀音與「塞車」的「塞」相同？', options:{A:'堵塞',B:'邊塞',C:'瓶塞',D:'要塞'}, answer:'A'},
-      {n:14, q:'「一剎那」的意思是：', options:{A:'很長的時間',B:'極短的時間',C:'一天的時間',D:'半天的時間'}, answer:'B'},
-      {n:15, q:'「毫不遲疑」的意思是：', options:{A:'非常猶豫',B:'一點也不猶豫',C:'慢慢思考',D:'拖延時間'}, answer:'B'},
-      {n:16, q:'下列哪一組詞語中的「嚼」字讀音不相同？', options:{A:'味同嚼蠟／亂嚼舌頭',B:'細嚼慢嚥／咬文嚼字',C:'咬嚼／咀嚼',D:'嚼墨噴紙／咀英華'}, answer:'A'},
-      {n:17, q:'下列哪個成語與「膽怯」的意思相反？', options:{A:'畏首畏尾',B:'勇往直前',C:'猶豫不決',D:'心驚膽跳'}, answer:'B'},
-      {n:18, q:'課文中「凹癟的嘴」是形容老婆婆的嘴：', options:{A:'很紅潤',B:'很大',C:'凹下去、乾瘦',D:'一直動'}, answer:'C'},
+    choice:[
+      {n:1,q:'老婆婆身上有什麼味道讓主角不再害怕？',options:{A:'香水味',B:'苦茶油擦頭髮的香味',C:'肥皂味',D:'汗味'},answer:'B'},
+      {n:2,q:'老婆婆昏倒時，主角做了什麼？',options:{A:'自己幫她擦萬金油',B:'大叫「救人呵！」',C:'跑去叫列車長',D:'害怕得躲起來'},answer:'B'},
+      {n:3,q:'主角離開火車時忘了什麼？',options:{A:'雨傘',B:'芭樂',C:'萬金油',D:'背包'},answer:'A'},
+      {n:4,q:'乘客誤以為主角和老婆婆是什麼關係？',options:{A:'母子',B:'陌生人',C:'親戚',D:'鄰居'},answer:'C'},
+      {n:5,q:'老婆婆聽到乘客稱讚主角時，為什麼流淚？',options:{A:'因為身體不舒服',B:'因為誤會覺得委屈',C:'因為感動與溫暖',D:'因為想起自己的兒子'},answer:'C'},
+      {n:6,q:'主角為什麼沒有向乘客解釋自己不是老婆婆的孫子？',options:{A:'害怕被罵',B:'沒有機會說話',C:'覺得不需要解釋',D:'忘記解釋'},answer:'B'},
+      {n:7,q:'主角為什麼覺得祖母的臉變成了火車上阿嬤的臉？',options:{A:'因為天色昏暗看不清',B:'因為兩人長得很像',C:'因為對阿嬤的記憶與對祖母的情感重疊',D:'因為作夢'},answer:'C'},
+      {n:8,q:'這篇課文主要傳達的情感是什麼？',options:{A:'旅行的快樂',B:'冒險的刺激',C:'人與人之間的溫暖',D:'對家人的思念'},answer:'C'},
+      {n:9,q:'從爸爸「堅決的眼神」可以推測他的用意可能是：',options:{A:'訓練主角獨立',B:'不想自己去拿傘',C:'懲罰主角',D:'讓主角去玩'},answer:'A'},
+      {n:10,q:'老婆婆說「阿嬤不是別人哪」的意思是：',options:{A:'她認主角當孫子',B:'老人都是阿嬤',C:'不用分彼此',D:'她可能是主角的親戚'},answer:'C'},
+      {n:11,q:'主角最後急著跑向祖母並大叫「阿嬤」，是因為：',options:{A:'害怕被罵',B:'急著還傘',C:'心中充滿感動與思念',D:'天色已暗很害怕'},answer:'C'},
+      {n:12,q:'這篇課文以「八歲，一個人去旅行」為題，主要想突顯的是：',options:{A:'小孩的勇敢與成長',B:'旅行的危險',C:'社會的冷漠',D:'家人的疏忽'},answer:'A'},
+      {n:13,q:'下列哪個詞語中的「塞」字讀音與「塞車」的「塞」相同？',options:{A:'堵塞',B:'邊塞',C:'瓶塞',D:'要塞'},answer:'A'},
+      {n:14,q:'「一剎那」的意思是：',options:{A:'很長的時間',B:'極短的時間',C:'一天的時間',D:'半天的時間'},answer:'B'},
+      {n:15,q:'「毫不遲疑」的意思是：',options:{A:'非常猶豫',B:'一點也不猶豫',C:'慢慢思考',D:'拖延時間'},answer:'B'},
+      {n:16,q:'下列哪一組詞語中的「嚼」字讀音不相同？',options:{A:'味同嚼蠟／亂嚼舌頭',B:'細嚼慢嚥／咬文嚼字',C:'咬嚼／咀嚼',D:'嚼墨噴紙／咀英華'},answer:'A'},
+      {n:17,q:'下列哪個成語與「膽怯」的意思相反？',options:{A:'畏首畏尾',B:'勇往直前',C:'猶豫不決',D:'心驚膽跳'},answer:'B'},
+      {n:18,q:'課文中「凹癟的嘴」是形容老婆婆的嘴：',options:{A:'很紅潤',B:'很大',C:'凹下去、乾瘦',D:'一直動'},answer:'C'},
     ],
   },
 
-  L9: {
-    key:'L9', no:'第9課', title:'紅鼻子醫生', genre:'應用文本（訪問稿）', author:'蔡香玲',
+  L9:{
+    key:'L9',no:'第9課',title:'紅鼻子醫生',genre:'訪問稿',author:'蔡香玲',color:'#e04a6a',
     cover:'🤡',
     summary:'本課是應用文本中的訪問稿。作者對小丑醫生這份職業感到好奇，於是和同學計畫訪問他們。小丑醫生的表演主要是為了帶來歡笑、給病童心理上的安慰；想成為他們的一員，必須熟練魔術、歌唱、小丑表演等技藝，還要了解兒童心理、通過實習與考核。支持他們持續努力的動力，來自每個病童的歡笑。作者訪問結束後，覺得他們的紅鼻子彷彿就掛在每個人臉上。從這篇課文中，我們可以體會對他人的愛心，以及實踐關懷他人的服務精神（同理心）。',
-    rhetoricOptions: {A:'摹寫', B:'譬喻', C:'疊字', D:'設問', E:'轉化'},
-    vocab: [
-      {n:1, char:'瀏', pinyin:'ㄌㄧㄡˊ liú', word:'瀏覽', mnemonic:'氵＋留（水流經過，停留一下）→快速看過＝瀏覽'},
-      {n:2, char:'覽', pinyin:'ㄌㄢˇ lǎn', word:'瀏覽、一覽無遺', mnemonic:'監（仔細看）＋見→仔細看過＝瀏覽／一覽無遺'},
-      {n:3, char:'搜', pinyin:'ㄙㄡ sōu', word:'搜尋', mnemonic:'扌（手）＋叟（老人摸索）→用手到處尋找＝搜尋'},
-      {n:4, char:'謐', pinyin:'ㄇㄧˋ mì', word:'靜謐', mnemonic:'言（連話都不出聲）＋宓→非常安靜＝靜謐'},
-      {n:5, char:'乍', pinyin:'ㄓㄚˋ zhà', word:'乍看之下', mnemonic:'突然出現的樣子→乍看之下、靈光乍現'},
-      {n:6, char:'惑', pinyin:'ㄏㄨㄛˋ huò', word:'困惑、大惑不解', mnemonic:'或（不確定）＋心→心裡不確定＝困惑'},
-      {n:7, char:'況', pinyin:'ㄎㄨㄤˋ kuàng', word:'情況、盛況空前', mnemonic:'氵＋兄→像水流一樣變化的狀態＝情況'},
-      {n:8, char:'症', pinyin:'ㄓㄥˋ zhèng', word:'病症、疑難雜症', mnemonic:'疒（病）＋正（病本身）→生病的狀態＝症狀'},
-      {n:9, char:'誇', pinyin:'ㄎㄨㄚ kuā', word:'誇張、誇下海口', mnemonic:'言＋夸（大跨步）→說話誇大其詞＝誇張'},
-      {n:10, char:'拜', pinyin:'ㄅㄞˋ bài', word:'拜訪、甘拜下風', mnemonic:'雙手合十拜禮的樣子→拜訪、表示敬意'},
-      {n:11, char:'詢', pinyin:'ㄒㄩㄣˊ xún', word:'詢問', mnemonic:'言＋旬（十天問一次）→開口詢問＝詢問'},
-      {n:12, char:'磨', pinyin:'ㄇㄛˊ mó', word:'磨杵成針', mnemonic:'麻（摩擦）＋石→石頭互相摩擦＝磨'},
-      {n:13, char:'恢', pinyin:'ㄏㄨㄟ huī', word:'恢復', mnemonic:'忄＋灰（從灰燼中重新振作）→恢復精神、狀態'},
-      {n:14, char:'證', pinyin:'ㄓㄥˋ zhèng', word:'證據', mnemonic:'言＋登（登台作證）→開口作證＝證據'},
-      {n:15, char:'裁', pinyin:'ㄘㄞˊ cái', word:'裁定', mnemonic:'衣＋戈（用刀剪布）→裁剪、判斷＝裁定'},
-      {n:16, char:'職', pinyin:'ㄓˊ zhí', word:'職務、擅離職守', mnemonic:'耳＋哉（聽命行事）→耳朵聽命做事＝職務'},
-      {n:17, char:'療', pinyin:'ㄌㄧㄠˊ liáo', word:'治療、療癒', mnemonic:'疒＋尞（用火治病）→治病＝治療'},
-      {n:18, char:'愈', pinyin:'ㄩˋ yù', word:'痊愈、不藥而愈', mnemonic:'疒（病情）＋俞（往前進）→病情好轉＝痊愈'},
+    rhetoricOptions:{A:'摹寫',B:'譬喻',C:'疊字',D:'設問',E:'轉化'},
+    vocab:[
+      {n:1,char:'瀏',pinyin:'ㄌㄧㄡˊ',word:'瀏覽',mnemonic:'氵＋留（水流經過，停留一下）→快速看過＝瀏覽'},
+      {n:2,char:'覽',pinyin:'ㄌㄢˇ',word:'瀏覽、一覽無遺',mnemonic:'監（仔細看）＋見→仔細看過＝瀏覽／一覽無遺'},
+      {n:3,char:'搜',pinyin:'ㄙㄡ',word:'搜尋',mnemonic:'扌（手）＋叟（老人摸索）→用手到處尋找＝搜尋'},
+      {n:4,char:'謐',pinyin:'ㄇㄧˋ',word:'靜謐',mnemonic:'言（連話都不出聲）＋宓→非常安靜＝靜謐'},
+      {n:5,char:'乍',pinyin:'ㄓㄚˋ',word:'乍看之下',mnemonic:'突然出現的樣子→乍看之下、靈光乍現'},
+      {n:6,char:'惑',pinyin:'ㄏㄨㄛˋ',word:'困惑、大惑不解',mnemonic:'或（不確定）＋心→心裡不確定＝困惑'},
+      {n:7,char:'況',pinyin:'ㄎㄨㄤˋ',word:'情況、盛況空前',mnemonic:'氵＋兄→像水流一樣變化的狀態＝情況'},
+      {n:8,char:'症',pinyin:'ㄓㄥˋ',word:'病症、疑難雜症',mnemonic:'疒（病）＋正（病本身）→生病的狀態＝症狀'},
+      {n:9,char:'誇',pinyin:'ㄎㄨㄚ',word:'誇張、誇下海口',mnemonic:'言＋夸（大跨步）→說話誇大其詞＝誇張'},
+      {n:10,char:'拜',pinyin:'ㄅㄞˋ',word:'拜訪、甘拜下風',mnemonic:'雙手合十拜禮的樣子→拜訪、表示敬意'},
+      {n:11,char:'詢',pinyin:'ㄒㄩㄣˊ',word:'詢問',mnemonic:'言＋旬（十天問一次）→開口詢問＝詢問'},
+      {n:12,char:'磨',pinyin:'ㄇㄛˊ',word:'磨杵成針',mnemonic:'麻（摩擦）＋石→石頭互相摩擦＝磨'},
+      {n:13,char:'恢',pinyin:'ㄏㄨㄟ',word:'恢復',mnemonic:'忄＋灰（從灰燼中重新振作）→恢復精神、狀態'},
+      {n:14,char:'證',pinyin:'ㄓㄥˋ',word:'證據',mnemonic:'言＋登（登台作證）→開口作證＝證據'},
+      {n:15,char:'裁',pinyin:'ㄘㄞˊ',word:'裁定',mnemonic:'衣＋戈（用刀剪布）→裁剪、判斷＝裁定'},
+      {n:16,char:'職',pinyin:'ㄓˊ',word:'職務、擅離職守',mnemonic:'耳＋哉（聽命行事）→耳朵聽命做事＝職務'},
+      {n:17,char:'療',pinyin:'ㄌㄧㄠˊ',word:'治療、療癒',mnemonic:'疒＋尞（用火治病）→治病＝治療'},
+      {n:18,char:'愈',pinyin:'ㄩˋ',word:'痊愈、不藥而愈',mnemonic:'疒（病情）＋俞（往前進）→病情好轉＝痊愈'},
     ],
-    fillin: [
-      {n:1, q:'本課的文體是屬於應用文本中的①。', a:'訪問稿'},
-      {n:2, q:'本課的作者是②。', a:'蔡香玲'},
-      {n:3, q:'作者是對③感到好奇，才和同學計畫訪問他們。', a:'小丑醫生'},
-      {n:4, q:'他們的表演主要是為病童④。', a:'帶來歡笑'},
-      {n:5, q:'想要成為他們的一員，必須熟練⑤。', a:'魔術、歌唱、小丑表演'},
-      {n:6, q:'還要了解兒童⑥。', a:'心理'},
-      {n:7, q:'還要通過⑦和考核。', a:'實習'},
-      {n:8, q:'支持他們持續努力的動力，來自每個病童的⑧。', a:'歡笑'},
-      {n:9, q:'作者訪問結束後，覺得他們的紅鼻子就像掛在他們臉上的⑨。', a:'愛心'},
-      {n:10, q:'從這篇課文中，我們可以體會對他人的愛心，以及實踐關懷他人的⑩。', a:'同理心'},
+    fillin:[
+      {n:1,q:'本課的文體是屬於應用文本中的①。',a:'訪問稿'},
+      {n:2,q:'本課的作者是②。',a:'蔡香玲'},
+      {n:3,q:'作者是對③感到好奇，才和同學計畫訪問他們。',a:'小丑醫生'},
+      {n:4,q:'他們的表演主要是為病童④。',a:'帶來歡笑'},
+      {n:5,q:'想要成為他們的一員，必須熟練⑤。',a:'魔術、歌唱、小丑表演'},
+      {n:6,q:'還要了解兒童⑥。',a:'心理'},
+      {n:7,q:'還要通過⑦和考核。',a:'實習'},
+      {n:8,q:'支持他們持續努力的動力，來自每個病童的⑧。',a:'歡笑'},
+      {n:9,q:'作者訪問結束後，覺得他們的紅鼻子就像掛在他們臉上的⑨。',a:'愛心'},
+      {n:10,q:'從這篇課文中，我們可以體會對他人的愛心，以及實踐關懷他人的⑩。',a:'同理心'},
     ],
-    idioms: [
-      {n:1, prompt:'靜□無聲', answer:'謐', meaning:'靜謐無聲：非常安靜，沒有一點聲音'},
-      {n:2, prompt:'靈光□現', answer:'乍', meaning:'靈光乍現：突然想到一個好點子'},
-      {n:3, prompt:'大□不解', answer:'惑', meaning:'大惑不解：非常困惑，不能理解'},
-      {n:4, prompt:'□索枯腸', answer:'搜', meaning:'搜索枯腸：形容絞盡腦汁地思考'},
-      {n:5, prompt:'一□無遺', answer:'覽', meaning:'一覽無遺：一眼就能看清楚全部'},
-      {n:6, prompt:'甘□下風', answer:'拜', meaning:'甘拜下風：心甘情願地承認自己不如對方'},
-      {n:7, prompt:'□杵成針', answer:'磨', meaning:'磨杵成針：比喻有恆心就能成功'},
-      {n:8, prompt:'不藥而□', answer:'愈', meaning:'不藥而愈：沒有吃藥病就好了'},
-      {n:9, prompt:'擅離□守', answer:'職', meaning:'擅離職守：未經許可離開自己的工作崗位'},
-      {n:10, prompt:'盛□空前', answer:'況', meaning:'盛況空前：場面盛大，從來沒有過'},
-      {n:11, prompt:'疑難雜□', answer:'症', meaning:'疑難雜症：難以處理、解決的問題'},
-      {n:12, prompt:'□下海口', answer:'誇', meaning:'誇下海口：說大話，誇張地保證'},
+    idioms:[
+      {n:1,prompt:'靜□無聲',answer:'謐',meaning:'靜謐無聲：非常安靜，沒有一點聲音'},
+      {n:2,prompt:'靈光□現',answer:'乍',meaning:'靈光乍現：突然想到一個好點子'},
+      {n:3,prompt:'大□不解',answer:'惑',meaning:'大惑不解：非常困惑，不能理解'},
+      {n:4,prompt:'□索枯腸',answer:'搜',meaning:'搜索枯腸：形容絞盡腦汁地思考'},
+      {n:5,prompt:'一□無遺',answer:'覽',meaning:'一覽無遺：一眼就能看清楚全部'},
+      {n:6,prompt:'甘□下風',answer:'拜',meaning:'甘拜下風：心甘情願地承認自己不如對方'},
+      {n:7,prompt:'□杵成針',answer:'磨',meaning:'磨杵成針：比喻有恆心就能成功'},
+      {n:8,prompt:'不藥而□',answer:'愈',meaning:'不藥而愈：沒有吃藥病就好了'},
+      {n:9,prompt:'擅離□守',answer:'職',meaning:'擅離職守：未經許可離開自己的工作崗位'},
+      {n:10,prompt:'盛□空前',answer:'況',meaning:'盛況空前：場面盛大，從來沒有過'},
+      {n:11,prompt:'疑難雜□',answer:'症',meaning:'疑難雜症：難以處理、解決的問題'},
+      {n:12,prompt:'□下海口',answer:'誇',meaning:'誇下海口：說大話，誇張地保證'},
     ],
-    rhetoric: [
-      {n:1, sentence:'下午的雷陣雨停了，天空像一塊剛洗好的藍色畫布，乾淨又明亮。', answer:'B'},
-      {n:2, sentence:'我走進公園，腳下的草地溼答答、軟綿綿的。', answer:'C'},
-      {n:3, sentence:'空氣中飄著泥土的清香，耳邊傳來「啾啾、啁啁」的鳥叫聲，清脆又熱鬧。', answer:'A'},
-      {n:4, sentence:'小水窪裡，幾片落葉快樂地划著小船。', answer:'E'},
-      {n:5, sentence:'你問我雨後的公園有什麼好看嗎？這些可愛的小風景，不就是大自然送給我們的禮物嗎？', answer:'D'},
+    rhetoric:[
+      {n:1,sentence:'下午的雷陣雨停了，天空像一塊剛洗好的藍色畫布，乾淨又明亮。',answer:'B'},
+      {n:2,sentence:'我走進公園，腳下的草地溼答答、軟綿綿的。',answer:'C'},
+      {n:3,sentence:'空氣中飄著泥土的清香，耳邊傳來「啾啾、啁啁」的鳥叫聲，清脆又熱鬧。',answer:'A'},
+      {n:4,sentence:'小水窪裡，幾片落葉快樂地划著小船。',answer:'E'},
+      {n:5,sentence:'你問我雨後的公園有什麼好看嗎？這些可愛的小風景，不就是大自然送給我們的禮物嗎？',answer:'D'},
     ],
-    choice: [
-      {n:1, q:'一開始，走廊上的樂聲是誰帶來的？', options:{A:'護理師',B:'街頭藝人',C:'病童家屬',D:'小丑醫生'}, answer:'D'},
-      {n:2, q:'馬阿姨認為小丑醫生這項職業，不包括以下哪個優點？', options:{A:'收入穩定',B:'學以致用',C:'可以到處旅遊',D:'能夠幫助他人'}, answer:'C'},
-      {n:3, q:'小丑醫生表演前，會先向誰詢問小病人的狀況？', options:{A:'醫院警衛',B:'其他小病人',C:'主治醫師',D:'護理師'}, answer:'D'},
-      {n:4, q:'「紅鼻小孩」後來轉變成為小丑醫生的什麼角色？', options:{A:'經理',B:'小助手',C:'老師',D:'評審'}, answer:'B'},
-      {n:5, q:'從「紅鼻小孩」的故事中，我們可以學到什麼道理？', options:{A:'生病的人不應該亂跑',B:'接受幫助的人，也可能成為幫助別人的人',C:'小丑醫生的道具很需要助手',D:'醫院裡有很多好玩的事'}, answer:'B'},
-      {n:6, q:'「靜謐的走廊上，輕快的樂聲乍然響起」，這句話主要營造出什麼樣的對比？', options:{A:'黑暗與光明',B:'安靜與突然的歡樂',C:'寒冷與溫暖',D:'古老與現代'}, answer:'B'},
-      {n:7, q:'從護理師稱呼他們為「小丑醫生」可以推論，醫院人員如何看待他們的表演？', options:{A:'認為他們是來搗亂的',B:'將他們的表演視為醫療的一部分',C:'覺得他們表演得很差',D:'認為他們搶了醫生的工作'}, answer:'B'},
-      {n:8, q:'馬阿姨提到小丑醫生能「ㄌㄩㄣˇㄩˋ」病童的心靈。這裡的「ㄌㄩㄣˇㄩˋ」是指什麼？', options:{A:'治好身體的疾病',B:'代替藥物治療',C:'減輕心理的難過與壓力',D:'進行心理諮商'}, answer:'C'},
-      {n:9, q:'根據馬阿姨的回答，當初吸引她投入小丑醫生工作的關鍵是什麼？', options:{A:'工作非常輕鬆',B:'能結合興趣、生計與助人',C:'可以常常出國表演',D:'社會地位很高'}, answer:'B'},
-      {n:10, q:'馬阿姨說每一場表演都是「獨一無二的創作」，這強調了小丑醫生工作的什麼特性？', options:{A:'隨性發揮',B:'針對個人需求用心設計',C:'重複同樣的流程',D:'追求華麗的舞台效果'}, answer:'B'},
-      {n:11, q:'根據課文，小丑醫生的工作對病童最大的幫助是什麼？', options:{A:'提供醫療建議',B:'給予物質援助',C:'帶來心靈的安慰與快樂',D:'教導學校功課'}, answer:'C'},
-      {n:12, q:'整篇課文從「疑惑」開始，到「感動」結束。這樣的安排有什麼效果？', options:{A:'讓文章更曲折離奇',B:'引導讀者和作者一起認識、理解並認同小丑醫生',C:'證明作者一開始的觀點是錯的',D:'增加文章的長度'}, answer:'B'},
-      {n:13, q:'下列哪個詞語的「乍」有「突然出現」的意思？', options:{A:'乍現',B:'乍到',C:'乍看',D:'乍聽'}, answer:'A'},
-      {n:14, q:'哪個詞語的「磨」字讀音與「石磨」的「磨」相同？', options:{A:'磨刀',B:'研磨',C:'磨坊',D:'消磨'}, answer:'C'},
-      {n:15, q:'「好事多磨」的意思是：', options:{A:'好的事情常遇到阻礙',B:'事情很容易成功',C:'喜歡做很多事',D:'好事需要多宣傳'}, answer:'A'},
-      {n:16, q:'下列哪一組詞語的讀音不相同？', options:{A:'石磨／磨刀',B:'治癒／比喻',C:'迷惑／或者',D:'乍現／爆炸'}, answer:'A'},
-      {n:17, q:'根據形近字判斷，「光彩絢麗」的「絢」字，可能與什麼有關？', options:{A:'絲綢的色彩',B:'詢問問題',C:'時間迅速',D:'日光明亮'}, answer:'A'},
-      {n:18, q:'下列哪個「裁」字的詞語與「製作衣服」有關？', options:{A:'裁決',B:'裁員',C:'裁縫',D:'裁判'}, answer:'C'},
-      {n:19, q:'「就业ˋ」是指：', options:{A:'開始一份新工作',B:'離開工作崗位',C:'工作中休息',D:'換工作'}, answer:'A'},
+    choice:[
+      {n:1,q:'一開始，走廊上的樂聲是誰帶來的？',options:{A:'護理師',B:'街頭藝人',C:'病童家屬',D:'小丑醫生'},answer:'D'},
+      {n:2,q:'馬阿姨認為小丑醫生這項職業，不包括以下哪個優點？',options:{A:'收入穩定',B:'學以致用',C:'可以到處旅遊',D:'能夠幫助他人'},answer:'C'},
+      {n:3,q:'小丑醫生表演前，會先向誰詢問小病人的狀況？',options:{A:'醫院警衛',B:'其他小病人',C:'主治醫師',D:'護理師'},answer:'D'},
+      {n:4,q:'「紅鼻小孩」後來轉變成為小丑醫生的什麼角色？',options:{A:'經理',B:'小助手',C:'老師',D:'評審'},answer:'B'},
+      {n:5,q:'從「紅鼻小孩」的故事中，我們可以學到什麼道理？',options:{A:'生病的人不應該亂跑',B:'接受幫助的人，也可能成為幫助別人的人',C:'小丑醫生的道具很需要助手',D:'醫院裡有很多好玩的事'},answer:'B'},
+      {n:6,q:'「靜謐的走廊上，輕快的樂聲乍然響起」，這句話主要營造出什麼樣的對比？',options:{A:'黑暗與光明',B:'安靜與突然的歡樂',C:'寒冷與溫暖',D:'古老與現代'},answer:'B'},
+      {n:7,q:'從護理師稱呼他們為「小丑醫生」可以推論，醫院人員如何看待他們的表演？',options:{A:'認為他們是來搗亂的',B:'將他們的表演視為醫療的一部分',C:'覺得他們表演得很差',D:'認為他們搶了醫生的工作'},answer:'B'},
+      {n:8,q:'馬阿姨提到小丑醫生能撫慰病童的心靈，指的是什麼？',options:{A:'治好身體的疾病',B:'代替藥物治療',C:'減輕心理的難過與壓力',D:'進行心理諮商'},answer:'C'},
+      {n:9,q:'根據馬阿姨的回答，當初吸引她投入小丑醫生工作的關鍵是什麼？',options:{A:'工作非常輕鬆',B:'能結合興趣、生計與助人',C:'可以常常出國表演',D:'社會地位很高'},answer:'B'},
+      {n:10,q:'馬阿姨說每一場表演都是「獨一無二的創作」，這強調了小丑醫生工作的什麼特性？',options:{A:'隨性發揮',B:'針對個人需求用心設計',C:'重複同樣的流程',D:'追求華麗的舞台效果'},answer:'B'},
+      {n:11,q:'根據課文，小丑醫生的工作對病童最大的幫助是什麼？',options:{A:'提供醫療建議',B:'給予物質援助',C:'帶來心靈的安慰與快樂',D:'教導學校功課'},answer:'C'},
+      {n:12,q:'整篇課文從「疑惑」開始，到「感動」結束。這樣的安排有什麼效果？',options:{A:'讓文章更曲折離奇',B:'引導讀者和作者一起認識、理解並認同小丑醫生',C:'證明作者一開始的觀點是錯的',D:'增加文章的長度'},answer:'B'},
+      {n:13,q:'下列哪個詞語的「乍」有「突然出現」的意思？',options:{A:'乍現',B:'乍到',C:'乍看',D:'乍聽'},answer:'A'},
+      {n:14,q:'哪個詞語的「磨」字讀音與「石磨」的「磨」相同？',options:{A:'磨刀',B:'研磨',C:'磨坊',D:'消磨'},answer:'C'},
+      {n:15,q:'「好事多磨」的意思是：',options:{A:'好的事情常遇到阻礙',B:'事情很容易成功',C:'喜歡做很多事',D:'好事需要多宣傳'},answer:'A'},
+      {n:16,q:'下列哪一組詞語的讀音不相同？',options:{A:'石磨／磨刀',B:'治癒／比喻',C:'迷惑／或者',D:'乍現／爆炸'},answer:'A'},
+      {n:17,q:'根據形近字判斷，「光彩絢麗」的「絢」字，可能與什麼有關？',options:{A:'絲綢的色彩',B:'詢問問題',C:'時間迅速',D:'日光明亮'},answer:'A'},
+      {n:18,q:'下列哪個「裁」字的詞語與「製作衣服」有關？',options:{A:'裁決',B:'裁員',C:'裁縫',D:'裁判'},answer:'C'},
+      {n:19,q:'「就業」是指：',options:{A:'開始一份新工作',B:'離開工作崗位',C:'工作中休息',D:'換工作'},answer:'A'},
     ],
   },
 
-  L10: {
-    key:'L10', no:'第10課', title:'沉默的動物園', genre:'記敘文', author:'桂文亞',
+  L10:{
+    key:'L10',no:'第10課',title:'沉默的動物園',genre:'記敘文',author:'桂文亞',color:'#8b5cf6',
     cover:'🦉',
     summary:'本課是記敘文。作者到祕魯旅行時，搭小飛機參觀了位於沙漠的納斯卡線。作者從參觀過程中發現：創造這些美麗且完整的動植物圖案的人，應該是擁有高度發展工藝的民族，而這些圖案可能是一種巨大的天文曆。課文主旨是說：人類在大自然中是渺小的，但人類若能向自然學習，與萬物融為一體，將能創造出無限的可能。',
-    rhetoricOptions: {A:'摹寫', B:'譬喻', C:'疊字', D:'感嘆', E:'擬人', F:'映襯'},
-    vocab: [
-      {n:1, char:'絮', pinyin:'ㄒㄩˋ xù', word:'柳絮、絮絮叨叨', mnemonic:'糹＋如（像絲線般輕柔）→輕柔的絲狀物＝柳絮'},
-      {n:2, char:'斜', pinyin:'ㄒㄧㄝˊ xié', word:'斜陽、目不斜視', mnemonic:'斗（傾斜的容器）＋余→容器歪向一邊＝斜'},
-      {n:3, char:'滔', pinyin:'ㄊㄠ tāo', word:'滔滔不絕', mnemonic:'氵＋舀（水不斷舀出湧現）→水勢盛大＝滔滔不絕'},
-      {n:4, char:'廣', pinyin:'ㄍㄨㄤˇ guǎng', word:'廣闊、大庭廣眾', mnemonic:'广（屋頂）＋黃（大空間）→空間寬闊＝廣闊'},
-      {n:5, char:'漠', pinyin:'ㄇㄛˋ mò', word:'沙漠', mnemonic:'氵（原本有水）＋莫（消失）→水消失的地方＝沙漠'},
-      {n:6, char:'擎', pinyin:'ㄑㄧㄥˊ qíng', word:'引擎、一柱擎天', mnemonic:'敬＋手（用力撐起）→用力撐起＝引擎、擎天'},
-      {n:7, char:'博', pinyin:'ㄅㄛˊ bó', word:'博大精深、博古通今', mnemonic:'十（廣博）＋專（專精）→學問又廣又精＝博學'},
-      {n:8, char:'史', pinyin:'ㄕˇ shǐ', word:'史書、名垂青史', mnemonic:'手持中（記錄）的人→負責記錄的人＝史官／歷史'},
-      {n:9, char:'址', pinyin:'ㄓˇ zhǐ', word:'位址', mnemonic:'土＋止（停留的地方）→停留的地點＝位址'},
-      {n:10, char:'曆', pinyin:'ㄌㄧˋ lì', word:'曆法、日曆', mnemonic:'厂＋秝（排列整齊的日子）→排列日子的紀錄＝日曆'},
-      {n:11, char:'辰', pinyin:'ㄔㄣˊ chén', word:'星辰、生不逢辰', mnemonic:'星星運行的時刻→星辰、時光'},
-      {n:12, char:'佳', pinyin:'ㄐㄧㄚ jiā', word:'絕佳、唱作俱佳', mnemonic:'亻＋圭（美玉）→像美玉般出色的人或事＝絕佳'},
-      {n:13, char:'傑', pinyin:'ㄐㄧㄝˊ jié', word:'傑出、地靈人傑', mnemonic:'亻＋桀（超越眾人）→超越一般人的人＝傑出'},
-      {n:14, char:'燥', pinyin:'ㄗㄠˋ zào', word:'乾燥、枯燥無味', mnemonic:'火＋喿（又熱又乾）→又熱又乾＝乾燥'},
-      {n:15, char:'織', pinyin:'ㄓ zhī', word:'編織、愛恨交織', mnemonic:'糹＋哉（用梭子穿線）→用線穿梭編成布＝編織'},
-      {n:16, char:'狗', pinyin:'ㄍㄡˇ gǒu', word:'白雲蒼狗', mnemonic:'犬＋句（彎曲身體）→動物狗，常見動物'},
-      {n:17, char:'渺', pinyin:'ㄇㄧㄠˇ miǎo', word:'渺小、煙波浩渺', mnemonic:'氵＋秒（極小極短）→像水中極小的一點＝渺小'},
-      {n:18, char:'膜', pinyin:'ㄇㄛˊ mó', word:'薄膜', mnemonic:'月（肉）＋莫（覆蓋遮蔽）→覆蓋身體的薄層＝薄膜'},
+    rhetoricOptions:{A:'摹寫',B:'譬喻',C:'疊字',D:'感嘆',E:'擬人',F:'映襯'},
+    vocab:[
+      {n:1,char:'絮',pinyin:'ㄒㄩˋ',word:'柳絮、絮絮叨叨',mnemonic:'糹＋如（像絲線般輕柔）→輕柔的絲狀物＝柳絮'},
+      {n:2,char:'斜',pinyin:'ㄒㄧㄝˊ',word:'斜陽、目不斜視',mnemonic:'斗（傾斜的容器）＋余→容器歪向一邊＝斜'},
+      {n:3,char:'滔',pinyin:'ㄊㄠ',word:'滔滔不絕',mnemonic:'氵＋舀（水不斷舀出湧現）→水勢盛大＝滔滔不絕'},
+      {n:4,char:'廣',pinyin:'ㄍㄨㄤˇ',word:'廣闊、大庭廣眾',mnemonic:'广（屋頂）＋黃（大空間）→空間寬闊＝廣闊'},
+      {n:5,char:'漠',pinyin:'ㄇㄛˋ',word:'沙漠',mnemonic:'氵（原本有水）＋莫（消失）→水消失的地方＝沙漠'},
+      {n:6,char:'擎',pinyin:'ㄑㄧㄥˊ',word:'引擎、一柱擎天',mnemonic:'敬＋手（用力撐起）→用力撐起＝引擎、擎天'},
+      {n:7,char:'博',pinyin:'ㄅㄛˊ',word:'博大精深、博古通今',mnemonic:'十（廣博）＋專（專精）→學問又廣又精＝博學'},
+      {n:8,char:'史',pinyin:'ㄕˇ',word:'史書、名垂青史',mnemonic:'手持中（記錄）的人→負責記錄的人＝史官／歷史'},
+      {n:9,char:'址',pinyin:'ㄓˇ',word:'位址',mnemonic:'土＋止（停留的地方）→停留的地點＝位址'},
+      {n:10,char:'曆',pinyin:'ㄌㄧˋ',word:'曆法、日曆',mnemonic:'厂＋秝（排列整齊的日子）→排列日子的紀錄＝日曆'},
+      {n:11,char:'辰',pinyin:'ㄔㄣˊ',word:'星辰、生不逢辰',mnemonic:'星星運行的時刻→星辰、時光'},
+      {n:12,char:'佳',pinyin:'ㄐㄧㄚ',word:'絕佳、唱作俱佳',mnemonic:'亻＋圭（美玉）→像美玉般出色的人或事＝絕佳'},
+      {n:13,char:'傑',pinyin:'ㄐㄧㄝˊ',word:'傑出、地靈人傑',mnemonic:'亻＋桀（超越眾人）→超越一般人的人＝傑出'},
+      {n:14,char:'燥',pinyin:'ㄗㄠˋ',word:'乾燥、枯燥無味',mnemonic:'火＋喿（又熱又乾）→又熱又乾＝乾燥'},
+      {n:15,char:'織',pinyin:'ㄓ',word:'編織、愛恨交織',mnemonic:'糹＋哉（用梭子穿線）→用線穿梭編成布＝編織'},
+      {n:16,char:'狗',pinyin:'ㄍㄡˇ',word:'白雲蒼狗',mnemonic:'犬＋句（彎曲身體）→動物狗，常見動物'},
+      {n:17,char:'渺',pinyin:'ㄇㄧㄠˇ',word:'渺小、煙波浩渺',mnemonic:'氵＋秒（極小極短）→像水中極小的一點＝渺小'},
+      {n:18,char:'膜',pinyin:'ㄇㄛˊ',word:'薄膜',mnemonic:'月（肉）＋莫（覆蓋遮蔽）→覆蓋身體的薄層＝薄膜'},
     ],
-    fillin: [
-      {n:1, q:'本課的文體是屬於①。', a:'記敘文'},
-      {n:2, q:'本課的作者是②。', a:'桂文亞'},
-      {n:3, q:'作者到祕魯旅行時，搭小飛機參觀了位於③的④。', a:'沙漠'},
-      {n:4, q:'作者搭小飛機參觀的著名地標是④。', a:'納斯卡線'},
-      {n:5, q:'作者發現創造這些美麗且完整圖案的人，應該是⑤民族。', a:'高度發展工藝'},
-      {n:6, q:'（原題此處跳號，原始考卷無對應題目，非缺漏）', a:null},
-      {n:7, q:'這些圖案可能是一種巨大的⑦。', a:'天文曆'},
-      {n:8, q:'課文主旨是說人類在大自然中是⑧的。', a:'渺小'},
-      {n:9, q:'但人類向⑨學習，與萬物融為一體。', a:'自然'},
-      {n:10, q:'將能創造出⑩。', a:'無限的可能'},
+    fillin:[
+      {n:1,q:'本課的文體是屬於①。',a:'記敘文'},
+      {n:2,q:'本課的作者是②。',a:'桂文亞'},
+      {n:3,q:'作者到祕魯旅行時，搭小飛機參觀了位於③的④。',a:'沙漠'},
+      {n:4,q:'作者搭小飛機參觀的著名地標是④。',a:'納斯卡線'},
+      {n:5,q:'作者發現創造這些美麗且完整圖案的人，應該是⑤民族。',a:'高度發展工藝'},
+      {n:7,q:'這些圖案可能是一種巨大的⑦。',a:'天文曆'},
+      {n:8,q:'課文主旨是說人類在大自然中是⑧的。',a:'渺小'},
+      {n:9,q:'但人類向⑨學習，與萬物融為一體。',a:'自然'},
+      {n:10,q:'將能創造出⑩。',a:'無限的可能'},
     ],
-    idioms: [
-      {n:1, prompt:'叨叨□□', answer:'絮', meaning:'叨叨絮絮：說話沒完沒了、囉嗦不停'},
-      {n:2, prompt:'目不□視', answer:'斜', meaning:'目不斜視：眼睛直視前方，形容專注或端正'},
-      {n:3, prompt:'地靈人□', answer:'傑', meaning:'地靈人傑：好山好水的地方容易孕育出優秀人才'},
-      {n:4, prompt:'大庭□眾', answer:'廣', meaning:'大庭廣眾：人多、公開的場合'},
-      {n:5, prompt:'枯□無味', answer:'燥', meaning:'枯燥無味：單調乏味，沒有趣味'},
-      {n:6, prompt:'□古通今', answer:'博', meaning:'博古通今：學問淵博，通曉古今的事'},
-      {n:7, prompt:'愛恨交□', answer:'織', meaning:'愛恨交織：愛與恨的情緒交雜在一起'},
-      {n:8, prompt:'名垂青□', answer:'史', meaning:'名垂青史：名聲流傳於後世歷史中'},
-      {n:9, prompt:'生不逢□', answer:'辰', meaning:'生不逢辰：出生的時機不好，沒有遇到好時代'},
-      {n:10, prompt:'白雲蒼□', answer:'狗', meaning:'白雲蒼狗：比喻世事變化莫測、迅速'},
-      {n:11, prompt:'煙波浩□', answer:'渺', meaning:'煙波浩渺：水面遼闊，煙霧瀰漫，景象壯闊'},
-      {n:12, prompt:'唱作俱□', answer:'佳', meaning:'唱作俱佳：唱歌和表演都非常出色'},
+    idioms:[
+      {n:1,prompt:'叨叨□□',answer:'絮',meaning:'叨叨絮絮：說話沒完沒了、囉嗦不停'},
+      {n:2,prompt:'目不□視',answer:'斜',meaning:'目不斜視：眼睛直視前方，形容專注或端正'},
+      {n:3,prompt:'地靈人□',answer:'傑',meaning:'地靈人傑：好山好水的地方容易孕育出優秀人才'},
+      {n:4,prompt:'大庭□眾',answer:'廣',meaning:'大庭廣眾：人多、公開的場合'},
+      {n:5,prompt:'枯□無味',answer:'燥',meaning:'枯燥無味：單調乏味，沒有趣味'},
+      {n:6,prompt:'□古通今',answer:'博',meaning:'博古通今：學問淵博，通曉古今的事'},
+      {n:7,prompt:'愛恨交□',answer:'織',meaning:'愛恨交織：愛與恨的情緒交雜在一起'},
+      {n:8,prompt:'名垂青□',answer:'史',meaning:'名垂青史：名聲流傳於後世歷史中'},
+      {n:9,prompt:'生不逢□',answer:'辰',meaning:'生不逢辰：出生的時機不好，沒有遇到好時代'},
+      {n:10,prompt:'白雲蒼□',answer:'狗',meaning:'白雲蒼狗：比喻世事變化莫測、迅速'},
+      {n:11,prompt:'煙波浩□',answer:'渺',meaning:'煙波浩渺：水面遼闊，煙霧瀰漫，景象壯闊'},
+      {n:12,prompt:'唱作俱□',answer:'佳',meaning:'唱作俱佳：唱歌和表演都非常出色'},
     ],
-    rhetoric: [
-      {n:1, sentence:'天空從灰黑漸漸轉為青藍，漸漸透出淡淡的霞光。', answer:'C'},
-      {n:2, sentence:'突然，一道金光像鋒利的刀刃切開了黑夜，讓晨曦湧出。', answer:'B'},
-      {n:3, sentence:'整個天空開始燃燒起來，雲層從深紫轉橙紅，再變成耀眼的金黃。', answer:'A'},
-      {n:4, sentence:'山脈靜靜伸個懶腰，讓晨光為自己披上薄紗。', answer:'E'},
-      {n:5, sentence:'陰影處仍藏著夜色的記憶，而光明處已在歡呼新的一天。', answer:'F'},
-      {n:6, sentence:'啊！這日出，真是大自然最壯麗的表演！', answer:'D'},
+    rhetoric:[
+      {n:1,sentence:'天空從灰黑漸漸轉為青藍，漸漸透出淡淡的霞光。',answer:'C'},
+      {n:2,sentence:'突然，一道金光像鋒利的刀刃切開了黑夜，讓晨曦湧出。',answer:'B'},
+      {n:3,sentence:'整個天空開始燃燒起來，雲層從深紫轉橙紅，再變成耀眼的金黃。',answer:'A'},
+      {n:4,sentence:'山脈靜靜伸個懶腰，讓晨光為自己披上薄紗。',answer:'E'},
+      {n:5,sentence:'陰影處仍藏著夜色的記憶，而光明處已在歡呼新的一天。',answer:'F'},
+      {n:6,sentence:'啊！這日出，真是大自然最壯麗的表演！',answer:'D'},
     ],
-    choice: [
-      {n:1, q:'作者如何形容山壁上人形畫的風格？', options:{A:'像大師的精心傑作',B:'像三歲娃娃的神來之筆',C:'像電腦繪圖般精準',D:'像壁畫般斑駁'}, answer:'B'},
-      {n:2, q:'飛機由北往南飛行，根據地理判斷「白浪滔滔的太平洋海岸」是在沿途的哪一邊？', options:{A:'左邊',B:'右邊',C:'兩邊都是',D:'課文中沒有描述'}, answer:'B'},
-      {n:3, q:'作者把飛機穿越的不穩定氣流中的人形容成什麼？', options:{A:'一顆顆豆子',B:'一圈圈彈簧',C:'一片片落葉',D:'一隻隻小鳥'}, answer:'C'},
-      {n:4, q:'作者說納斯卡線是「沉默的動物園」，主要是因為：', options:{A:'圖案都是不會發出聲音的動物',B:'動物園已經關閉',C:'參觀時要保持安靜',D:'這些圖案靜靜存在沙漠中，不會說話'}, answer:'D'},
-      {n:5, q:'從納斯卡人留下的織布、陶器等物品，可以推論他們具有什麼能力？', options:{A:'強大的軍事武力',B:'高度發展的工藝與藝術',C:'建造金字塔的技術',D:'完善的公共排水系統'}, answer:'B'},
-      {n:6, q:'作者說納斯卡線是「一個似乎不可能存在現實中的實體」，是因為：', options:{A:'圖案太小看不清楚',B:'圖案太過精緻不像古代作品',C:'圖案會隨時間變化',D:'在乾燥沙漠中保存巨大完整圖形很不可思議'}, answer:'D'},
-      {n:7, q:'作者在文中提到「人類面對自然的時候，是渺小的」，這句話的涵義是：', options:{A:'人類應該害怕自然',B:'人類在自然力量前顯得微小',C:'人類無法改變自然',D:'自然不需要人類'}, answer:'B'},
-      {n:8, q:'從遊客在海灘上說「熱熱熱！真熱呀！」，可以推測當時的天氣如何？', options:{A:'涼爽舒適',B:'炎熱難耐',C:'寒冷潮濕',D:'颱風下雨'}, answer:'B'},
-      {n:9, q:'根據課文，納斯卡線的「謎題」性質主要在於：', options:{A:'不知道是誰畫的',B:'不知道圖案的真正用途與製作方法',C:'不知道圖案有多少個',D:'不知道顏料從哪裡來'}, answer:'B'},
-      {n:10, q:'這篇課文的主旨，與下列哪一句話最相符？', options:{A:'讀萬卷書，不如行萬里路。',B:'人類雖然渺小，但能與自然和諧共存，創造不朽文明。',C:'科技始終來自於人性。',D:'保護古蹟是每個人的責任。'}, answer:'B'},
-      {n:11, q:'「天乾物燥」的「燥」字，與下列哪個詞語的「燥」字不相同？', options:{A:'口乾舌「燥」',B:'肉「燥」飯',C:'乾「燥」劑',D:'脾氣暴「燥」'}, answer:'A'},
-      {n:12, q:'下列哪個詞語的用字完全正確？', options:{A:'曆史',B:'經曆',C:'日曆',D:'歷法'}, answer:'C'},
-      {n:13, q:'「一柱擎天」的「擎」字，意思是？', options:{A:'驚嚇',B:'支撐',C:'警察',D:'驚訝'}, answer:'B'},
-      {n:14, q:'下列哪個句子的用字完全正確？', options:{A:'他拿著美味料理走進科學教室，意外踢到桌腳，身一斜、手一抖，差點把食物摔了。',B:'他從傅老師那裡學到的不僅是博學的理論知識，更有在真實賽場上勇敢搏鬥的勇氣。',C:'他家中養的狗非常聰明，聽懂許多指令，但牠生性自由，不願被夠束在小小的籠子裡。',D:'他漠然的看著沙漠，炙熱的陽光讓他睜不開眼，在一片膜糊中他似乎看到了海市蜃樓。'}, answer:'A'},
+    choice:[
+      {n:1,q:'作者如何形容山壁上人形畫的風格？',options:{A:'像大師的精心傑作',B:'像三歲娃娃的神來之筆',C:'像電腦繪圖般精準',D:'像壁畫般斑駁'},answer:'B'},
+      {n:2,q:'飛機由北往南飛行，「白浪滔滔的太平洋海岸」是在沿途的哪一邊？',options:{A:'左邊',B:'右邊',C:'兩邊都是',D:'課文中沒有描述'},answer:'B'},
+      {n:3,q:'作者把飛機穿越的不穩定氣流中的人形容成什麼？',options:{A:'一顆顆豆子',B:'一圈圈彈簧',C:'一片片落葉',D:'一隻隻小鳥'},answer:'C'},
+      {n:4,q:'作者說納斯卡線是「沉默的動物園」，主要是因為：',options:{A:'圖案都是不會發出聲音的動物',B:'動物園已經關閉',C:'參觀時要保持安靜',D:'這些圖案靜靜存在沙漠中，不會說話'},answer:'D'},
+      {n:5,q:'從納斯卡人留下的織布、陶器等物品，可以推論他們具有什麼能力？',options:{A:'強大的軍事武力',B:'高度發展的工藝與藝術',C:'建造金字塔的技術',D:'完善的公共排水系統'},answer:'B'},
+      {n:6,q:'作者說納斯卡線是「一個似乎不可能存在現實中的實體」，是因為：',options:{A:'圖案太小看不清楚',B:'圖案太過精緻不像古代作品',C:'圖案會隨時間變化',D:'在乾燥沙漠中保存巨大完整圖形很不可思議'},answer:'D'},
+      {n:7,q:'作者在文中提到「人類面對自然的時候，是渺小的」，涵義是：',options:{A:'人類應該害怕自然',B:'人類在自然力量前顯得微小',C:'人類無法改變自然',D:'自然不需要人類'},answer:'B'},
+      {n:8,q:'從遊客在海灘上說「熱熱熱！真熱呀！」，可以推測當時的天氣如何？',options:{A:'涼爽舒適',B:'炎熱難耐',C:'寒冷潮濕',D:'颱風下雨'},answer:'B'},
+      {n:9,q:'根據課文，納斯卡線的「謎題」性質主要在於：',options:{A:'不知道是誰畫的',B:'不知道圖案的真正用途與製作方法',C:'不知道圖案有多少個',D:'不知道顏料從哪裡來'},answer:'B'},
+      {n:10,q:'這篇課文的主旨，與下列哪一句話最相符？',options:{A:'讀萬卷書，不如行萬里路。',B:'人類雖然渺小，但能與自然和諧共存，創造不朽文明。',C:'科技始終來自於人性。',D:'保護古蹟是每個人的責任。'},answer:'B'},
+      {n:11,q:'「天乾物燥」的「燥」字，與下列哪個詞語的「燥」字不相同？',options:{A:'口乾舌燥',B:'肉燥飯',C:'乾燥劑',D:'脾氣暴燥'},answer:'A'},
+      {n:12,q:'下列哪個詞語的用字完全正確？',options:{A:'曆史',B:'經曆',C:'日曆',D:'歷法'},answer:'C'},
+      {n:13,q:'「一柱擎天」的「擎」字，意思是？',options:{A:'驚嚇',B:'支撐',C:'警察',D:'驚訝'},answer:'B'},
+      {n:14,q:'下列哪個句子的用字完全正確？',options:{A:'他拿著美味料理走進科學教室，意外踢到桌腳，身一斜、手一抖，差點把食物摔了。',B:'他從傅老師那裡學到的不僅是博學的理論知識，更有在真實賽場上勇敢搏鬥的勇氣。',C:'他家中養的狗非常聰明，聽懂許多指令，但牠生性自由，不願被夠束在小小的籠子裡。',D:'他漠然的看著沙漠，炙熱的陽光讓他睜不開眼，在一片膜糊中他似乎看到了海市蜃樓。'},answer:'A'},
     ],
   },
 };
 
-// ===================== 衍生：題庫池（互動練習用） =====================
+/* ── derived pools ── */
 function buildPool(){
-  const pool = [];
+  const pool=[];
   Object.values(LESSONS).forEach(L=>{
-    L.idioms.forEach(it=>pool.push({id:`${L.key}-idiom-${it.n}`, lesson:L.key, lessonTitle:L.title, category:'成語', type:'text', prompt:`完成成語：${it.prompt}（提示：${it.meaning}）`, answer:it.answer}));
-    L.rhetoric.forEach(it=>pool.push({id:`${L.key}-rhet-${it.n}`, lesson:L.key, lessonTitle:L.title, category:'修辭', type:'mc', prompt:it.sentence, options:L.rhetoricOptions, answer:it.answer}));
-    L.choice.forEach(it=>pool.push({id:`${L.key}-mc-${it.n}`, lesson:L.key, lessonTitle:L.title, category:'選擇', type:'mc', prompt:it.q, options:it.options, answer:it.answer}));
-    L.fillin.filter(it=>it.a).forEach(it=>pool.push({id:`${L.key}-fill-${it.n}`, lesson:L.key, lessonTitle:L.title, category:'填充', type:'text', prompt:it.q, answer:it.a}));
-    L.vocab.filter(v=>!v.char.includes('❓')).forEach(it=>pool.push({id:`${L.key}-zhu-${it.n}`, lesson:L.key, lessonTitle:L.title, category:'注音', type:'text', prompt:`看注音、想詞語，寫出國字：${it.pinyin}（詞語：${it.word.split('、')[0]}）`, answer:it.char}));
+    L.idioms.forEach(it=>pool.push({id:`${L.key}-idiom-${it.n}`,lesson:L.key,lessonTitle:L.title,category:'成語',type:'text',prompt:`完成成語：${it.prompt}（提示：${it.meaning}）`,answer:it.answer}));
+    L.rhetoric.forEach(it=>pool.push({id:`${L.key}-rhet-${it.n}`,lesson:L.key,lessonTitle:L.title,category:'修辭',type:'mc',prompt:it.sentence,options:L.rhetoricOptions,answer:it.answer}));
+    L.choice.forEach(it=>pool.push({id:`${L.key}-mc-${it.n}`,lesson:L.key,lessonTitle:L.title,category:'選擇',type:'mc',prompt:it.q,options:it.options,answer:it.answer}));
+    L.fillin.filter(it=>it.a).forEach(it=>pool.push({id:`${L.key}-fill-${it.n}`,lesson:L.key,lessonTitle:L.title,category:'填充',type:'text',prompt:it.q,answer:it.a}));
+    L.vocab.filter(v=>!v.char.includes('對照')).forEach(it=>pool.push({id:`${L.key}-zhu-${it.n}`,lesson:L.key,lessonTitle:L.title,category:'注音',type:'text',prompt:`看注音、想詞語，寫出國字：${it.pinyin}（詞語：${it.word.split('、')[0]}）`,answer:it.char}));
   });
   return pool;
 }
-
-// ===================== 100 題精選題庫（涵蓋四課，每課 25 題） =====================
 function build100(){
-  const out = [];
-  let qn = 0;
-  function pick(L, idiomNs){
+  const out=[];let qn=0;
+  function pick(L,idiomNs){
     L.choice.forEach(it=>out.push(makeQ(L,'選擇',it.q,it.options,it.answer)));
     L.rhetoric.forEach(it=>out.push(makeQ(L,'修辭',it.sentence,L.rhetoricOptions,it.answer)));
-    idiomNs.forEach(n=>{
-      const it = L.idioms.find(x=>x.n===n);
-      out.push(makeQ(L,'成語',`完成成語：${it.prompt}`,null,it.answer,it.meaning));
-    });
+    idiomNs.forEach(n=>{const it=L.idioms.find(x=>x.n===n);if(it)out.push(makeQ(L,'成語',`完成成語：${it.prompt}`,null,it.answer,it.meaning));});
   }
-  function makeQ(L,cat,prompt,options,answer,note){
-    qn++;
-    return {qno:qn, lesson:L.key, lessonTitle:L.title, category:cat, prompt, options, answer, note};
-  }
-  pick(LESSONS.L7, [1,3]);
-  pick(LESSONS.L8, [4,9]);
-  pick(LESSONS.L9, [6]);
-  pick(LESSONS.L10, [1,4,6,8,10]);
+  function makeQ(L,cat,prompt,options,answer,note){qn++;return{qno:qn,lesson:L.key,lessonTitle:L.title,category:cat,prompt,options,answer,note};}
+  pick(LESSONS.L7,[1,3]);pick(LESSONS.L8,[4,9]);pick(LESSONS.L9,[6]);pick(LESSONS.L10,[1,4,6,8,10]);
   return out;
 }
+const POOL=buildPool();
+const BANK=build100();
 
-const QUESTION_POOL = buildPool();
-const HUNDRED_BANK = build100();
+/* ── utils ── */
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function norm(s){return String(s||'').trim().replace(/\s/g,'');}
 
-/* ===================== APP LOGIC ===================== */
-/* ===================== storage helpers (works with or without window.storage) ===================== */
-const memoryFallback = {};
-async function storageGet(key){
-  if (typeof window !== 'undefined' && window.storage){
-    try{ const r = await window.storage.get(key, false); return r ? r.value : null; }
-    catch(e){ return memoryFallback[key] !== undefined ? memoryFallback[key] : null; }
-  }
-  return memoryFallback[key] !== undefined ? memoryFallback[key] : null;
-}
-async function storageSet(key, value){
-  memoryFallback[key] = value;
-  if (typeof window !== 'undefined' && window.storage){
-    try{ await window.storage.set(key, value, false); } catch(e){ /* ignore */ }
-  }
-}
-async function loadJSON(key, fallback){
-  const v = await storageGet(key);
-  if (v === null || v === undefined) return fallback;
-  try{ return JSON.parse(v); } catch(e){ return fallback; }
-}
-async function saveJSON(key, val){ await saveString(key, JSON.stringify(val)); }
-async function saveString(key, str){ await storageSet(key, str); }
+/* ── state ── */
+const mem={planChecks:{},mastery:{}};
+let curLesson='L7';
+let quizState={pool:[],idx:0,score:0,wrong:[]};
+let cardState={deck:[],idx:0,lesson:'ALL'};
+let idiomState={all:[],idx:0,revealed:false,lesson:'ALL'};
 
-/* ===================== small utils ===================== */
-function shuffle(arr){
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-let svgIdCounter = 0;
-function stampSVG(emoji, label, color){
-  svgIdCounter++;
-  const id = 'stampPath' + svgIdCounter;
-  return `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-    <defs><path id="${id}" d="M 60,60 m -44,0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0"/></defs>
-    <circle cx="60" cy="60" r="52" fill="#FFFCF4" stroke="${color}" stroke-width="3" stroke-dasharray="3 4"/>
-    <circle cx="60" cy="60" r="40" fill="none" stroke="${color}" stroke-width="1.4"/>
-    <text font-family="Noto Sans TC, sans-serif" font-size="9" font-weight="700" fill="${color}" letter-spacing="1">
-      <textPath xlink:href="#${id}" startOffset="3%">${escapeHtml(label)}</textPath>
-    </text>
-    <text x="60" y="70" font-size="32" text-anchor="middle">${emoji}</text>
-  </svg>`;
-}
-
-/* ===================== navigation ===================== */
-function switchView(name){
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-' + name).classList.add('active');
-  document.querySelectorAll('#mainTabs button').forEach(b => b.classList.toggle('active', b.dataset.view === name));
-  const renderers = { home: renderHome, notes: renderNotes, quiz: renderQuiz, plan: renderPlan, bank: renderBank, cards: renderCards };
-  if (renderers[name]) renderers[name]();
-}
-document.getElementById('mainTabs').addEventListener('click', e => {
-  const btn = e.target.closest('button[data-view]');
-  if (btn) switchView(btn.dataset.view);
+/* ── tabs ── */
+document.getElementById('mainTabs').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-tab]');if(!btn)return;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b===btn));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+btn.dataset.tab).classList.add('active');
+  ({notes:renderNotes,quiz:renderQuiz,plan:renderPlan,bank:renderBank,cards:renderCards,idiom:renderIdiom})[btn.dataset.tab]?.();
 });
 
-/* ===================== mastery helpers ===================== */
-async function computeMasteryAll(){
-  const m = await loadJSON('cards:mastery', {});
-  const out = {};
-  Object.values(LESSONS).forEach(L => {
-    const items = L.vocab.filter(v => !v.char.includes('❓'));
-    if (items.length === 0){ out[L.key] = 0; return; }
-    const goodCount = items.filter(v => m[`${L.key}-v-${v.n}`] === 'good').length;
-    out[L.key] = Math.round(100 * goodCount / items.length);
-  });
-  return out;
-}
-async function computeOverallStats(){
-  const m = await loadJSON('cards:mastery', {});
-  let totalGood = 0, totalCards = 0;
-  Object.values(LESSONS).forEach(L => {
-    L.vocab.filter(v => !v.char.includes('❓')).forEach(v => {
-      totalCards++;
-      if (m[`${L.key}-v-${v.n}`] === 'good') totalGood++;
-    });
-  });
-  const answered = await loadJSON('quiz:answered', 0);
-  const planChecks = await loadJSON('plan:checks', {});
-  const planDone = Object.values(planChecks).filter(Boolean).length;
-  const bestScore = await loadJSON('bank:bestscore', null);
-  return { totalGood, totalCards, answered, planDone, planTotal: 15, bestScore };
-}
+/* ── theme ── */
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const d=document.documentElement;
+  const dark=d.getAttribute('data-theme')==='dark';
+  d.setAttribute('data-theme',dark?'light':'dark');
+  document.getElementById('themeBtn').textContent=dark?'🌙':'☀️';
+});
 
-/* ===================== HOME ===================== */
-function renderHome(){
-  const el = document.getElementById('view-home');
-  el.innerHTML = `
-    <div class="card">
-      <h2>四課闖關地圖</h2>
-      <p class="muted">點圖章直接跳到那一課的重點筆記。練習題和字卡做得越多，這裡的「掌握度」就會越高。</p>
-      <div class="route-wrap">
-        <div class="route-line"></div>
-        <div class="stops" id="homeStops"><p class="muted">載入中…</p></div>
-      </div>
-    </div>
-    <div class="card">
-      <h2>整體進度</h2>
-      <div class="statsgrid" id="homeStats"><p class="muted">載入中…</p></div>
-    </div>
-    <div class="card">
-      <h2>怎麼使用這份護照？</h2>
-      <ul class="qa-list">
-        <li>📖 <b>重點筆記</b>：四課的生字、填充題、成語、修辭整理，附「拆字聯想」幫助背誦。</li>
-        <li>🎮 <b>互動練習</b>：自由挑選課別與題型，每題立刻看到對錯。</li>
-        <li>📕 <b>5天背誦計畫</b>：考前五天，每天該做什麼一目了然，做完打勾。</li>
-        <li>📗 <b>100題題庫</b>：精選四課共100題，可以瀏覽看解答，也能限時模擬考。</li>
-        <li>📘 <b>默寫卡牌</b>：72張生字卡，翻面看注音、詞語和記憶小技巧，可以標記熟悉程度。</li>
-      </ul>
-    </div>
-  `;
-  computeMasteryAll().then(map => {
-    const wrap = document.getElementById('homeStops');
-    wrap.innerHTML = Object.values(LESSONS).map(L => `
-      <button class="stop" data-jump="${L.key}">
-        <div class="stamp">${stampSVG(L.cover, L.no + ' ' + L.title, '#BC5B39')}</div>
-        <div class="stop-label">${L.no} ${L.title}</div>
-        <div class="stop-sub">${L.genre}</div>
-        <div class="progress-chip">字詞掌握 ${map[L.key] || 0}%</div>
-      </button>`).join('');
-    wrap.querySelectorAll('.stop').forEach(b => b.addEventListener('click', () => {
-      window.__notesLesson = b.dataset.jump;
-      switchView('notes');
-    }));
-  });
-  computeOverallStats().then(s => {
-    const el2 = document.getElementById('homeStats');
-    el2.innerHTML = `
-      <div class="statbox"><div class="num">${s.totalGood}/${s.totalCards}</div><div class="lab">生字已熟悉</div></div>
-      <div class="statbox"><div class="num">${s.answered}</div><div class="lab">練習題已作答</div></div>
-      <div class="statbox"><div class="num">${s.planDone}/${s.planTotal}</div><div class="lab">背誦計畫完成</div></div>
-      <div class="statbox"><div class="num">${s.bestScore !== null ? s.bestScore + '/100' : '—'}</div><div class="lab">100題最佳成績</div></div>
-    `;
-  });
-}
-
-/* ===================== NOTES ===================== */
-window.__notesLesson = 'L7';
+/* ==================== NOTES ==================== */
+function lessonColor(key){return LESSONS[key]?.color||'var(--p)';}
 function renderNotes(){
-  const el = document.getElementById('view-notes');
-  el.innerHTML = `
+  const el=document.getElementById('view-notes');
+  const L=LESSONS[curLesson];
+  el.innerHTML=`
+    <div class="lesson-pills">${Object.values(LESSONS).map(l=>`
+      <button class="lpill${curLesson===l.key?' a-'+l.key.toLowerCase():''}" data-lk="${l.key}" style="${curLesson===l.key?`background:${l.color};border-color:${l.color};color:#fff`:''}">
+        ${l.cover} ${l.no}
+      </button>`).join('')}
+    </div>
     <div class="card">
-      <h2>📖 重點筆記</h2>
-      <div class="pillrow" id="notesPills"></div>
-      <div id="notesBody"></div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+        <span style="font-size:2.2rem">${L.cover}</span>
+        <div>
+          <div style="font-size:1.2rem;font-weight:900;">${L.no}　${L.title}</div>
+          <div class="muted">${L.genre}・作者：${L.author}</div>
+        </div>
+      </div>
+      <div class="summary-box" style="border-left:4px solid ${L.color};">${esc(L.summary)}</div>
+
+      <div class="section-label">📝 生字表（含拆字記憶法）</div>
+      <div class="vocab-grid">${L.vocab.map(v=>`
+        <div class="vcard">
+          <div class="vchar" style="color:${L.color}">${esc(v.char)}</div>
+          <div class="vpinyin">${esc(v.pinyin)}</div>
+          <div class="vword">${esc(v.word)}</div>
+          <div class="vmnemonic">💡 ${esc(v.mnemonic)}</div>
+        </div>`).join('')}
+      </div>
+
+      <div class="section-label">✏️ 填充題</div>
+      <ul class="fillin-list">${L.fillin.filter(f=>f.a).map(f=>`
+        <li><span class="fq-num">${f.n}.</span><span>${esc(f.q)}</span>&ensp;<span class="fq-ans">→ ${esc(f.a)}</span></li>
+      `).join('')}</ul>
+
+      <div class="section-label">🧩 成語（${L.idioms.length}個）</div>
+      <div class="idiom-grid">${L.idioms.map(i=>`
+        <div class="ichip">
+          <div class="iw">${i.prompt.replace('□',`<span class="ia">${esc(i.answer)}</span>`)}</div>
+          <div class="im">${esc(i.meaning)}</div>
+        </div>`).join('')}
+      </div>
+
+      <div class="section-label">🎨 修辭法</div>
+      <ul class="rhet-list">${L.rhetoric.map(r=>`
+        <li>${esc(r.sentence)}<span class="rhet-ans">→ ${esc(L.rhetoricOptions[r.answer])}</span></li>
+      `).join('')}</ul>
     </div>
   `;
-  const pills = document.getElementById('notesPills');
-  pills.innerHTML = Object.values(LESSONS).map(L =>
-    `<button class="pill ${L.key === window.__notesLesson ? 'active' : ''}" data-l="${L.key}">${L.no} ${L.title}</button>`
-  ).join('');
-  pills.querySelectorAll('.pill').forEach(p => p.addEventListener('click', () => {
-    window.__notesLesson = p.dataset.l;
-    renderNotes();
-  }));
-  const L = LESSONS[window.__notesLesson];
-  const body = document.getElementById('notesBody');
-  body.innerHTML = `
-    <p><b>文體：</b>${L.genre} ・ <b>作者：</b>${L.author}</p>
-    <p>${L.summary}</p>
-    ${L.key === 'L8' ? '<p class="muted">⚠️ 第11個生字在原始考卷中字跡不清，已在下方標出，建議直接對照課本生字表確認。</p>' : ''}
-    <h3>🧠 生字小教室（每張卡都有拆字聯想）</h3>
-    <div class="vocab-grid">${L.vocab.map(v => `
-      <div class="vcard">
-        <div class="vchar">${escapeHtml(v.char)}</div>
-        <div class="vpinyin">${escapeHtml(v.pinyin)}</div>
-        <div class="vword">${escapeHtml(v.word)}</div>
-        <div class="vmnemonic">💡 ${escapeHtml(v.mnemonic)}</div>
-      </div>`).join('')}
-    </div>
-    <h3>✏️ 填充題複習</h3>
-    <ul class="qa-list">${L.fillin.filter(f => f.a).map(f => `<li>${escapeHtml(f.q)} <b>→ ${escapeHtml(f.a)}</b></li>`).join('')}</ul>
-    <h3>🧩 成語練習</h3>
-    <div class="idiom-grid">${L.idioms.map(i => `
-      <div class="idiom-chip">${i.prompt.split('□').join(`<span class="ians">${escapeHtml(i.answer)}</span>`)}<br><span class="muted">${escapeHtml(i.meaning)}</span></div>`).join('')}
-    </div>
-    <h3>🎨 修辭快速複習</h3>
-    <ul class="qa-list">${L.rhetoric.map(r => `<li>${escapeHtml(r.sentence)} <b>→ ${escapeHtml(L.rhetoricOptions[r.answer])}</b></li>`).join('')}</ul>
-  `;
+  el.querySelectorAll('[data-lk]').forEach(b=>b.addEventListener('click',()=>{curLesson=b.dataset.lk;renderNotes();}));
 }
 
-/* ===================== QUIZ ENGINE (shared by 互動練習 + 100題模擬考) ===================== */
-const quizState = { pool: [], idx: 0, score: 0, wrong: [], answered: 0, mode: 'practice' };
-
+/* ==================== QUIZ ==================== */
 function renderQuiz(){
-  const el = document.getElementById('view-quiz');
-  el.innerHTML = `
+  const el=document.getElementById('view-quiz');
+  const lkeys=Object.keys(LESSONS);
+  const cats=['注音','填充','成語','修辭','選擇'];
+  const sel={lessons:new Set(lkeys),cats:new Set(cats),count:10};
+  el.innerHTML=`
     <div class="card quiz-setup">
-      <h2>🎮 互動練習</h2>
-      <p class="muted">選擇要練習的課別與題型，按「開始練習」立即作答。</p>
-      <p><b>課別：</b></p>
-      <div class="pillrow" id="quizLessonPills"></div>
-      <p><b>題型：</b></p>
-      <div class="pillrow" id="quizCatPills"></div>
-      <p><b>題數：</b></p>
-      <div class="pillrow" id="quizCountPills"></div>
-      <button class="btn" id="quizStartBtn">開始練習 ▶</button>
+      <div class="card-title">🎯 互動練習</div>
+      <div class="filter-label">課別</div>
+      <div class="filter-pills" id="qLessons">${lkeys.map(k=>`<button class="fpill sel" data-k="${k}">${LESSONS[k].no}</button>`).join('')}</div>
+      <div class="filter-label">題型</div>
+      <div class="filter-pills" id="qCats">${cats.map(c=>`<button class="fpill sel" data-k="${c}">${c}</button>`).join('')}</div>
+      <div class="filter-label">題數</div>
+      <div class="filter-pills" id="qCount">${[10,20,30,'全部'].map((n,i)=>`<button class="fpill${i===0?' sel':''}" data-n="${n==='全部'?9999:n}">${n}${n==='全部'?'':'題'}</button>`).join('')}</div>
+      <button class="start-btn" id="qStart">開始練習 ▶</button>
     </div>
-    <div id="quizArea"></div>
+    <div id="qArea"></div>
   `;
-  const lessonKeys = Object.keys(LESSONS);
-  const catKeys = ['注音', '填充', '成語', '修辭', '選擇'];
-  const sel = { lessons: new Set(lessonKeys), cats: new Set(catKeys), count: 10 };
-
-  const lp = document.getElementById('quizLessonPills');
-  lp.innerHTML = lessonKeys.map(k => `<button class="pill active" data-k="${k}">${LESSONS[k].no}</button>`).join('');
-  lp.querySelectorAll('.pill').forEach(b => b.addEventListener('click', () => {
-    b.classList.toggle('active');
-    if (b.classList.contains('active')) sel.lessons.add(b.dataset.k); else sel.lessons.delete(b.dataset.k);
+  el.querySelectorAll('#qLessons .fpill').forEach(b=>b.addEventListener('click',()=>{
+    b.classList.toggle('sel');
+    b.classList.contains('sel')?sel.lessons.add(b.dataset.k):sel.lessons.delete(b.dataset.k);
   }));
-
-  const cp = document.getElementById('quizCatPills');
-  cp.innerHTML = catKeys.map(k => `<button class="pill active" data-k="${k}">${k}</button>`).join('');
-  cp.querySelectorAll('.pill').forEach(b => b.addEventListener('click', () => {
-    b.classList.toggle('active');
-    if (b.classList.contains('active')) sel.cats.add(b.dataset.k); else sel.cats.delete(b.dataset.k);
+  el.querySelectorAll('#qCats .fpill').forEach(b=>b.addEventListener('click',()=>{
+    b.classList.toggle('sel');
+    b.classList.contains('sel')?sel.cats.add(b.dataset.k):sel.cats.delete(b.dataset.k);
   }));
-
-  const countOpts = [10, 20, 30, 9999];
-  const cnp = document.getElementById('quizCountPills');
-  cnp.innerHTML = countOpts.map((n, i) => `<button class="pill ${i === 0 ? 'active' : ''}" data-n="${n}">${n === 9999 ? '全部' : n + ' 題'}</button>`).join('');
-  cnp.querySelectorAll('.pill').forEach(b => b.addEventListener('click', () => {
-    cnp.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    sel.count = Number(b.dataset.n);
+  el.querySelectorAll('#qCount .fpill').forEach(b=>b.addEventListener('click',()=>{
+    el.querySelectorAll('#qCount .fpill').forEach(x=>x.classList.remove('sel'));
+    b.classList.add('sel');sel.count=Number(b.dataset.n);
   }));
-
-  document.getElementById('quizStartBtn').addEventListener('click', () => {
-    const filtered = QUESTION_POOL.filter(q => sel.lessons.has(q.lesson) && sel.cats.has(q.category));
-    if (filtered.length === 0){
-      document.getElementById('quizArea').innerHTML = `<div class="card"><p>⚠️ 這個篩選條件下沒有題目，請至少選一個課別與題型。</p></div>`;
-      return;
-    }
-    const n = Math.min(sel.count, filtered.length);
-    quizState.pool = shuffle(filtered).slice(0, n);
-    quizState.idx = 0; quizState.score = 0; quizState.wrong = []; quizState.mode = 'practice';
-    renderQuizQuestion();
+  el.querySelector('#qStart').addEventListener('click',()=>{
+    const filtered=POOL.filter(q=>sel.lessons.has(q.lesson)&&sel.cats.has(q.category));
+    if(!filtered.length){document.getElementById('qArea').innerHTML=`<div class="card"><p class="muted">⚠️ 沒有符合條件的題目，請至少選一個課別與題型。</p></div>`;return;}
+    quizState.pool=shuffle(filtered).slice(0,Math.min(sel.count,filtered.length));
+    quizState.idx=0;quizState.score=0;quizState.wrong=[];
+    renderQQuestion();
   });
 }
 
-function quizCardMeta(q){ return `${LESSONS[q.lesson] ? LESSONS[q.lesson].no : q.lesson} ${q.lessonTitle || ''} ・ ${q.category}`; }
-
-function renderQuizQuestion(){
-  const area = document.getElementById('quizArea');
-  if (quizState.idx >= quizState.pool.length){
-    renderQuizSummary();
-    return;
-  }
-  const q = quizState.pool[quizState.idx];
-  let bodyHtml = '';
-  if (q.type === 'mc' && q.options){
-    bodyHtml = Object.entries(q.options).map(([letter, text]) =>
-      `<button class="opt-btn" data-letter="${letter}">${letter}. ${escapeHtml(text)}</button>`
-    ).join('');
-  } else {
-    bodyHtml = `
-      <div class="text-answer-row">
-        <input type="text" id="quizTextInput" placeholder="輸入答案" autocomplete="off">
-        <button class="btn" id="quizCheckBtn">送出</button>
-      </div>`;
-  }
-  area.innerHTML = `
+function renderQQuestion(){
+  const area=document.getElementById('qArea');
+  if(quizState.idx>=quizState.pool.length){renderQSummary();return;}
+  const q=quizState.pool[quizState.idx];
+  const isMC=q.type==='mc'&&q.options;
+  area.innerHTML=`
     <div class="card">
-      <div class="scorebar"><span>第 ${quizState.idx + 1} / ${quizState.pool.length} 題</span><span>目前分數：${quizState.score}</span></div>
+      <div class="score-bar"><span>第 ${quizState.idx+1} / ${quizState.pool.length} 題</span><span>✅ ${quizState.score}</span></div>
       <div class="qcard">
-        <div class="qmeta">${quizCardMeta(q)}</div>
-        <div class="qprompt">${escapeHtml(q.prompt)}</div>
-        ${bodyHtml}
-        <div id="quizFeedback"></div>
-        <div id="quizNextWrap" style="margin-top:12px;"></div>
+        <div class="q-meta">${LESSONS[q.lesson]?.no||q.lesson} ・ ${q.category}</div>
+        <div class="q-prompt">${esc(q.prompt)}</div>
+        ${isMC
+          ?Object.entries(q.options).map(([l,t])=>`<button class="opt-btn" data-l="${l}">${l}. ${esc(t)}</button>`).join('')
+          :`<div class="text-row"><input type="text" id="tInput" placeholder="輸入答案" autocomplete="off"><button class="send-btn" id="tSend">送出</button></div>`}
+        <div id="qFeed"></div>
+        <div id="qNext"></div>
       </div>
-    </div>
-  `;
-  if (q.type === 'mc' && q.options){
-    area.querySelectorAll('.opt-btn').forEach(btn => btn.addEventListener('click', () => answerMc(btn, q)));
-  } else {
-    const checkFn = () => answerText(q);
-    document.getElementById('quizCheckBtn').addEventListener('click', checkFn);
-    document.getElementById('quizTextInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkFn(); });
+    </div>`;
+  if(isMC){
+    area.querySelectorAll('.opt-btn').forEach(btn=>btn.addEventListener('click',()=>{
+      if(btn.disabled)return;
+      area.querySelectorAll('.opt-btn').forEach(b=>b.disabled=true);
+      const ok=btn.dataset.l===q.answer;
+      btn.classList.add(ok?'correct':'wrong');
+      if(!ok){const cb=area.querySelector(`.opt-btn[data-l="${q.answer}"]`);if(cb)cb.classList.add('correct');}
+      showFeedback(ok,q,btn.dataset.l);
+    }));
+  }else{
+    const send=()=>{
+      const inp=document.getElementById('tInput');
+      if(inp.disabled)return;
+      const given=inp.value;const ok=norm(given)===norm(q.answer);
+      inp.disabled=true;document.getElementById('tSend').disabled=true;
+      showFeedback(ok,q,given);
+    };
+    document.getElementById('tSend').addEventListener('click',send);
+    document.getElementById('tInput').addEventListener('keydown',e=>{if(e.key==='Enter')send();});
   }
 }
-
-function normalize(s){ return String(s || '').trim().replace(/[\s　]/g, ''); }
-
-async function recordAnswered(){
-  const cur = await loadJSON('quiz:answered', 0);
-  await saveJSON('quiz:answered', cur + 1);
+function showFeedback(ok,q,given){
+  quizState.answered=(quizState.answered||0)+1;
+  if(ok)quizState.score++;else quizState.wrong.push(q);
+  const ansLabel=q.type==='mc'&&q.options?`${q.answer}. ${q.options[q.answer]}`:q.answer;
+  document.getElementById('qFeed').innerHTML=ok
+    ?`<div class="feedback fb-ok">✅ 答對了！</div>`
+    :`<div class="feedback fb-no">❌ 正確答案：${esc(ansLabel)}</div>`;
+  document.getElementById('qNext').innerHTML=`<button class="next-btn" id="nextQ">${quizState.idx+1<quizState.pool.length?'下一題 →':'查看結果 🏁'}</button>`;
+  document.getElementById('nextQ').addEventListener('click',()=>{quizState.idx++;renderQQuestion();});
 }
-
-function answerMc(btn, q){
-  if (btn.disabled) return;
-  document.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
-  const correct = btn.dataset.letter === q.answer;
-  btn.classList.add(correct ? 'correct' : 'wrong');
-  if (!correct){
-    const correctBtn = document.querySelector(`.opt-btn[data-letter="${q.answer}"]`);
-    if (correctBtn) correctBtn.classList.add('correct');
-  }
-  finishAnswer(correct, q, btn.dataset.letter);
-}
-
-function answerText(q){
-  const input = document.getElementById('quizTextInput');
-  if (input.disabled) return;
-  const given = input.value;
-  const correct = normalize(given) === normalize(q.answer);
-  input.disabled = true;
-  document.getElementById('quizCheckBtn').disabled = true;
-  finishAnswer(correct, q, given);
-}
-
-function finishAnswer(correct, q, given){
-  quizState.answered++;
-  recordAnswered();
-  const fb = document.getElementById('quizFeedback');
-  if (correct){
-    quizState.score++;
-    fb.innerHTML = `<div class="feedback ok">✅ 答對了！</div>`;
-  } else {
-    quizState.wrong.push(q);
-    const answerLabel = q.type === 'mc' && q.options ? `${q.answer}. ${q.options[q.answer]}` : q.answer;
-    fb.innerHTML = `<div class="feedback no">❌ 正確答案：${escapeHtml(answerLabel)}</div>`;
-  }
-  const nextWrap = document.getElementById('quizNextWrap');
-  nextWrap.innerHTML = `<button class="btn" id="quizNextBtn">${quizState.idx + 1 < quizState.pool.length ? '下一題 ▶' : '查看結果 🏁'}</button>`;
-  document.getElementById('quizNextBtn').addEventListener('click', () => {
-    quizState.idx++;
-    renderQuizQuestion();
+function renderQSummary(){
+  const area=document.getElementById('qArea');
+  const total=quizState.pool.length;
+  const pct=total?Math.round(100*quizState.score/total):0;
+  const emoji=pct>=90?'🏆':pct>=70?'⭐':'💪';
+  area.innerHTML=`
+    <div class="card result-card">
+      <div class="result-score">${emoji} ${quizState.score}/${total}</div>
+      <div class="result-label">${pct}% 答對率</div>
+      ${quizState.wrong.length?`
+        <details style="text-align:left;margin:14px 0;">
+          <summary style="cursor:pointer;font-weight:700;color:var(--danger)">📌 答錯的 ${quizState.wrong.length} 題</summary>
+          <ul class="wrong-list">${quizState.wrong.map(q=>`<li>[${q.category}] ${esc(q.prompt.slice(0,40))}… <b style="color:var(--ok)">→ ${esc(q.type==='mc'&&q.options?q.answer+'. '+q.options[q.answer]:q.answer)}</b></li>`).join('')}</ul>
+        </details>
+        <button class="retry-btn" id="retryWrong">只練錯題 🔁</button>
+      `:'<p style="color:var(--ok);font-weight:700;margin:14px 0">🎉 全部答對！</p>'}
+      <button class="back-btn" id="backSetup">回設定</button>
+    </div>`;
+  document.getElementById('backSetup')?.addEventListener('click',renderQuiz);
+  document.getElementById('retryWrong')?.addEventListener('click',()=>{
+    quizState.pool=shuffle(quizState.wrong);quizState.idx=0;quizState.score=0;quizState.wrong=[];renderQQuestion();
   });
 }
 
-function renderQuizSummary(){
-  const area = document.getElementById('quizArea');
-  const total = quizState.pool.length;
-  const pct = total ? Math.round(100 * quizState.score / total) : 0;
-  if (quizState.mode === 'bank100' && total === 100){
-    loadJSON('bank:bestscore', null).then(best => {
-      if (best === null || quizState.score > best) saveJSON('bank:bestscore', quizState.score);
-    });
-  }
-  area.innerHTML = `
-    <div class="card">
-      <h2>🏁 練習結果</h2>
-      <p style="font-size:1.4rem;"><b>${quizState.score} / ${total}</b>　（${pct}%）</p>
-      ${quizState.wrong.length ? `
-        <h3>📌 答錯的題目</h3>
-        <ul class="qa-list">${quizState.wrong.map(q => `<li>[${quizCardMeta(q)}] ${escapeHtml(q.prompt)} <b>→ ${escapeHtml(q.type === 'mc' && q.options ? q.answer + '.' + q.options[q.answer] : q.answer)}</b></li>`).join('')}</ul>
-        <button class="btn clay" id="retryWrongBtn">只練習這些錯題 🔁</button>
-      ` : `<p>🎉 全部答對，太棒了！</p>`}
-      <button class="btn secondary" id="backToSetupBtn">回到設定畫面</button>
-    </div>
-  `;
-  const retryBtn = document.getElementById('retryWrongBtn');
-  if (retryBtn) retryBtn.addEventListener('click', () => {
-    quizState.pool = shuffle(quizState.wrong);
-    quizState.idx = 0; quizState.score = 0; quizState.wrong = [];
-    renderQuizQuestion();
-  });
-  document.getElementById('backToSetupBtn').addEventListener('click', renderQuiz);
-}
-
-/* ===================== PLAN ===================== */
-const PLAN_DAYS = [
-  { day:1, title:'打地基：L7 + L8 生字與成語', technique:'字源拆解聯想法＋睡前複習：把每個字的部件拆開講成小故事，睡前再看一次今天的錯字，記憶會在睡眠中變得更穩固。',
-    tasks:[
-      '用「重點筆記」過一次 L7、L8 的生字（共32字），每字用拆字聯想記一次',
-      '用「默寫卡牌」練習 L7+L8，把不熟的字標記起來',
-      '用「互動練習」選 L7+L8、題型「成語」，練習一輪' ] },
-  { day:2, title:'打地基：L9 + L10 生字與成語', technique:'諧音／字族聯想法：把長得像的字放在一起比較（例如 症／證／詢／謐 都有偏旁線索），更容易記住差異。',
-    tasks:[
-      '用「重點筆記」過一次 L9、L10 的生字（共36字）',
-      '用「默寫卡牌」練習 L9+L10，把不熟的字標記起來',
-      '用「互動練習」選 L9+L10、題型「成語」，練習一輪' ] },
-  { day:3, title:'課文理解：填充題＋修辭法（四課全範圍）', technique:'故事串聯法：試著用自己的話，把每一課的故事或詩的內容講一遍，講得出來，代表真的理解了。',
-    tasks:[
-      '四課的「填充題複習」（文體、作者、主旨）都讀一次',
-      '用「互動練習」選四課全部、題型「修辭」，練習一輪',
-      '挑一課，試著口頭把課文大意講一次給家人聽' ] },
-  { day:4, title:'選擇題實戰＋整理錯題本', technique:'主動回憶優於被動重讀：先自己作答、再看答案，效果比單純重讀課本好很多。',
-    tasks:[
-      '用「100題題庫」做一次模擬考（題型不限），記下錯的題目',
-      '回到「互動練習」，把錯的題目類型再加強練習一次',
-      '用「默寫卡牌」快速複習「還不熟」的字' ] },
-  { day:5, title:'總複習＋模擬考＋早點睡', technique:'間隔重複＋睡眠記憶固化：考前不要硬塞新內容，把所有字卡快速過一輪、做一次完整模擬考，然後早點睡，讓大腦整理記憶。',
-    tasks:[
-      '用「100題題庫」做一次完整模擬考，目標 90 分以上',
-      '用「默寫卡牌」選「全部」快速過一次 72 張字卡',
-      '提早睡覺，不熬夜抱佛腳，讓記憶在睡眠中固化' ] },
+/* ==================== PLAN ==================== */
+const PLAN=[
+  {day:1,color:'#3a7bd5',title:'L7+L8 生字與成語',technique:'字源拆解聯想法：把每個字的部件拆開講成小故事，睡前再看一次今天的錯字，記憶在睡眠中會更穩固。',
+    tasks:['用「課文筆記」過一次 L7、L8 的生字（共32字），每字用拆字聯想記一次','用「注音默寫」練習 L7+L8，把不熟的字標記','用「互動練習」選 L7+L8、題型「成語」，練習一輪']},
+  {day:2,color:'#22a699',title:'L9+L10 生字與成語',technique:'諧音／字族聯想法：把長得像的字放在一起比較（如 症／證／詢），更容易記住差異。',
+    tasks:['用「課文筆記」過一次 L9、L10 的生字（共36字）','用「注音默寫」練習 L9+L10，把不熟的字標記','用「互動練習」選 L9+L10、題型「成語」，練習一輪']},
+  {day:3,color:'#e04a6a',title:'填充題＋修辭法（四課全範圍）',technique:'故事串聯法：試著用自己的話把每一課的故事或詩的內容講一遍，講得出來，代表真的理解了。',
+    tasks:['四課的「填充題」（文體、作者、主旨）都讀一次','用「互動練習」選四課全部、題型「修辭」，練習一輪','挑一課，試著口頭把課文大意講一次給家人聽']},
+  {day:4,color:'#8b5cf6',title:'選擇題實戰＋整理錯題',technique:'主動回憶優於被動重讀：先自己作答、再看答案，效果比單純重讀課本好很多。',
+    tasks:['用「100題題庫」做一次模擬考，記下錯的題目','回到「互動練習」，把錯的題目類型再加強','用「注音默寫」快速複習「還不熟」的字']},
+  {day:5,color:'#3a7bd5',title:'總複習＋模擬考＋早點睡',technique:'間隔重複＋睡眠記憶固化：考前不要硬塞新內容，把所有字卡快速過一輪、做一次完整模擬考，然後早點睡。',
+    tasks:['用「100題題庫」做一次完整模擬考，目標 90 分以上','用「注音默寫」選「全部」快速過一次所有字卡','提早睡覺，讓記憶在睡眠中固化']},
 ];
-
 function renderPlan(){
-  const el = document.getElementById('view-plan');
-  el.innerHTML = `<div class="card"><h2>📕 段考前5天背誦計畫</h2><p class="muted">每天三個任務，做完就打勾。任務內容會連結到上面的其他功能。</p><div id="planDays"></div></div>`;
-  loadJSON('plan:checks', {}).then(checks => {
-    const wrap = document.getElementById('planDays');
-    wrap.innerHTML = PLAN_DAYS.map(d => `
-      <div class="day-card">
-        <h3>Day ${d.day}　${escapeHtml(d.title)}</h3>
-        ${d.tasks.map((t, i) => {
-          const id = `d${d.day}-t${i}`;
-          const done = !!checks[id];
-          return `<label class="task ${done ? 'done' : ''}"><input type="checkbox" data-id="${id}" ${done ? 'checked' : ''}><span>${escapeHtml(t)}</span></label>`;
-        }).join('')}
-        <div class="tip">🧠 記憶技巧：${escapeHtml(d.technique)}</div>
-      </div>
-    `).join('');
-    wrap.querySelectorAll('input[type=checkbox]').forEach(cb => {
-      cb.addEventListener('change', async () => {
-        const cks = await loadJSON('plan:checks', {});
-        cks[cb.dataset.id] = cb.checked;
-        await saveJSON('plan:checks', cks);
-        cb.closest('.task').classList.toggle('done', cb.checked);
-      });
+  const el=document.getElementById('view-plan');
+  el.innerHTML=`
+    <div class="card">
+      <div class="card-title">📕 段考前5天背誦計畫</div>
+      <p class="muted" style="margin-bottom:18px">每天三個任務，做完打勾。</p>
+      ${PLAN.map(d=>`
+        <div class="day-block" style="border-left-color:${d.color}">
+          <div class="day-title" style="color:${d.color}">Day ${d.day}　${esc(d.title)}</div>
+          ${d.tasks.map((t,i)=>{
+            const id=`d${d.day}t${i}`;
+            const done=!!(mem.planChecks[id]);
+            return `<label class="task-item${done?' done':''}"><input type="checkbox" data-id="${id}"${done?' checked':''}><span>${esc(t)}</span></label>`;
+          }).join('')}
+          <div class="tip-box">🧠 ${esc(d.technique)}</div>
+        </div>`).join('')}
+    </div>`;
+  el.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.addEventListener('change',()=>{
+      mem.planChecks[cb.dataset.id]=cb.checked;
+      cb.closest('.task-item').classList.toggle('done',cb.checked);
     });
   });
 }
 
-/* ===================== 100-QUESTION BANK ===================== */
+/* ==================== BANK ==================== */
 function renderBank(){
-  const el = document.getElementById('view-bank');
-  el.innerHTML = `
+  const el=document.getElementById('view-bank');
+  el.innerHTML=`
     <div class="card">
-      <h2>📗 100題精選題庫</h2>
-      <p class="muted">四課各精選25題（選擇＋修辭＋成語），可以直接瀏覽看解答，也可以限時模擬考測試自己。</p>
-      <button class="btn" id="bankQuizBtn">開始100題模擬考 ⏱️</button>
-      <button class="btn secondary" id="bankBrowseBtn">瀏覽全部題目與解答</button>
+      <div class="card-title">📗 100題精選題庫</div>
+      <p class="muted" style="margin-bottom:14px">四課各精選25題，可瀏覽解答，也可模擬考。</p>
+      <div class="bank-controls">
+        <button class="bank-btn primary" id="bankQuiz">開始100題模擬考 ⏱️</button>
+        <button class="bank-btn" id="bankBrowse">瀏覽全部解答</button>
+      </div>
       <div id="bankArea"></div>
-    </div>
-  `;
-  document.getElementById('bankQuizBtn').addEventListener('click', () => {
-    quizState.pool = HUNDRED_BANK.map(q => ({
-      id: 'bank-' + q.qno, lesson: q.lesson, lessonTitle: q.lessonTitle, category: q.category,
-      type: q.options ? 'mc' : 'text', prompt: q.prompt, options: q.options, answer: q.answer
-    }));
-    quizState.idx = 0; quizState.score = 0; quizState.wrong = []; quizState.mode = 'bank100';
-    document.getElementById('bankArea').innerHTML = '';
-    const quizArea = document.createElement('div');
-    quizArea.id = 'quizArea';
-    document.getElementById('bankArea').appendChild(quizArea);
-    renderQuizQuestion();
+    </div>`;
+  document.getElementById('bankQuiz').addEventListener('click',()=>{
+    quizState.pool=BANK.map(q=>({id:'bank-'+q.qno,lesson:q.lesson,lessonTitle:q.lessonTitle,category:q.category,type:q.options?'mc':'text',prompt:q.prompt,options:q.options,answer:q.answer}));
+    quizState.idx=0;quizState.score=0;quizState.wrong=[];
+    const area=document.getElementById('bankArea');
+    area.innerHTML='';area.id='qArea';
+    renderQQuestion();
+    area.id='bankArea';
   });
-  document.getElementById('bankBrowseBtn').addEventListener('click', () => {
-    const area = document.getElementById('bankArea');
-    area.innerHTML = HUNDRED_BANK.map(q => `
+  document.getElementById('bankBrowse').addEventListener('click',()=>{
+    document.getElementById('bankArea').innerHTML=BANK.map(q=>`
       <div class="bank-item">
-        <div class="bmeta">第${q.qno}題 ・ ${LESSONS[q.lesson].no} ${q.lessonTitle} ・ ${q.category}</div>
-        <div class="bprompt">${escapeHtml(q.prompt)}</div>
-        ${q.options ? `<div class="muted">${Object.entries(q.options).map(([k,v]) => `${k}. ${escapeHtml(v)}`).join('　')}</div>` : ''}
-        <button class="reveal-btn" data-i="${q.qno}">顯示答案</button>
-        <div class="banswer" id="bank-ans-${q.qno}">✅ ${escapeHtml(q.options ? q.answer + '. ' + q.options[q.answer] : q.answer)}${q.note ? ' － ' + escapeHtml(q.note) : ''}</div>
-      </div>
-    `).join('');
-    area.querySelectorAll('.reveal-btn').forEach(b => b.addEventListener('click', () => {
-      document.getElementById('bank-ans-' + b.dataset.i).classList.toggle('show');
+        <div class="b-meta">第${q.qno}題 ・ ${LESSONS[q.lesson]?.no} ・ ${q.category}</div>
+        <div class="b-prompt">${esc(q.prompt)}</div>
+        ${q.options?`<div class="b-opts">${Object.entries(q.options).map(([k,v])=>`${k}. ${esc(v)}`).join('　')}</div>`:''}
+        <button class="reveal-btn" data-qi="${q.qno}">顯示答案</button>
+        <div class="b-answer" id="ba-${q.qno}">✅ ${esc(q.options?q.answer+'. '+q.options[q.answer]:q.answer)}${q.note?' — '+esc(q.note):''}</div>
+      </div>`).join('');
+    document.querySelectorAll('.reveal-btn').forEach(b=>b.addEventListener('click',()=>{
+      document.getElementById('ba-'+b.dataset.qi).classList.toggle('show');
     }));
   });
 }
 
-/* ===================== FLASHCARDS ===================== */
-const cardsState = { deck: [], idx: 0, flipped: false, lesson: 'ALL' };
-
-function buildDeck(lessonFilter){
-  let vocab = [];
-  Object.values(LESSONS).forEach(L => {
-    if (lessonFilter !== 'ALL' && L.key !== lessonFilter) return;
-    L.vocab.filter(v => !v.char.includes('❓')).forEach(v => {
-      vocab.push({ id: `${L.key}-v-${v.n}`, lesson: L.key, lessonTitle: L.title, ...v });
-    });
+/* ==================== CARDS ==================== */
+function buildDeck(filter){
+  let v=[];
+  Object.values(LESSONS).forEach(L=>{
+    if(filter!=='ALL'&&L.key!==filter)return;
+    L.vocab.filter(x=>!x.char.includes('對照')).forEach(x=>v.push({...x,lkey:L.key,lcolor:L.color,ltitle:L.title,lno:L.no}));
   });
-  return shuffle(vocab);
+  return shuffle(v);
 }
-
 function renderCards(){
-  const el = document.getElementById('view-cards');
-  el.innerHTML = `
+  const el=document.getElementById('view-cards');
+  const lkeys=['ALL',...Object.keys(LESSONS)];
+  el.innerHTML=`
     <div class="card">
-      <h2>📘 默寫卡牌</h2>
-      <p class="muted">正面是注音與詞語，點卡片翻到背面看國字、拼音和記憶小技巧。看完選一個熟悉程度，就會出現下一張。</p>
-      <div class="deck-controls">
-        <div class="pillrow" id="cardLessonPills"></div>
-        <button class="btn secondary" id="shuffleBtn">🔀 重新洗牌</button>
+      <div class="card-title">📘 注音默寫（字卡翻翻看）</div>
+      <div class="lesson-pills" style="margin-bottom:14px">${lkeys.map(k=>`
+        <button class="lpill${cardState.lesson===k?' a-'+(k==='ALL'?'l7':k.toLowerCase()):''}" data-ck="${k}"
+          style="${cardState.lesson===k&&k!=='ALL'?`background:${LESSONS[k].color};border-color:${LESSONS[k].color};color:#fff`:''}">
+          ${k==='ALL'?'全部':LESSONS[k].cover+' '+LESSONS[k].no}
+        </button>`).join('')}
+        <button class="lpill" id="shuffleCard">🔀 重新洗牌</button>
       </div>
-      <div class="flip-area"><div class="flipcard" id="flipcard"><div class="flipcard-inner">
-        <div class="flip-face flip-front" id="flipFront"></div>
-        <div class="flip-face flip-back" id="flipBack"></div>
-      </div></div></div>
-      <div class="deckcount" id="deckCount"></div>
-      <div class="mastery-row" id="masteryRow"></div>
-    </div>
-  `;
-  const lessonKeys = ['ALL', ...Object.keys(LESSONS)];
-  const lp = document.getElementById('cardLessonPills');
-  lp.innerHTML = lessonKeys.map(k => `<button class="pill ${k === cardsState.lesson ? 'active' : ''}" data-k="${k}">${k === 'ALL' ? '全部四課' : LESSONS[k].no}</button>`).join('');
-  lp.querySelectorAll('.pill').forEach(b => b.addEventListener('click', () => {
-    cardsState.lesson = b.dataset.k;
-    cardsState.deck = buildDeck(cardsState.lesson);
-    cardsState.idx = 0; cardsState.flipped = false;
-    renderCards();
+      <div class="flip-area">
+        <div class="flip-outer" id="flipOuter">
+          <div class="flip-inner" id="flipInner">
+            <div class="flip-face ff" id="flipFront"></div>
+            <div class="flip-face fb" id="flipBack"></div>
+          </div>
+        </div>
+        <div class="flip-counter" id="flipCtr"></div>
+        <div class="mastery-row" id="masteryRow"></div>
+      </div>
+    </div>`;
+  el.querySelectorAll('[data-ck]').forEach(b=>b.addEventListener('click',()=>{
+    cardState.lesson=b.dataset.ck;cardState.deck=buildDeck(cardState.lesson);cardState.idx=0;renderCards();
   }));
-  document.getElementById('shuffleBtn').addEventListener('click', () => {
-    cardsState.deck = shuffle(cardsState.deck);
-    cardsState.idx = 0; cardsState.flipped = false;
-    showCard();
+  document.getElementById('shuffleCard').addEventListener('click',()=>{
+    cardState.deck=shuffle(cardState.deck);cardState.idx=0;showCard2();
   });
-  if (cardsState.deck.length === 0) cardsState.deck = buildDeck(cardsState.lesson);
-  showCard();
+  document.getElementById('flipOuter').addEventListener('click',()=>{
+    document.getElementById('flipInner').classList.toggle('flipped');
+  });
+  if(!cardState.deck.length)cardState.deck=buildDeck(cardState.lesson);
+  showCard2();
 }
-
-function showCard(){
-  if (cardsState.idx >= cardsState.deck.length){ cardsState.idx = 0; }
-  const v = cardsState.deck[cardsState.idx];
-  const front = document.getElementById('flipFront');
-  const back = document.getElementById('flipBack');
-  const fc = document.getElementById('flipcard');
-  fc.classList.remove('flipped');
-  cardsState.flipped = false;
-  if (!v){
-    front.innerHTML = `<p>這個範圍還沒有字卡。</p>`;
-    back.innerHTML = '';
-    document.getElementById('deckCount').textContent = '';
-    document.getElementById('masteryRow').innerHTML = '';
-    return;
-  }
-  front.innerHTML = `<div class="muted">${LESSONS[v.lesson].no} ${v.lessonTitle}</div><div class="fchar">${escapeHtml(v.pinyin)}</div><div class="vword">${escapeHtml(v.word)}</div><div class="muted" style="margin-top:14px;">點卡片看國字 👆</div>`;
-  back.innerHTML = `<div class="bchar">${escapeHtml(v.char)}</div><div class="bpinyin">${escapeHtml(v.pinyin)}</div><div class="vword" style="color:#F3ECDA;">${escapeHtml(v.word)}</div><div class="bmnemo">💡 ${escapeHtml(v.mnemonic)}</div>`;
-  document.getElementById('deckCount').textContent = `第 ${cardsState.idx + 1} / ${cardsState.deck.length} 張`;
-  fc.onclick = () => { fc.classList.toggle('flipped'); cardsState.flipped = !cardsState.flipped; };
-  const mrow = document.getElementById('masteryRow');
-  mrow.innerHTML = `
-    <button class="mbtn lvl-bad" data-lvl="bad">❌ 不熟</button>
-    <button class="mbtn lvl-mid" data-lvl="mid">🤔 還可以</button>
-    <button class="mbtn lvl-good" data-lvl="good">✅ 熟悉</button>
-  `;
-  mrow.querySelectorAll('.mbtn').forEach(b => b.addEventListener('click', async () => {
-    const m = await loadJSON('cards:mastery', {});
-    m[v.id] = b.dataset.lvl;
-    await saveJSON('cards:mastery', m);
-    cardsState.idx++;
-    showCard();
+function showCard2(){
+  if(cardState.idx>=cardState.deck.length)cardState.idx=0;
+  const v=cardState.deck[cardState.idx];
+  const inner=document.getElementById('flipInner');
+  if(inner)inner.classList.remove('flipped');
+  const front=document.getElementById('flipFront');
+  const back=document.getElementById('flipBack');
+  const ctr=document.getElementById('flipCtr');
+  const mrow=document.getElementById('masteryRow');
+  if(!v||!front)return;
+  front.innerHTML=`
+    <div class="muted" style="margin-bottom:8px">${v.lno}</div>
+    <div class="fc-pinyin">${esc(v.pinyin)}</div>
+    <div class="fc-word">${esc(v.word)}</div>
+    <div class="hint">點卡片看國字 👆</div>`;
+  back.style.background=v.lcolor;
+  back.innerHTML=`
+    <div class="fc-char">${esc(v.char)}</div>
+    <div class="fc-pinyin2">${esc(v.pinyin)}</div>
+    <div class="fc-word2">${esc(v.word)}</div>
+    <div class="fc-mnemo">💡 ${esc(v.mnemonic)}</div>`;
+  ctr.textContent=`第 ${cardState.idx+1} / ${cardState.deck.length} 張`;
+  const lvl=mem.mastery[`${v.lkey}-v-${v.n}`]||'';
+  mrow.innerHTML=`
+    <button class="m-bad${lvl==='bad'?' sel':''}" data-lv="bad">❌ 不熟</button>
+    <button class="m-mid${lvl==='mid'?' sel':''}" data-lv="mid">🤔 還可以</button>
+    <button class="m-ok${lvl==='ok'?' sel':''}" data-lv="ok">✅ 熟悉</button>`;
+  mrow.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+    mem.mastery[`${v.lkey}-v-${v.n}`]=b.dataset.lv;
+    cardState.idx++;showCard2();
   }));
 }
 
-/* ===================== boot ===================== */
-renderHome();
+/* ==================== IDIOM TRAINING ==================== */
+function buildIdiomDeck(filter){
+  let all=[];
+  Object.values(LESSONS).forEach(L=>{
+    if(filter!=='ALL'&&L.key!==filter)return;
+    L.idioms.forEach(i=>all.push({...i,lkey:L.key,lcolor:L.color,lno:L.no,ltitle:L.title}));
+  });
+  return shuffle(all);
+}
+function renderIdiom(){
+  const el=document.getElementById('view-idiom');
+  const lkeys=['ALL',...Object.keys(LESSONS)];
+  el.innerHTML=`
+    <div class="card">
+      <div class="card-title">🏆 成語特訓（共 ${Object.values(LESSONS).reduce((s,L)=>s+L.idioms.length,0)} 個）</div>
+      <div class="lesson-pills" style="margin-bottom:14px">${lkeys.map(k=>`
+        <button class="lpill${idiomState.lesson===k?' a-'+(k==='ALL'?'l7':k.toLowerCase()):''}" data-ik="${k}"
+          style="${idiomState.lesson===k&&k!=='ALL'?`background:${LESSONS[k].color};border-color:${LESSONS[k].color};color:#fff`:''}">
+          ${k==='ALL'?'全部':LESSONS[k].cover+' '+LESSONS[k].no}
+        </button>`).join('')}
+        <button class="lpill" id="idiomShuffle">🔀 重新洗牌</button>
+      </div>
+      <div class="idiom-card-wrap" id="idiomWrap"></div>
+      <div class="flip-counter" id="idiomCtr" style="text-align:center;margin-top:8px;"></div>
+      <div class="idiom-nav" id="idiomNav"></div>
+    </div>
+    <div class="card" style="margin-top:0">
+      <div class="card-title" style="margin-bottom:12px">📋 全部成語一覽</div>
+      ${Object.values(LESSONS).map(L=>`
+        <div style="margin-bottom:16px">
+          <div style="font-weight:700;color:${L.color};margin-bottom:8px">${L.cover} ${L.no}　${L.title}</div>
+          <div class="idiom-grid">${L.idioms.map(i=>`
+            <div class="ichip">
+              <div class="iw">${i.prompt.replace(/□/g,`<span class="ia">${esc(i.answer)}</span>`)}</div>
+              <div class="im">${esc(i.meaning)}</div>
+            </div>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`;
+  el.querySelectorAll('[data-ik]').forEach(b=>b.addEventListener('click',()=>{
+    idiomState.lesson=b.dataset.ik;idiomState.all=buildIdiomDeck(idiomState.lesson);idiomState.idx=0;idiomState.revealed=false;renderIdiom();
+  }));
+  document.getElementById('idiomShuffle').addEventListener('click',()=>{
+    idiomState.all=shuffle(idiomState.all);idiomState.idx=0;idiomState.revealed=false;showIdiomCard();
+  });
+  if(!idiomState.all.length)idiomState.all=buildIdiomDeck(idiomState.lesson);
+  showIdiomCard();
+}
+function showIdiomCard(){
+  const wrap=document.getElementById('idiomWrap');
+  const ctr=document.getElementById('idiomCtr');
+  const nav=document.getElementById('idiomNav');
+  if(!wrap)return;
+  if(idiomState.idx>=idiomState.all.length)idiomState.idx=0;
+  const it=idiomState.all[idiomState.idx];
+  if(!it){wrap.innerHTML='<p class="muted">沒有成語。</p>';return;}
+  const promptHtml=it.prompt.replace(/□/g,`<span class="ic-blank">＿</span>`);
+  ctr.textContent=`第 ${idiomState.idx+1} / ${idiomState.all.length} 個`;
+  wrap.innerHTML=`
+    <div class="idiom-card" style="border-color:${it.lcolor}">
+      <div class="muted" style="margin-bottom:8px">${it.lno}</div>
+      <div class="ic-word">${promptHtml}</div>
+      <div class="ic-meaning">${esc(it.meaning)}</div>
+      <div class="ic-reveal${idiomState.revealed?' show':''}">
+        <div class="ic-ans" style="color:${it.lcolor}">答案：${esc(it.answer)}</div>
+        <div style="font-size:.85rem;font-weight:700;margin-top:4px">
+          ${it.prompt.replace(/□/g,`<span style="color:${it.lcolor};font-weight:900">${esc(it.answer)}</span>`)}
+        </div>
+      </div>
+    </div>`;
+  nav.innerHTML=`
+    <button id="idiomReveal" class="idiom-reveal-btn">${idiomState.revealed?'已顯示':'顯示答案'}</button>
+    <button id="idiomPrev" class="idiom-nav" style="border:2px solid var(--border);background:var(--card);border-radius:12px;padding:9px 20px;font-weight:700">← 上一個</button>
+    <button id="idiomNext" class="idiom-nav" style="border:2px solid var(--border);background:var(--card);border-radius:12px;padding:9px 20px;font-weight:700">下一個 →</button>`;
+  document.getElementById('idiomReveal').addEventListener('click',()=>{idiomState.revealed=true;showIdiomCard();});
+  document.getElementById('idiomPrev').addEventListener('click',()=>{idiomState.idx=Math.max(0,idiomState.idx-1);idiomState.revealed=false;showIdiomCard();});
+  document.getElementById('idiomNext').addEventListener('click',()=>{idiomState.idx++;idiomState.revealed=false;showIdiomCard();});
+}
 
+/* ── boot ── */
+renderNotes();
 </script>
 </body>
 </html>
